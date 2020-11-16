@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class login extends AppCompatActivity implements View.OnClickListener {
 
+    TextView tvLoginError;
     EditText etEmailLogin, etPasswordLogin;
     Button btnLogin;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         etEmailLogin = (EditText) findViewById(R.id.etEmailLogin);
         etPasswordLogin = (EditText) findViewById(R.id.etPasswordLogin);
         btnLogin = (Button) findViewById(R.id.btnLogin);
+        tvLoginError = (TextView) findViewById(R.id.tvLoginError);
     }
 
     //Metodo que captura el click
@@ -33,6 +38,15 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         int id = v.getId();
         if(id == R.id.btnLogin){
 
+
+            //Poner en caso de error. Despues de verificar si el usuario es correcto.
+            //tvLoginError.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void verificacionLogin(){
+        //JsonObjectRequest
+
+
     }
 }
