@@ -67,7 +67,12 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
     private boolean verificacionLogin(String email, String password){
         final boolean[] verificado = new boolean[1];
-        String URL = "http://192.168.1.254/android/login.php?email=" + email + "&password=" + password;
+
+        //Instituto TODO cambiara cada vez que este en clase
+        String URL = "http://172.16.5.222/android/login.php?email=" + email + "&password=" + password;
+
+        //Casa TODO
+        //String URL = "http://192.168.1.254/android/login.php?email=" + email + "&password=" + password;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
