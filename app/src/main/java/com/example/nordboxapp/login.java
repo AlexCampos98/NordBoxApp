@@ -24,7 +24,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     TextView tvLoginError;
     EditText etEmailLogin, etPasswordLogin;
     Button btnLogin;
-    usuario idUsuario;
+    usuario idUsuario = new usuario();
 
     RequestQueue requestQueue;
 
@@ -85,7 +85,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                             email = response.getString("email");
 
                             idUsuario = new usuario(email);
-                            verificado[0] =true;
+                            verificado[0] = true;
                         } catch (JSONException e) {
                             e.printStackTrace();
 
@@ -95,7 +95,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        verificado[0] =false;
+                        verificado[0] = false;
                     }
                 }
         );

@@ -3,6 +3,10 @@ package com.example.nordboxapp;
 public class usuario {
     private String email;
 
+    public usuario(){
+        this.email = "";
+    }
+
     public usuario(String email) {
         this.email = email;
     }
