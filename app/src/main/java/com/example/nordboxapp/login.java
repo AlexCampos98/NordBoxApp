@@ -2,12 +2,12 @@ package com.example.nordboxapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -42,7 +42,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     }
 
     //Metodo creado para inicializar todos los componentes de la activity
-    private void initUI(){
+    private void initUI() {
         etEmailLogin = (EditText) findViewById(R.id.etEmailLogin);
         etPasswordLogin = (EditText) findViewById(R.id.etPasswordLogin);
         btnLogin = (Button) findViewById(R.id.btnLogin);
@@ -50,29 +50,32 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     }
 
     //Metodo que captura el click
-    public void onClick(View v){
+    public void onClick(View v) {
         int id = v.getId();
-        if(id == R.id.btnLogin){
+        if (id == R.id.btnLogin) {
 
-            String email = etEmailLogin.getText().toString().trim();
-            String password = etPasswordLogin.getText().toString().trim();
+            String email = (String) etEmailLogin.getText().toString().trim();
+            String password = (String) etPasswordLogin.getText().toString().trim();
 
-            if(verificacionLogin(email, password)) {
-                idUsuario.getEmail();
+            //TODO Revisar el verificacionLogin, cuando inicio sesion la primera vez da error, pero la segunda entra por el if.
+            verificacionLogin( email, password);
+            if (idUsuario.getEmail() != null) {
+                Intent i = new Intent(this, menuActivity.class);
+                i.putExtra("idUsuario",idUsuario.getEmail());
+                startActivity(i);
+            } else {
+                tvLoginError.setVisibility(View.VISIBLE);
             }
-            //Poner en caso de error. Despues de verificar si el usuario es correcto.
-            //tvLoginError.setVisibility(View.VISIBLE);
         }
     }
 
-    private boolean verificacionLogin(String email, String password){
-        final boolean[] verificado = new boolean[1];
-
+    //TODO Revisar verificacionLogin, problema.
+    private void verificacionLogin(String email, String password) {
         //Instituto TODO cambiara cada vez que este en clase
-        String URL = "http://172.16.5.222/android/login.php?email=" + email + "&password=" + password;
+//        String URL = "http://172.16.5.222/android/login.php?email=" + email + "&password=" + password;
 
         //Casa TODO
-        //String URL = "http://192.168.1.254/android/login.php?email=" + email + "&password=" + password;
+        String URL = "http://192.168.1.254/android/login.php?email=" + email + "&password=" + password;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -85,7 +88,6 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                             email = response.getString("email");
 
                             idUsuario = new usuario(email);
-                            verificado[0] = true;
                         } catch (JSONException e) {
                             e.printStackTrace();
 
@@ -95,11 +97,9 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        verificado[0] = false;
                     }
                 }
         );
         requestQueue.add(jsonObjectRequest);
-        return verificado[0];
     }
 }

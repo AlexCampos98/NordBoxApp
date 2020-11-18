@@ -12,7 +12,7 @@
         android:theme="@style/Theme.NordBoxApp"
         android:usesCleartextTraffic="true">
         <activity android:name=".creacionUsuario"></activity>
-        <activity android:name=".MenuActivity" />
+        <activity android:name=".menuActivity" />
         <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
