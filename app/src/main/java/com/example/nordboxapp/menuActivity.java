@@ -73,21 +73,23 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnContacto:
-                //TODO Añadir intent de cambio a la activity calendario.
+                //TODO Añadir intent de cambio a la activity Contacto.
                 break;
 
             case R.id.btnBenchmarks:
-                //TODO Añadir intent de cambio a la activity calendario.
+                //TODO Añadir intent de cambio a la activity Benchmarks.
                 break;
 
             case R.id.btnPerfil:
-                //TODO Añadir intent de cambio a la activity calendario.
+                //TODO Añadir intent de cambio a la activity Perfil.
                 break;
 
             case R.id.btnSalir:
-                //TODO Añadir intent de cambio a la activity calendario.
+                //TODO Cerrar la sesion al Salir.
+                i = new Intent(this, login.class);
                 break;
-
         }
+
+        startActivity(i);
     }
 }
