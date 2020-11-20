@@ -13,10 +13,4 @@
     <string name="overBenchmarks">Benchmarks</string>
     <string name="overPerfil">Perfil</string>
     <string name="overSalir">Salir</string>
-    <string name="overReservar">Reservar clases</string>
-    <string name="overContacto">Contacto</string>
-    <string name="overBenchmarks">Benchmarks</string>
-    <string name="overPerfil">Perfil</string>
-    <string name="overSalir">Salir</string>
-    <string name="title_activity_menu">menuActivity</string>
 </resources>
