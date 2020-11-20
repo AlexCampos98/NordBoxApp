@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/overReservar"
+        android:title="@string/overReservar" />
+    <item
+        android:id="@+id/overContacto"
+        android:title="@string/overContacto" />
+    <item
+        android:id="@+id/overBenchmarks"
+        android:title="@string/overBenchmarks" />
+    <item
+        android:id="@+id/overPerfil"
+        android:title="@string/overPerfil" />
+    <item
+        android:id="@+id/overSalir"
+        android:title="@string/overSalir" />
+</menu>
