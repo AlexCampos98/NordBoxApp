@@ -52,20 +52,22 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     //Metodo que captura el click
     public void onClick(View v) {
         int id = v.getId();
+        //Si se ha pulsado el boton de login
         if (id == R.id.btnLogin) {
 
-            String email = (String) etEmailLogin.getText().toString().trim();
-            String password = (String) etPasswordLogin.getText().toString().trim();
+//            String email = (String) etEmailLogin.getText().toString().trim();
+//            String password = (String) etPasswordLogin.getText().toString().trim();
 
             //TODO Revisar el verificacionLogin, cuando inicio sesion la primera vez da error, pero la segunda entra por el if.
-            verificacionLogin( email, password);
-            if (idUsuario.getEmail() != null) {
+//            verificacionLogin(email, password);
+
+//            if (idUsuario.getEmail() != null) {
                 Intent i = new Intent(this, menuActivity.class);
-                i.putExtra("idUsuario",idUsuario.getEmail());
+//                i.putExtra("idUsuario", idUsuario.getEmail());
                 startActivity(i);
-            } else {
-                tvLoginError.setVisibility(View.VISIBLE);
-            }
+//            } else {
+//                tvLoginError.setVisibility(View.VISIBLE);
+//            }
         }
     }
 

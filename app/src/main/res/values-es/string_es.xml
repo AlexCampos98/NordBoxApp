@@ -9,4 +9,11 @@
     <string name="btnLogin">Iniciar Sesion</string>
     <string name="imgLogin">Logotipo oficial de NordBox</string>
     <string name="tvLoginError">* Email o contraseña incorrectos</string>
+
+<!--    Menu overflow-->
+    <string name="overReservar">Reservar clases</string>
+    <string name="overContacto">Contacto</string>
+    <string name="overBenchmarks">Benchmarks</string>
+    <string name="overPerfil">Perfil</string>
+    <string name="overSalir">Salir</string>
 </resources>

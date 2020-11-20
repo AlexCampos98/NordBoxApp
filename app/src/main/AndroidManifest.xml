@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.nordboxapp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,8 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NordBoxApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".creacionUsuario"></activity>
-        <activity android:name=".menuActivity" />
+        <activity android:name=".creacionUsuario" />
         <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
