@@ -16,4 +16,11 @@
     <string name="overBenchmarks">Benchmarks</string>
     <string name="overPerfil">Perfil</string>
     <string name="overSalir">Salir</string>
+
+<!--    MMenu Activity-->
+    <string name="btnReservar">Reservar clases</string>
+    <string name="btnContacto">Contacto</string>
+    <string name="btnBenchmarks">Benchmarks</string>
+    <string name="btnPerfil">Perfil</string>
+    <string name="btnSalir">Salir</string>
 </resources>
