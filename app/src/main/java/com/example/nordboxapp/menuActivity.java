@@ -9,12 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-public class menuActivity extends AppCompatActivity implements View.OnClickListener{
+public class menuActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton btnReservar, btnContacto, btnBenchmarks;
-    Button  btnPerfil, btnSalir;
+    Button btnPerfil, btnSalir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_menu);
 
         initUI();
+
 
     }
 
@@ -36,7 +38,6 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
         btnPerfil.setOnClickListener(this);
         btnSalir = (Button) findViewById(R.id.btnSalir);
         btnSalir.setOnClickListener(this);
-
     }
 
     //Metodo para mostrar y ocultar el menu
@@ -52,8 +53,27 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
         Intent i = null;
 
         //TODO, terminar los diferentes intent
-        if (id == R.id.overReservar) {
+        switch (id) {
+            case R.id.overReservar:
+                //TODO Añadir intent de cambio a la activity calendario.
+                break;
 
+            case R.id.overContacto:
+                //TODO Añadir intent de cambio a la activity Contacto.
+                break;
+
+            case R.id.overBenchmarks:
+                i = new Intent(this, benchmarksActivity.class);
+                break;
+
+            case R.id.overPerfil:
+                //TODO Añadir intent de cambio a la activity Perfil.
+                break;
+
+            case R.id.overSalir:
+                //TODO Cerrar la sesion al Salir.
+                i = new Intent(this, login.class);
+                break;
         }
 
         startActivity(i);
@@ -77,7 +97,7 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnBenchmarks:
-                //TODO Añadir intent de cambio a la activity Benchmarks.
+                i = new Intent(this, benchmarksActivity.class);
                 break;
 
             case R.id.btnPerfil:

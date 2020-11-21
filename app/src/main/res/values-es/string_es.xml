@@ -23,4 +23,10 @@
     <string name="btnBenchmarks">Benchmarks</string>
     <string name="btnPerfil">Perfil</string>
     <string name="btnSalir">Salir</string>
+
+<!--    Benchmarks-->
+    <string name="btnBack_Squat">Back Squat</string>
+    <string name="btnBarbell_lunges">Barbell lunges</string>
+    <string name="btnBench_lunges">Bench lunges</string>
+    <string name="btnBench_Press">Bench Press</string>
 </resources>
