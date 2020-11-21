@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 public class benchmarksActivity extends AppCompatActivity {
 
     @Override
@@ -15,8 +17,8 @@ public class benchmarksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_benchmarks);
 
-//        ImageView imageView2 = findViewById(R.id.imageView2);
-//        Glide.with(getApplicationContext()).load(R.drawable.back_squat).into(imageView2);
+        ImageView imageView2 = findViewById(R.id.imageView2);
+        Glide.with(getBaseContext()).load(R.drawable.back_squat).into(imageView2);
     }
 
     //Metodo para mostrar y ocultar el menu

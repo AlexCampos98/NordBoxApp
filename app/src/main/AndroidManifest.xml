@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NordBoxApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".menuActivity"></activity>
+        <activity android:name=".menuActivity"/>
+        <activity android:name=".benchmarksActivity"/>
         <activity android:name=".creacionUsuario" />
         <activity android:name=".login">
             <intent-filter>
