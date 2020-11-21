@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="btnBack_Squat_info">Back Squat</string>
+    <string name="imageGif">Visualizacion del ejercicio seleccionado</string>
 </resources>

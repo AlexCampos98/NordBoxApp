@@ -11,17 +11,20 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.LayoutAnimationController;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 public class benchmarksActivity extends AppCompatActivity implements View.OnClickListener {
 
     LinearLayout layoutAnimado;
+
+    Button btnBack_Squat;
     ImageButton btnBack_Squat_info;
+    //TODO Crear un array de botones, tanto de img como btn, para poder almacenarlos usarlos, segun los que la BD nos indique.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +32,22 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_benchmarks);
 
         initUI();
-
     }
 
+    //TODO Añadir todos los diferentes botones, Los botones se crearan automaticamente, segun los que existan en la BD.
     public void initUI() {
-        btnBack_Squat_info = (ImageButton) findViewById(R.id.btnBack_Squat_info);
+        btnBack_Squat_info = findViewById(R.id.btnBack_Squat_info);
         btnBack_Squat_info.setOnClickListener(this);
 
-        ImageView imageView2 = findViewById(R.id.imageView2);
-        Glide.with(getBaseContext()).load(R.drawable.back_squat).into(imageView2);
+        btnBack_Squat = findViewById(R.id.btnBack_Squat);
+        btnBack_Squat.setOnClickListener(this);
 
-        layoutAnimado = (LinearLayout) findViewById(R.id.layoutAnimado);
+        //TODO Pensar como poder añadir los diferentes gif, segun que boton han pulsado. En la BD, se almacenara la direccion del gif.
+        ImageView imageGif = findViewById(R.id.imageGif);
+        Glide.with(getBaseContext()).load(R.drawable.back_squat).into(imageGif);
+
+        //Iniciado el layout que hara aparecer el gif de informacion.
+        layoutAnimado = findViewById(R.id.layoutAnimado);
     }
 
     //Metodo para mostrar y ocultar el menu
@@ -85,9 +93,20 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         int id = v.getId();
 
+        Intent i = null;
+
         if (id == R.id.btnBack_Squat_info) {
             mostrar(v);
-//            ocultar(v);
+            //TODO, segun la opcion del usuario, se añadira un gif a 'R.id.imageGif'
+        }
+
+        if (id == R.id.btnBack_Squat) {
+            i = new Intent(this, benchmarkEjercicioActivity.class);
+
+        }
+
+        if (i != null) {
+            startActivity(i);
         }
     }
 
@@ -102,23 +121,15 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-//    //Metodo creado para ocultar el gif
-//    public void ocultar(View button) {
-//        if (layoutAnimado.getVisibility() == View.VISIBLE) {
-//            animar(false);
-//            layoutAnimado.setVisibility(View.GONE);
-//        }
-//
-//    }
-
     //Animacion de la salida del gif
     private void animar(boolean mostrar) {
         AnimationSet set = new AnimationSet(true);
-        Animation animation = null;
+        Animation animation;
         if (mostrar) {
             //desde la esquina inferior derecha a la superior izquierda
             animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
-        } else {    //desde la esquina superior izquierda a la esquina inferior derecha
+        } else {
+            //desde la esquina superior izquierda a la esquina inferior derecha
             animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
         }
         //duración en milisegundos

@@ -32,4 +32,5 @@
     <string name="btnBench_lunges_info" translatable="false">Bench_lunges_info</string>
     <string name="btnBench_Press">Bench Press</string>
     <string name="btnBench_Press_info" translatable="false">Bench_Press_info</string>
+    <string name="imageGif">Visualizacion del ejercicio seleccionado</string>
 </resources>
