@@ -75,15 +75,15 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent i = null;
 
-        if (id == R.id.overReservar) {
+        if (id == R.id.btnReservar) {
             //TODO Añadir intent de cambio a la activity calendario.
-        } else if (id == R.id.overContacto) {
+        } else if (id == R.id.btnContacto) {
             //TODO Añadir intent de cambio a la activity Contacto.
-        } else if (id == R.id.overBenchmarks) {
+        } else if (id == R.id.btnBenchmarks) {
             i = new Intent(this, benchmarksActivity.class);
-        } else if (id == R.id.overPerfil) {
+        } else if (id == R.id.btnPerfil) {
             //TODO Añadir intent de cambio a la activity Perfil.
-        } else if (id == R.id.overSalir) {
+        } else if (id == R.id.btnSalir) {
             //TODO Cerrar la sesion al Salir.
             i = new Intent(this, login.class);
         }
