@@ -2,4 +2,10 @@
 <resources>
     <string name="btnBack_Squat_info">Back Squat</string>
     <string name="imageGif">Visualizacion del ejercicio seleccionado</string>
+    <string name="tvTituloMenu">Menu</string>
+    <string name="tvReservar">Reservar clase</string>
+    <string name="tvContacto">Contacto</string>
+    <string name="tvPerfil">Perfil</string>
+    <string name="tvSalir">Salir</string>
+    <string name="tvBenchmarks">Benchmarks</string>
 </resources>

@@ -14,8 +14,7 @@ import android.widget.Toast;
 
 public class menuActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageButton btnReservar, btnContacto, btnBenchmarks;
-    Button btnPerfil, btnSalir;
+    ImageButton btnReservar, btnContacto, btnBenchmarks, btnPerfil, btnSalir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +27,15 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void initUI() {
-        btnReservar = (ImageButton) findViewById(R.id.btnReservar);
+        btnReservar = findViewById(R.id.btnReservar);
         btnReservar.setOnClickListener(this);
-        btnContacto = (ImageButton) findViewById(R.id.btnContacto);
+        btnContacto = findViewById(R.id.btnContacto);
         btnContacto.setOnClickListener(this);
-        btnBenchmarks = (ImageButton) findViewById(R.id.btnBenchmarks);
+        btnBenchmarks = findViewById(R.id.btnBenchmarks);
         btnBenchmarks.setOnClickListener(this);
-        btnPerfil = (Button) findViewById(R.id.btnPerfil);
+        btnPerfil = findViewById(R.id.btnPerfil);
         btnPerfil.setOnClickListener(this);
-        btnSalir = (Button) findViewById(R.id.btnSalir);
+        btnSalir = findViewById(R.id.btnSalir);
         btnSalir.setOnClickListener(this);
     }
 
@@ -53,27 +52,17 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
         Intent i = null;
 
         //TODO, terminar los diferentes intent
-        switch (id) {
-            case R.id.overReservar:
-                //TODO Añadir intent de cambio a la activity calendario.
-                break;
-
-            case R.id.overContacto:
-                //TODO Añadir intent de cambio a la activity Contacto.
-                break;
-
-            case R.id.overBenchmarks:
-                i = new Intent(this, benchmarksActivity.class);
-                break;
-
-            case R.id.overPerfil:
-                //TODO Añadir intent de cambio a la activity Perfil.
-                break;
-
-            case R.id.overSalir:
-                //TODO Cerrar la sesion al Salir.
-                i = new Intent(this, login.class);
-                break;
+        if (id == R.id.overReservar) {
+            //TODO Añadir intent de cambio a la activity calendario.
+        } else if (id == R.id.overContacto) {
+            //TODO Añadir intent de cambio a la activity Contacto.
+        } else if (id == R.id.overBenchmarks) {
+            i = new Intent(this, benchmarksActivity.class);
+        } else if (id == R.id.overPerfil) {
+            //TODO Añadir intent de cambio a la activity Perfil.
+        } else if (id == R.id.overSalir) {
+            //TODO Cerrar la sesion al Salir.
+            i = new Intent(this, login.class);
         }
 
         startActivity(i);
@@ -86,28 +75,17 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent i = null;
 
-        switch (id) {
-            case R.id.btnReservar:
-                //TODO Añadir intent de cambio a la activity calendario.
-                Toast.makeText(this, "aaaaa", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.btnContacto:
-                //TODO Añadir intent de cambio a la activity Contacto.
-                break;
-
-            case R.id.btnBenchmarks:
-                i = new Intent(this, benchmarksActivity.class);
-                break;
-
-            case R.id.btnPerfil:
-                //TODO Añadir intent de cambio a la activity Perfil.
-                break;
-
-            case R.id.btnSalir:
-                //TODO Cerrar la sesion al Salir.
-                i = new Intent(this, login.class);
-                break;
+        if (id == R.id.overReservar) {
+            //TODO Añadir intent de cambio a la activity calendario.
+        } else if (id == R.id.overContacto) {
+            //TODO Añadir intent de cambio a la activity Contacto.
+        } else if (id == R.id.overBenchmarks) {
+            i = new Intent(this, benchmarksActivity.class);
+        } else if (id == R.id.overPerfil) {
+            //TODO Añadir intent de cambio a la activity Perfil.
+        } else if (id == R.id.overSalir) {
+            //TODO Cerrar la sesion al Salir.
+            i = new Intent(this, login.class);
         }
 
         startActivity(i);
