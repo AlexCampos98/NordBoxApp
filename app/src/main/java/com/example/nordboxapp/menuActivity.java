@@ -54,12 +54,15 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
         //TODO, terminar los diferentes intent
         if (id == R.id.overReservar) {
             //TODO Añadir intent de cambio a la activity calendario.
+            Toast.makeText(this,"Opcion Calendario en proceso",Toast.LENGTH_LONG).show();
         } else if (id == R.id.overContacto) {
             //TODO Añadir intent de cambio a la activity Contacto.
+            Toast.makeText(this,"Opcion Contacto en proceso",Toast.LENGTH_LONG).show();
         } else if (id == R.id.overBenchmarks) {
             i = new Intent(this, benchmarksActivity.class);
         } else if (id == R.id.overPerfil) {
             //TODO Añadir intent de cambio a la activity Perfil.
+            i = new Intent(this, usuarioActivity.class);
         } else if (id == R.id.overSalir) {
             //TODO Cerrar la sesion al Salir.
             i = new Intent(this, login.class);
@@ -77,12 +80,15 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
 
         if (id == R.id.btnReservar) {
             //TODO Añadir intent de cambio a la activity calendario.
+            Toast.makeText(this,"Opcion Calendario en proceso",Toast.LENGTH_LONG).show();
         } else if (id == R.id.btnContacto) {
             //TODO Añadir intent de cambio a la activity Contacto.
+            Toast.makeText(this,"Opcion Contacto en proceso",Toast.LENGTH_LONG).show();
         } else if (id == R.id.btnBenchmarks) {
             i = new Intent(this, benchmarksActivity.class);
         } else if (id == R.id.btnPerfil) {
             //TODO Añadir intent de cambio a la activity Perfil.
+            i = new Intent(this, usuarioActivity.class);
         } else if (id == R.id.btnSalir) {
             //TODO Cerrar la sesion al Salir.
             i = new Intent(this, login.class);

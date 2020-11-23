@@ -4,6 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--    Permisos camara-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NordBoxApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".benchmarkEjercicioActivity"/>
+
+        <activity android:name=".usuarioActivity" />
+        <activity android:name=".benchmarkEjercicioActivity" />
         <activity android:name=".menuActivity" />
         <activity android:name=".benchmarksActivity" />
         <activity android:name=".creacionUsuario" />
@@ -23,6 +31,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+<!--        Llamada a la libreria para el login, imagen-->
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"/>
+<!--            android:theme="@style/AppTheme"/>-->
     </application>
 
 </manifest>

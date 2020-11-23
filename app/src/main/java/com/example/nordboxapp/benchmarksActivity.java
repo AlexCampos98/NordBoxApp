@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -63,29 +64,21 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
         Intent i = null;
 
         //TODO, terminar los diferentes intent
-        switch (id) {
-            case R.id.overReservar:
-                //TODO Añadir intent de cambio a la activity calendario.
-                break;
-
-            case R.id.overContacto:
-                //TODO Añadir intent de cambio a la activity Contacto.
-                break;
-
-            case R.id.overBenchmarks:
-                i = new Intent(this, benchmarksActivity.class);
-                break;
-
-            case R.id.overPerfil:
-                //TODO Añadir intent de cambio a la activity Perfil.
-                break;
-
-            case R.id.overSalir:
-                //TODO Cerrar la sesion al Salir.
-                i = new Intent(this, login.class);
-                break;
+        if (id == R.id.overReservar) {
+            //TODO Añadir intent de cambio a la activity calendario.
+            Toast.makeText(this,"Opcion Calendario en proceso",Toast.LENGTH_LONG).show();
+        } else if (id == R.id.overContacto) {
+            //TODO Añadir intent de cambio a la activity Contacto.
+            Toast.makeText(this,"Opcion Contacto en proceso",Toast.LENGTH_LONG).show();
+        } else if (id == R.id.overBenchmarks) {
+            i = new Intent(this, benchmarksActivity.class);
+        } else if (id == R.id.overPerfil) {
+            //TODO Añadir intent de cambio a la activity Perfil.
+            i = new Intent(this, usuarioActivity.class);
+        } else if (id == R.id.overSalir) {
+            //TODO Cerrar la sesion al Salir.
+            i = new Intent(this, login.class);
         }
-
         startActivity(i);
         return super.onOptionsItemSelected(item);
     }
