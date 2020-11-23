@@ -68,7 +68,9 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
             i = new Intent(this, login.class);
         }
 
-        startActivity(i);
+        if (i != null) {
+            startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -94,6 +96,8 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
             i = new Intent(this, login.class);
         }
 
-        startActivity(i);
+        if (i != null) {
+            startActivity(i);
+        }
     }
 }
