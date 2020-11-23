@@ -43,10 +43,10 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
     //Metodo creado para inicializar todos los componentes de la activity
     private void initUI() {
-        etEmailLogin = (EditText) findViewById(R.id.etEmailLogin);
-        etPasswordLogin = (EditText) findViewById(R.id.etPasswordLogin);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        tvLoginError = (TextView) findViewById(R.id.tvLoginError);
+        etEmailLogin = findViewById(R.id.etEmailLogin);
+        etPasswordLogin = findViewById(R.id.etPasswordLogin);
+        btnLogin = findViewById(R.id.btnLogin);
+        tvLoginError = findViewById(R.id.tvLoginError);
     }
 
     //Metodo que captura el click
