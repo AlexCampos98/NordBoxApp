@@ -31,14 +31,14 @@ public class usuarioActivity extends AppCompatActivity {
     CircleImageView imageUsuario;
 
     //Permiso de la clase Constants
-    private  static final int CAMERA_REQUEST_CODE = 100;
+    private static final int CAMERA_REQUEST_CODE = 100;
     private static final int STORAGE_REQUEST_CODE = 101;
     //selección de imagen Constants
     private static final int IMAGE_PICK_CAMERA_CODE = 102;
     private static final int IMAGE_PICK_GALLERY_CODE = 103;
     // matrices de permisos
     private String[] cameraPermissions; // cámara y almacenamiento
-    private String [] storagePermissions;// solo almacenamiento
+    private String[] storagePermissions;// solo almacenamiento
     // variables (constain datos para guardar)
     private Uri imageUri;
 
@@ -50,7 +50,7 @@ public class usuarioActivity extends AppCompatActivity {
         initUI();
     }
 
-    public void initUI(){
+    public void initUI() {
         imageUsuario = findViewById(R.id.imageUsuario);
 
         //Inicializamos Permisos arrays
@@ -64,13 +64,6 @@ public class usuarioActivity extends AppCompatActivity {
                 imagePickDialog();
             }
         });
-//
-//        saveBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                inputData();
-//            }
-//        });
     }
 
 
