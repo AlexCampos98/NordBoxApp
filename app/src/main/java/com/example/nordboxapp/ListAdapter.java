@@ -14,11 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
-    public List<ListElement> mData;
+    public List<LisaBench> mData;
     private LayoutInflater mInflater;
     private Context context;
 
-    public ListAdapter(List<ListElement> itemList, Context context)
+    public ListAdapter(List<LisaBench> itemList, Context context)
     {
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
@@ -41,7 +41,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.bindData(mData.get(position));
     }
 
-    public void  setItems(List<ListElement> items) { mData = items; }
+    public void  setItems(List<LisaBench> items) { mData = items; }
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
@@ -57,9 +57,23 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             status = itemView.findViewById(R.id.status);
         }
 
-        void bindData(final ListElement item)
+        void bindData(final LisaBench item)
         {
             iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
+
+            switch (item.getIcoImagen())
+            {
+                case "1":
+                    iconImage.setImageResource(R.drawable.pecho);
+                    break;
+                case "2":
+                    iconImage.setImageResource(R.drawable.brazo);
+                    break;
+                case "3":
+                    iconImage.setImageResource(R.drawable.pierna);
+                    break;
+            }
+
             name.setText(item.getName());
             city.setText(item.getCity());
             status.setText(item.getStatus());

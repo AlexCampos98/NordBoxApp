@@ -1,13 +1,14 @@
 package com.example.nordboxapp;
 
-public class ListElement {
-    public String color, name, city, status;
+public class LisaBench {
+    public String color, name, city, status, icoImagen;
 
-    public ListElement(String color, String name, String city, String status) {
+    public LisaBench(String color, String name, String city, String status, String icoImagen) {
         this.color = color;
         this.name = name;
         this.city = city;
         this.status = status;
+        this.icoImagen = icoImagen;
     }
 
     public String getColor() {
@@ -40,5 +41,13 @@ public class ListElement {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getIcoImagen() {
+        return icoImagen;
+    }
+
+    public void setIcoImagen(String icoImagen) {
+        this.icoImagen = icoImagen;
     }
 }

@@ -31,7 +31,6 @@
                 android:layout_gravity="center"
                 android:paddingLeft="14dp"
                 android:paddingRight="14dp"
-                app:srcCompat="@drawable/ic_add_photo"
                 tools:ignore="VectorDrawableCompat" />
             <LinearLayout
                 android:id="@+id/linearLayout"

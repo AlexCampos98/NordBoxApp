@@ -32,7 +32,7 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
     ImageButton btnBack_Squat_info;
 
     //Para el recycler
-    List<ListElement> elements;
+    List<LisaBench> elements;
 
 
     //TODO Crear un array de botones, tanto de img como btn, para poder almacenarlos usarlos, segun los que la BD nos indique.
@@ -49,11 +49,16 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
 
     public void recycler(){
         elements = new ArrayList<>();
-        elements.add(new ListElement("#384A05", "Alex", "Portugal", "Pasivo"));
-        elements.add(new ListElement("#384A05", "Pedro", "España", "Activo"));
-        elements.add(new ListElement("#384A05", "Juan", "Madrir", "Pasivo"));
-        elements.add(new ListElement("#384A05", "Desire", "Algo", "Activo"));
-        elements.add(new ListElement("#384A05", "Andrea", "Durango", "Pasivo"));
+        elements.add(new LisaBench("#384A05", "Push Up", "Ultimo dia: 29/01/2021", "5", "2"));
+        elements.add(new LisaBench("#384A05", "Muscle UP", "España", "Activo", "1"));
+        elements.add(new LisaBench("#281DB8", "Back Squat", "Madrir", "Pasivo", "3"));
+        elements.add(new LisaBench("#384A05", "Desire", "Algo", "Activo", "2"));
+        elements.add(new LisaBench("#96B81D", "Andrea", "Durango", "Pasivo", "1"));
+        elements.add(new LisaBench("#384A05", "Push Up", "Ultimo dia: 29/01/2021", "5", "2"));
+        elements.add(new LisaBench("#384A05", "Muscle UP", "España", "Activo", "1"));
+        elements.add(new LisaBench("#281DB8", "Back Squat", "Madrir", "Pasivo", "3"));
+        elements.add(new LisaBench("#384A05", "Desire", "Algo", "Activo", "2"));
+        elements.add(new LisaBench("#96B81D", "Andrea", "Durango", "Pasivo", "1"));
 
         ListAdapter listAdapter = new ListAdapter(elements, this);
         RecyclerView recyclerView = findViewById(R.id.rvBenchmark);
