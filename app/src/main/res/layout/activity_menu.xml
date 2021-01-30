@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".menuActivity">
 
+<!--    TODO trasladar los carView a la actividad benchmarks para hacerlo correctamente.-->
+
     <TextView
         android:id="@+id/tvTituloMenu"
         android:layout_width="wrap_content"
@@ -32,9 +34,9 @@
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
-            android:layout_margin="0dp"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp">
+            android:layout_margin="5dp"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="10dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -68,9 +70,9 @@
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
-            android:layout_margin="0dp"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp">
+            android:layout_margin="5dp"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="10dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -104,9 +106,9 @@
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
-            android:layout_margin="0dp"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="10dp"
             tools:targetApi="lollipop">
 
             <LinearLayout
@@ -141,9 +143,9 @@
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
-            android:layout_margin="0dp"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="10dp"
             tools:targetApi="lollipop">
 
             <LinearLayout
@@ -178,9 +180,9 @@
             android:layout_columnSpan="2"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
-            android:layout_margin="0dp"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp">
+            android:layout_margin="5dp"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="10dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
