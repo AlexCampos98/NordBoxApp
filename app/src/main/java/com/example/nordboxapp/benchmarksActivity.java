@@ -1,6 +1,8 @@
 package com.example.nordboxapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,12 +21,20 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class benchmarksActivity extends AppCompatActivity implements View.OnClickListener {
 
     LinearLayout layoutAnimado;
 
     Button btnBack_Squat;
     ImageButton btnBack_Squat_info;
+
+    //Para el recycler
+    List<ListElement> elements;
+
+
     //TODO Crear un array de botones, tanto de img como btn, para poder almacenarlos usarlos, segun los que la BD nos indique.
 
     @Override
@@ -33,6 +43,23 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_benchmarks);
 
         initUI();
+
+        recycler();
+    }
+
+    public void recycler(){
+        elements = new ArrayList<>();
+        elements.add(new ListElement("#384A05", "Alex", "Portugal", "Pasivo"));
+        elements.add(new ListElement("#384A05", "Pedro", "España", "Activo"));
+        elements.add(new ListElement("#384A05", "Juan", "Madrir", "Pasivo"));
+        elements.add(new ListElement("#384A05", "Desire", "Algo", "Activo"));
+        elements.add(new ListElement("#384A05", "Andrea", "Durango", "Pasivo"));
+
+        ListAdapter listAdapter = new ListAdapter(elements, this);
+        RecyclerView recyclerView = findViewById(R.id.rvBenchmark);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(listAdapter);
     }
 
     //TODO Añadir todos los diferentes botones, Los botones se crearan automaticamente, segun los que existan en la BD.
