@@ -85,7 +85,8 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this,"Opcion Calendario en proceso",Toast.LENGTH_LONG).show();
         } else if (id == R.id.btnContacto) {
             //TODO Añadir intent de cambio a la activity Contacto.
-            Toast.makeText(this,"Opcion Contacto en proceso",Toast.LENGTH_LONG).show();
+//            Toast.makeText(this,"Opcion Contacto en proceso",Toast.LENGTH_LONG).show();
+//            i = new Intent(this, ma)
         } else if (id == R.id.btnBenchmarks) {
             i = new Intent(this, benchmarksActivity.class);
         } else if (id == R.id.btnPerfil) {

@@ -1,30 +1,57 @@
 package com.example.nordboxapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.maps.android.PolyUtil;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class login extends AppCompatActivity implements View.OnClickListener {
+import java.util.List;
+
+public class login extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
 
     TextView tvLoginError;
     EditText etEmailLogin, etPasswordLogin;
     Button btnLogin;
     usuario idUsuario = new usuario();
+
+    private GoogleMap mMap;
+    Boolean actualPosicion;
+    JSONObject jso;
+    Double longitudOrigen, latitudOrigen;
 
     RequestQueue requestQueue;
 
@@ -32,6 +59,12 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+        getLocalizacion();
+
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -49,59 +82,134 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         tvLoginError = findViewById(R.id.tvLoginError);
     }
 
-    //Metodo que captura el click
+    //Metodo que captura el click TODO Atacar a la BD, y cifrar la contraseña, y guadar los datos del usuario, para mandarlos a las demas activitys
     public void onClick(View v) {
         int id = v.getId();
         //Si se ha pulsado el boton de login
         if (id == R.id.btnLogin) {
 
-//            String email = (String) etEmailLogin.getText().toString().trim();
-//            String password = (String) etPasswordLogin.getText().toString().trim();
+            Intent i = new Intent(this, menuActivity.class);
 
-            //TODO Revisar el verificacionLogin, cuando inicio sesion la primera vez da error, pero la segunda entra por el if.
-//            verificacionLogin(email, password);
-
-//            if (idUsuario.getEmail() != null) {
-                Intent i = new Intent(this, menuActivity.class);
-//                i.putExtra("idUsuario", idUsuario.getEmail());
-                startActivity(i);
-//            } else {
-//                tvLoginError.setVisibility(View.VISIBLE);
-//            }
+            startActivity(i);
         }
     }
 
-    //TODO Revisar verificacionLogin, problema.
-    private void verificacionLogin(String email, String password) {
-        //Instituto TODO cambiara cada vez que este en clase
-//        String URL = "http://172.16.5.222/android/login.php?email=" + email + "&password=" + password;
-
-        //Casa TODO
-        String URL = "http://192.168.1.254/android/login.php?email=" + email + "&password=" + password;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                URL,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        String email;
-                        try {
-                            email = response.getString("email");
-
-                            idUsuario = new usuario(email);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                    }
-                }
-        );
-        requestQueue.add(jsonObjectRequest);
+    /**
+     * Metodo usado para poder obtener la localizacion
+     */
+    private void getLocalizacion() {
+        int permiso = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+        if(permiso == PackageManager.PERMISSION_DENIED){
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
+            }else{
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }
+        }
     }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
+
+        mMap.getUiSettings().setMyLocationButtonEnabled(false);
+
+        LocationManager locationManager = (LocationManager) login.this.getSystemService(Context.LOCATION_SERVICE);
+        LocationListener locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                LatLng miUbicacion = new LatLng(location.getLatitude(), location.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(miUbicacion).title("ubicacion actual"));
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+
+            }
+        };
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+
+        // Add a marker in Sydney and move the camera
+        LatLng nordBox = new LatLng(43.450588, -3.459014);
+        mMap.addMarker(new MarkerOptions().position(nordBox).title("NordBox"));
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(nordBox)
+                .zoom(14)
+                .bearing(0)
+                .tilt(45)
+                .build();
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+//        String url = "";
+
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                try {
+//                    jso = new JSONObject(response);
+//                    trazarRuta(jso);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//            }
+//        });
+//
+//        queue.add(stringRequest);
+    }
+
+//    private void trazarRuta(JSONObject jso) {
+//
+//        JSONArray jRoutes;
+//        JSONArray jLegs;
+//        JSONArray jSteps;
+//
+//        try {
+//            jRoutes = jso.getJSONArray("routes");
+//            for (int i=0; i<jRoutes.length();i++){
+//
+//                jLegs = ((JSONObject)(jRoutes.get(i))).getJSONArray("legs");
+//
+//                for (int j=0; j<jLegs.length();j++){
+//
+//                    jSteps = ((JSONObject)jLegs.get(j)).getJSONArray("steps");
+//
+//                    for (int k = 0; k<jSteps.length();k++){
+//
+//                        String polyline = ""+((JSONObject)((JSONObject)jSteps.get(k)).get("polyline")).get("points");
+//                        Log.i("end",""+polyline);
+//                        List<LatLng> list = PolyUtil.decode(polyline);
+//                        mMap.addPolyline(new PolylineOptions().addAll(list).color(Color.GRAY).width(5));
+//                    }
+//                }
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

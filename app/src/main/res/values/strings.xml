@@ -40,7 +40,7 @@
     <string name="btnBench_Press_info" translatable="false">Bench_Press_info</string>
     <string name="imageGif">Visualizacion del ejercicio seleccionado</string>
 
-<!--    Perfil-->
+    <!--    Perfil-->
     <string name="tvPerfilEmail">Correo electronico (email)</string>
     <string name="etPerfilEmail">Introduce el correo</string>
     <string name="tvPerfilPassword">Contraseña</string>
@@ -69,5 +69,4 @@
     <string name="tvPerfilPais">Pais</string>
     <string name="etPerfilPais">Introduce el pais</string>
     <string name="btnGuardarPerfil">Guardar datos</string>
-
 </resources>
