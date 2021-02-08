@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -40,6 +41,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+
+import nordboxcad.ExcepcionNordBox;
+import nordboxcad.NordBoxCAD;
+import nordboxcad.Usuario;
 
 public class login extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
 
@@ -88,9 +93,26 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
         //Si se ha pulsado el boton de login
         if (id == R.id.btnLogin) {
 
-            Intent i = new Intent(this, menuActivity.class);
 
-            startActivity(i);
+//            Toast.makeText(this,etEmailLogin.getText(),Toast.LENGTH_LONG).show();
+            try {
+                NordBoxCAD nordBoxCAD = new NordBoxCAD();
+                Usuario usuario = nordBoxCAD.comprobarLogin(etEmailLogin.getText().toString(), etPasswordLogin.getText().toString());
+
+                if(usuario.getId()!=null)
+                {
+                    Intent i = new Intent(this, menuActivity.class);
+
+                    startActivity(i);
+                }else {
+                    Toast.makeText(this,"mal",Toast.LENGTH_LONG).show();
+                }
+
+            } catch (ExcepcionNordBox excepcionNordBox) {
+                System.out.println(excepcionNordBox.getMensajeErrorAdministrador());
+            }
+
+
         }
     }
 
@@ -129,7 +151,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
             @Override
             public void onLocationChanged(Location location) {
                 LatLng miUbicacion = new LatLng(location.getLatitude(), location.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(miUbicacion).title("ubicacion actual"));
+                mMap.addMarker(new MarkerOptions().position(miUbicacion).title("Ubicacion actual"));
             }
 
             @Override
