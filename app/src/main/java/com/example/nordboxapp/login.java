@@ -58,7 +58,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
         getLocalizacion();
 
 
-        requestQueue = Volley.newRequestQueue(this);
+//        requestQueue = Volley.newRequestQueue(this);
 
         //Inicializado de componentes
         initUI();
@@ -87,8 +87,9 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
 
                     NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
                     Usuario u = new Usuario();
-                    u.setPassword("algo1");
-                    u.setCorreo("alex_-campos@hotmail.com");
+
+                    u.setPassword(etPasswordLogin.getText().toString());
+                    u.setCorreo(etEmailLogin.getText().toString());
                     idUsuario = nordBoxCAD.comprobarLogin(u);
 
                     if (idUsuario.getId() != null) {
@@ -102,12 +103,12 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
             thread.start();
             boolean bucleEspFinHilo = true;
             while (bucleEspFinHilo) {
-                if (esperaHilo) {
-                } else {
-                    iniciarActividad(iniciarI);
+                if (!esperaHilo) {
                     bucleEspFinHilo = false;
                 }
             }
+            esperaHilo = true;
+            iniciarActividad(iniciarI);
         }
     }
 
