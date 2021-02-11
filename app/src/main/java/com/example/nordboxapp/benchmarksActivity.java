@@ -22,7 +22,12 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import nordboxcad.EjerciciosBench;
+import nordboxcad.NordBoxCADCliente;
+import nordboxcad.Usuario;
 
 public class benchmarksActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,7 +37,9 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
     ImageButton btnBack_Squat_info;
 
     //Para el recycler
-    List<LisaBench> elements;
+    List<ListBench> elements;
+    ArrayList<EjerciciosBench> bench;
+    boolean esperaHilo = true;
 
 
     //TODO Crear un array de botones, tanto de img como btn, para poder almacenarlos usarlos, segun los que la BD nos indique.
@@ -47,18 +54,60 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
         recycler();
     }
 
-    public void recycler(){
+    public void recycler() {
         elements = new ArrayList<>();
-        elements.add(new LisaBench("#384A05", "Push Up", "Ultimo dia: 29/01/2021", "5", "2"));
-        elements.add(new LisaBench("#384A05", "Muscle UP", "España", "Activo", "1"));
-        elements.add(new LisaBench("#281DB8", "Back Squat", "Madrir", "Pasivo", "3"));
-        elements.add(new LisaBench("#384A05", "Desire", "Algo", "Activo", "2"));
-        elements.add(new LisaBench("#96B81D", "Andrea", "Durango", "Pasivo", "1"));
-        elements.add(new LisaBench("#384A05", "Push Up", "Ultimo dia: 29/01/2021", "5", "2"));
-        elements.add(new LisaBench("#384A05", "Muscle UP", "España", "Activo", "1"));
-        elements.add(new LisaBench("#281DB8", "Back Squat", "Madrir", "Pasivo", "3"));
-        elements.add(new LisaBench("#384A05", "Desire", "Algo", "Activo", "2"));
-        elements.add(new LisaBench("#96B81D", "Andrea", "Durango", "Pasivo", "1"));
+//        elements.add(new ListBench("#384A05", "Push Up", "Ultimo dia: 29/01/2021", "5", "2"));
+//        elements.add(new ListBench("#384A05", "Muscle UP", "España", "Activo", "1"));
+//        elements.add(new ListBench("#281DB8", "Back Squat", "Madrir", "Pasivo", "3"));
+//        elements.add(new ListBench("#384A05", "Desire", "Algo", "Activo", "2"));
+//        elements.add(new ListBench("#96B81D", "Andrea", "Durango", "Pasivo", "1"));
+//        elements.add(new ListBench("#384A05", "Push Up", "Ultimo dia: 29/01/2021", "5", "2"));
+//        elements.add(new ListBench("#384A05", "Muscle UP", "España", "Activo", "1"));
+//        elements.add(new ListBench("#281DB8", "Back Squat", "Madrir", "Pasivo", "3"));
+//        elements.add(new ListBench("#384A05", "Desire", "Algo", "Activo", "2"));
+//        elements.add(new ListBench("#96B81D", "Andrea", "Durango", "Pasivo", "1"));
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
+
+                bench = nordBoxCAD.ejeBench();
+                //FIXME A partir de aqui no llega, casca en el bench = nordBoxCAD.ejeBench();
+//                if (idUsuario.getId() != null) {
+//                    iniciarI = true;
+//                } else {
+//                    iniciarI = false;
+//                }
+                esperaHilo = false;
+            }
+        });
+        thread.start();
+        boolean bucleEspFinHilo = true;
+        while (bucleEspFinHilo) {
+            if (!esperaHilo) {
+                bucleEspFinHilo = false;
+            }
+        }
+        Iterator<EjerciciosBench> iterator = bench.iterator();
+        while (iterator.hasNext()) {
+            EjerciciosBench ejerciciosBench = iterator.next();
+            ListBench listBench = new ListBench();
+            listBench.setName(ejerciciosBench.getNombre());
+            listBench.setIcoImagen(Integer.toString(ejerciciosBench.getParteCuerpo()));
+            listBench.setColor(Integer.toString(ejerciciosBench.getDificultad()));
+
+
+            listBench.setUltimaModificacion("Ultimo dia: 29/01/2021");
+            listBench.setnEjerciciosCreados("0");
+
+            elements.add(listBench);
+        }
+
+//        esperaHilo = true;
+//        iniciarActividad(iniciarI);
 
         ListAdapter listAdapter = new ListAdapter(elements, this);
         RecyclerView recyclerView = findViewById(R.id.rvBenchmark);

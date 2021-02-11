@@ -14,11 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
-    public List<LisaBench> mData;
+    public List<ListBench> mData;
     private LayoutInflater mInflater;
     private Context context;
 
-    public ListAdapter(List<LisaBench> itemList, Context context)
+    public ListAdapter(List<ListBench> itemList, Context context)
     {
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
@@ -41,7 +41,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.bindData(mData.get(position));
     }
 
-    public void  setItems(List<LisaBench> items) { mData = items; }
+    public void  setItems(List<ListBench> items) { mData = items; }
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
@@ -57,7 +57,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             status = itemView.findViewById(R.id.status);
         }
 
-        void bindData(final LisaBench item)
+        void bindData(final ListBench item)
         {
             iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
 
@@ -75,8 +75,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             }
 
             name.setText(item.getName());
-            city.setText(item.getCity());
-            status.setText(item.getStatus());
+            city.setText(item.getUltimaModificacion());
+            status.setText(item.getnEjerciciosCreados());
         }
     }
 
