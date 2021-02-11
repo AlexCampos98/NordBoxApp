@@ -31,11 +31,6 @@ import nordboxcad.Usuario;
 
 public class benchmarksActivity extends AppCompatActivity implements View.OnClickListener {
 
-    LinearLayout layoutAnimado;
-
-    Button btnBack_Squat;
-    ImageButton btnBack_Squat_info;
-
     //Para el recycler
     List<ListBench> elements;
     ArrayList<EjerciciosBench> bench;
@@ -64,12 +59,6 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
                 NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
 
                 bench = nordBoxCAD.ejeBench();
-                //FIXME A partir de aqui no llega, casca en el bench = nordBoxCAD.ejeBench();
-//                if (idUsuario.getId() != null) {
-//                    iniciarI = true;
-//                } else {
-//                    iniciarI = false;
-//                }
                 esperaHilo = false;
             }
         });
@@ -119,18 +108,7 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
 
     //TODO Añadir todos los diferentes botones, Los botones se crearan automaticamente, segun los que existan en la BD.
     public void initUI() {
-        btnBack_Squat_info = findViewById(R.id.btnBack_Squat_info);
-        btnBack_Squat_info.setOnClickListener(this);
 
-        btnBack_Squat = findViewById(R.id.btnBack_Squat);
-        btnBack_Squat.setOnClickListener(this);
-
-        //TODO Pensar como poder añadir los diferentes gif, segun que boton han pulsado. En la BD, se almacenara la direccion del gif.
-        ImageView imageGif = findViewById(R.id.imageGif);
-        Glide.with(getBaseContext()).load(R.drawable.back_squat).into(imageGif);
-
-        //Iniciado el layout que hara aparecer el gif de informacion.
-        layoutAnimado = findViewById(R.id.layoutAnimado);
     }
 
     //Metodo para mostrar y ocultar el menu
@@ -173,15 +151,7 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
 
         Intent i = null;
 
-        if (id == R.id.btnBack_Squat_info) {
-            mostrar(v);
-            //TODO, segun la opcion del usuario, se añadira un gif a 'R.id.imageGif'
-        }
-
-        if (id == R.id.btnBack_Squat) {
-            i = new Intent(this, benchmarkEjercicioActivity.class);
-
-        }
+        //TODO Cuando un usuario selecione un ejercicio, llevarle a la activity
 
         if (i != null) {
             startActivity(i);
@@ -189,33 +159,33 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
     }
 
     //Metodo creado para mostrar la imagen gif
-    public void mostrar(View button) {
-        if (layoutAnimado.getVisibility() == View.GONE) {
-            animar(true);
-            layoutAnimado.setVisibility(View.VISIBLE);
-        } else {
-            animar(false);
-            layoutAnimado.setVisibility(View.GONE);
-        }
-    }
+//    public void mostrar(View button) {
+//        if (layoutAnimado.getVisibility() == View.GONE) {
+//            animar(true);
+//            layoutAnimado.setVisibility(View.VISIBLE);
+//        } else {
+//            animar(false);
+//            layoutAnimado.setVisibility(View.GONE);
+//        }
+//    }
 
     //Animacion de la salida del gif
-    private void animar(boolean mostrar) {
-        AnimationSet set = new AnimationSet(true);
-        Animation animation;
-        if (mostrar) {
-            //desde la esquina inferior derecha a la superior izquierda
-            animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
-        } else {
-            //desde la esquina superior izquierda a la esquina inferior derecha
-            animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
-        }
-        //duración en milisegundos
-        animation.setDuration(500);
-        set.addAnimation(animation);
-        LayoutAnimationController controller = new LayoutAnimationController(set, 0.25f);
-
-        layoutAnimado.setLayoutAnimation(controller);
-        layoutAnimado.startAnimation(animation);
-    }
+//    private void animar(boolean mostrar) {
+//        AnimationSet set = new AnimationSet(true);
+//        Animation animation;
+//        if (mostrar) {
+//            //desde la esquina inferior derecha a la superior izquierda
+//            animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+//        } else {
+//            //desde la esquina superior izquierda a la esquina inferior derecha
+//            animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
+//        }
+//        //duración en milisegundos
+//        animation.setDuration(500);
+//        set.addAnimation(animation);
+//        LayoutAnimationController controller = new LayoutAnimationController(set, 0.25f);
+//
+//        layoutAnimado.setLayoutAnimation(controller);
+//        layoutAnimado.startAnimation(animation);
+//    }
 }

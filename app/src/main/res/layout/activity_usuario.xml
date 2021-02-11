@@ -200,32 +200,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvPerfilTelefono" />
 
             <TextView
-                android:id="@+id/tvPerfilPersonaEmergencia"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/tvPerfilPersonaEmergencia"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilTelefono" />
-
-            <EditText
-                android:id="@+id/etPerfilPersonaEmergencia"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/etPerfilPersonaEmergencia"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilPersonaEmergencia" />
-
-            <TextView
                 android:id="@+id/tvPerfilTelefonoEmergencia"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -235,7 +209,7 @@
                 android:text="@string/tvPerfilTelefonoEmergencia"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilPersonaEmergencia" />
+                app:layout_constraintTop_toBottomOf="@+id/etPerfilTelefono" />
 
             <EditText
                 android:id="@+id/etPerfilTelefonoEmergencia"
@@ -252,32 +226,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvPerfilTelefonoEmergencia" />
 
             <TextView
-                android:id="@+id/tvPerfilDni"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/tvPerfilDni"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilTelefonoEmergencia" />
-
-            <EditText
-                android:id="@+id/etPerfilDni"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/etPerfilDni"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilDni" />
-
-            <TextView
                 android:id="@+id/tvPerfilCodPostal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -287,7 +235,7 @@
                 android:text="@string/tvPerfilCodPostal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilDni" />
+                app:layout_constraintTop_toBottomOf="@+id/etPerfilTelefonoEmergencia" />
 
             <EditText
                 android:id="@+id/etPerfilCodPostal"
@@ -298,7 +246,7 @@
                 android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/etPerfilCodPostal"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPerfilCodPostal" />
@@ -355,32 +303,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPerfilProvincia" />
 
-            <TextView
-                android:id="@+id/tvPerfilPais"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/tvPerfilPais"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilProvincia" />
-
-            <EditText
-                android:id="@+id/etPerfilPais"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/etPerfilPais"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilPais" />
-
             <Button
                 android:id="@+id/btnGuardarPerfil"
                 android:layout_width="wrap_content"
@@ -391,7 +313,7 @@
                 android:text="@string/btnGuardarPerfil"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etPerfilPais" />
+                app:layout_constraintTop_toBottomOf="@+id/etPerfilProvincia" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

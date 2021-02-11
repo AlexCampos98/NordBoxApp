@@ -18,7 +18,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -39,6 +38,8 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
     Button btnLogin;
     Usuario idUsuario = new Usuario();
     boolean iniciarI = false, esperaHilo = false;
+
+    UsuarioStatico usuarioStatico = new UsuarioStatico();
 
     private GoogleMap mMap;
     Boolean actualPosicion;
@@ -79,7 +80,6 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
         int id = v.getId();
         //Si se ha pulsado el boton de login
         if (id == R.id.btnLogin) {
-
             Thread thread = new Thread(new Runnable() {
 
                 @Override
@@ -91,6 +91,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
                     u.setPassword(etPasswordLogin.getText().toString());
                     u.setCorreo(etEmailLogin.getText().toString());
                     idUsuario = nordBoxCAD.comprobarLogin(u);
+                    usuarioStatico.setUsuario(idUsuario);
 
                     if (idUsuario.getId() != null) {
                         iniciarI = true;
@@ -101,6 +102,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
                 }
             });
             thread.start();
+
             boolean bucleEspFinHilo = true;
             while (bucleEspFinHilo) {
                 if (esperaHilo) {

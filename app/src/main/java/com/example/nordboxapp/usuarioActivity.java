@@ -20,12 +20,19 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 public class usuarioActivity extends AppCompatActivity {
+
+    EditText etPerfilEmail, etPerfilPassword, etPerfilNombre, etPerfilPriApellido, etPerfilSegApellido, etPerfilTelefono, etPerfilTelefonoEmergencia, etPerfilCodPostal, etPerfilLocalidad, etPerfilProvincia;
+    Button btnPerfilPassword, btnGuardarPerfil;
+    //TODO Crear la accion en el boton cambiarPassword, cuando se pulse se habilita el campo y se procede a enviar de forma normal.
+    UsuarioStatico usuarioStatico = new UsuarioStatico();
 
     //Imagen circular
     CircleImageView imageUsuario;
@@ -53,6 +60,30 @@ public class usuarioActivity extends AppCompatActivity {
     public void initUI() {
         imageUsuario = findViewById(R.id.imageUsuario);
 
+        etPerfilEmail = findViewById(R.id.etPerfilEmail);
+        etPerfilPassword = findViewById(R.id.etPerfilPassword);
+        etPerfilNombre = findViewById(R.id.etPerfilNombre);
+        etPerfilPriApellido = findViewById(R.id.etPerfilPriApellido);
+        etPerfilSegApellido = findViewById(R.id.etPerfilSegApellido);
+        etPerfilTelefono = findViewById(R.id.etPerfilTelefono);
+        etPerfilTelefonoEmergencia = findViewById(R.id.etPerfilTelefonoEmergencia);
+        etPerfilCodPostal = findViewById(R.id.etPerfilCodPostal);
+        etPerfilLocalidad = findViewById(R.id.etPerfilLocalidad);
+        etPerfilProvincia = findViewById(R.id.etPerfilProvincia);
+
+        etPerfilEmail.append(usuarioStatico.getUsuario().getCorreo());
+        etPerfilPassword.append(usuarioStatico.getUsuario().getPassword());
+        etPerfilNombre.append(usuarioStatico.getUsuario().getNombre());
+        etPerfilPriApellido.append(usuarioStatico.getUsuario().getpApellido());
+        etPerfilSegApellido.append(usuarioStatico.getUsuario().getsApellido());
+        etPerfilTelefono.append(usuarioStatico.getUsuario().getTelefono());
+        etPerfilTelefonoEmergencia.append(usuarioStatico.getUsuario().getTelefonoEmergencia());
+        etPerfilCodPostal.append(Integer.toString(usuarioStatico.getUsuario().getCodigoPostal()));
+        etPerfilLocalidad.append(usuarioStatico.getUsuario().getLocalidad());
+        etPerfilProvincia.append(usuarioStatico.getUsuario().getProvincia());
+
+        btnPerfilPassword = findViewById(R.id.btnPerfilPassword);
+        btnGuardarPerfil = findViewById(R.id.btnGuardarPerfil);
         //Inicializamos Permisos arrays
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
