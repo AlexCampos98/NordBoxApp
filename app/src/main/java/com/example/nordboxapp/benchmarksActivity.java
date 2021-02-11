@@ -56,17 +56,6 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
 
     public void recycler() {
         elements = new ArrayList<>();
-//        elements.add(new ListBench("#384A05", "Push Up", "Ultimo dia: 29/01/2021", "5", "2"));
-//        elements.add(new ListBench("#384A05", "Muscle UP", "España", "Activo", "1"));
-//        elements.add(new ListBench("#281DB8", "Back Squat", "Madrir", "Pasivo", "3"));
-//        elements.add(new ListBench("#384A05", "Desire", "Algo", "Activo", "2"));
-//        elements.add(new ListBench("#96B81D", "Andrea", "Durango", "Pasivo", "1"));
-//        elements.add(new ListBench("#384A05", "Push Up", "Ultimo dia: 29/01/2021", "5", "2"));
-//        elements.add(new ListBench("#384A05", "Muscle UP", "España", "Activo", "1"));
-//        elements.add(new ListBench("#281DB8", "Back Squat", "Madrir", "Pasivo", "3"));
-//        elements.add(new ListBench("#384A05", "Desire", "Algo", "Activo", "2"));
-//        elements.add(new ListBench("#96B81D", "Andrea", "Durango", "Pasivo", "1"));
-
         Thread thread = new Thread(new Runnable() {
 
             @Override
@@ -97,7 +86,22 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
             ListBench listBench = new ListBench();
             listBench.setName(ejerciciosBench.getNombre());
             listBench.setIcoImagen(Integer.toString(ejerciciosBench.getParteCuerpo()));
-            listBench.setColor(Integer.toString(ejerciciosBench.getDificultad()));
+            switch (ejerciciosBench.getDificultad()) {
+                case 1:
+                    listBench.setColor("#02C405");
+                    break;
+
+                case 2:
+                    listBench.setColor("#D6750D");
+                    break;
+
+                case 3:
+                    listBench.setColor("#F21B1E");
+                    break;
+
+                default:
+                    listBench.setColor("#1B1EF2");
+            }
 
 
             listBench.setUltimaModificacion("Ultimo dia: 29/01/2021");
@@ -105,9 +109,6 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
 
             elements.add(listBench);
         }
-
-//        esperaHilo = true;
-//        iniciarActividad(iniciarI);
 
         ListAdapter listAdapter = new ListAdapter(elements, this);
         RecyclerView recyclerView = findViewById(R.id.rvBenchmark);

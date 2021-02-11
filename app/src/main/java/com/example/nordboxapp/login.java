@@ -38,7 +38,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
     EditText etEmailLogin, etPasswordLogin;
     Button btnLogin;
     Usuario idUsuario = new Usuario();
-    boolean iniciarI = false, esperaHilo = true;
+    boolean iniciarI = false, esperaHilo = false;
 
     private GoogleMap mMap;
     Boolean actualPosicion;
@@ -97,18 +97,20 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
                     } else {
                         iniciarI = false;
                     }
-                    esperaHilo = false;
+                    esperaHilo = true;
                 }
             });
             thread.start();
             boolean bucleEspFinHilo = true;
             while (bucleEspFinHilo) {
-                if (!esperaHilo) {
+                if (esperaHilo) {
                     bucleEspFinHilo = false;
                 }
             }
-            esperaHilo = true;
+            esperaHilo = false;
             iniciarActividad(iniciarI);
+            iniciarI = false;
+            idUsuario = new Usuario();
         }
     }
 
