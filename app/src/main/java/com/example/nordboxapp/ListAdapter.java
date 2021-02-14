@@ -21,8 +21,8 @@ import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public List<ListBench> mData;
-    private LayoutInflater mInflater;
-    private Context context;
+    private final LayoutInflater mInflater;
+    private final Context context;
 
     public ListAdapter(List<ListBench> itemList, Context context)
     {
@@ -36,7 +36,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @NotNull
     @Override
-    public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    public ListAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType)
     {
         View view = mInflater.inflate(R.layout.lista_elementos_bench, null);
         return new ViewHolder(view);
@@ -64,7 +64,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     public void  setItems(List<ListBench> items) { mData = items; }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
+    public static class ViewHolder extends RecyclerView.ViewHolder
     {
         ImageView iconImage;
         TextView name, city, status;

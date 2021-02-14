@@ -2,13 +2,11 @@ package com.example.nordboxapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,22 +14,17 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.LayoutAnimationController;
 import android.view.animation.TranslateAnimation;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import nordboxcad.EjerciciosBench;
 import nordboxcad.NordBoxCADCliente;
-import nordboxcad.Usuario;
 
 public class benchmarksActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -78,9 +71,7 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
                 bucleEspFinHilo = false;
             }
         }
-        Iterator<EjerciciosBench> iterator = bench.iterator();
-        while (iterator.hasNext()) {
-            EjerciciosBench ejerciciosBench = iterator.next();
+        for (EjerciciosBench ejerciciosBench : bench) {
             ListBench listBench = new ListBench();
             listBench.setId(ejerciciosBench.getId());
             listBench.setName(ejerciciosBench.getNombre());

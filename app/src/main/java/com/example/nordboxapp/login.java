@@ -8,21 +8,16 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentContainerView;
 
-import com.android.volley.RequestQueue;
+//import com.android.volley.RequestQueue;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,7 +26,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.json.JSONObject;
+//import org.json.JSONObject;
 
 import nordboxcad.NordBoxCADCliente;
 import nordboxcad.Usuario;
@@ -47,11 +42,11 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
     UsuarioStatico usuarioStatico = new UsuarioStatico();
 
     private GoogleMap mMap;
-    Boolean actualPosicion;
-    JSONObject jso;
-    Double longitudOrigen, latitudOrigen;
+//    Boolean actualPosicion;
+//    JSONObject jso;
+//    Double longitudOrigen, latitudOrigen;
 
-    RequestQueue requestQueue;
+//    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
