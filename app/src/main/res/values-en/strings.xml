@@ -38,19 +38,14 @@
     <string name="etPerfilSegApellido">Enter the second surname</string>
     <string name="tvPerfilTelefono">Phone</string>
     <string name="etPerfilTelefono">Enter the phone</string>
-    <string name="tvPerfilPersonaEmergencia">Name of emergency person</string>
-    <string name="etPerfilPersonaEmergencia">Emergency person</string>
     <string name="tvPerfilTelefonoEmergencia">Emergency number</string>
     <string name="etPerfilTelefonoEmergencia">Emergency number</string>
-    <string name="tvPerfilDni">DNI</string>
-    <string name="etPerfilDni">Enter the ID</string>
     <string name="tvPerfilCodPostal">Postal Code</string>
     <string name="etPerfilCodPostal">Enter the zip code</string>
     <string name="tvPerfilLocalidad">Location</string>
     <string name="etPerfilLocalidad">Enter the town</string>
     <string name="tvPerfilProvincia">Province</string>
     <string name="etPerfilProvincia">Enter the province</string>
-    <string name="tvPerfilPais">Country</string>
-    <string name="etPerfilPais">Enter the country</string>
     <string name="btnGuardarPerfil">Save data</string>
+    <string name="imagen_del_ejercicio">Imagen del Ejercicio</string>
 </resources>

@@ -3,13 +3,19 @@ package com.example.nordboxapp;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -28,6 +34,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     @Override
     public int getItemCount() { return mData.size(); }
 
+    @NotNull
     @Override
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
@@ -39,6 +46,20 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position)
     {
         holder.bindData(mData.get(position));
+
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, mData.get(position).name, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        holder.relativeLayout.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                menu.add(0, mData.get(position).getId(), 0, "Mostrar Ejemplo");
+            }
+        });
     }
 
     public void  setItems(List<ListBench> items) { mData = items; }
@@ -47,6 +68,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     {
         ImageView iconImage;
         TextView name, city, status;
+        RelativeLayout relativeLayout;
+        Integer id;
 
         ViewHolder(View itemView)
         {
@@ -55,6 +78,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             name = itemView.findViewById(R.id.nombreRc);
             city = itemView.findViewById(R.id.city);
             status = itemView.findViewById(R.id.status);
+            relativeLayout = itemView.findViewById(R.id.rl);
         }
 
         void bindData(final ListBench item)
@@ -77,7 +101,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             name.setText(item.getName());
             city.setText(item.getUltimaModificacion());
             status.setText(item.getnEjerciciosCreados());
+
+            id = item.getId();
         }
     }
-
 }

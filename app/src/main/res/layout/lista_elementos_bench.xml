@@ -16,6 +16,7 @@
         android:animateLayoutChanges="true"
         android:orientation="vertical">
         <RelativeLayout
+            android:id="@+id/rl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -31,7 +32,8 @@
                 android:layout_gravity="center"
                 android:paddingLeft="14dp"
                 android:paddingRight="14dp"
-                tools:ignore="VectorDrawableCompat" />
+                tools:ignore="VectorDrawableCompat"
+                android:contentDescription="@string/imagen_del_ejercicio" />
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"

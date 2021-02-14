@@ -54,19 +54,14 @@
     <string name="etPerfilSegApellido">Introduce el segundo apellido</string>
     <string name="tvPerfilTelefono">Telefono</string>
     <string name="etPerfilTelefono">Introduce el telefono</string>
-    <string name="tvPerfilPersonaEmergencia">Nombre de la persona de emergencia</string>
-    <string name="etPerfilPersonaEmergencia">Persona de emergencia</string>
     <string name="tvPerfilTelefonoEmergencia">Telefono de emergencia</string>
     <string name="etPerfilTelefonoEmergencia">Telefono de emergencia</string>
-    <string name="tvPerfilDni">DNI</string>
-    <string name="etPerfilDni">Introduce el Dni</string>
     <string name="tvPerfilCodPostal">Codigo postal</string>
     <string name="etPerfilCodPostal">Introduce el codigo postal</string>
     <string name="tvPerfilLocalidad">Localidad</string>
     <string name="etPerfilLocalidad">Introduce la localidad</string>
     <string name="tvPerfilProvincia">Provincia</string>
     <string name="etPerfilProvincia">Introduce la provincia</string>
-    <string name="tvPerfilPais">Pais</string>
-    <string name="etPerfilPais">Introduce el pais</string>
     <string name="btnGuardarPerfil">Guardar datos</string>
+    <string name="imagen_del_ejercicio">Imagen del Ejercicio</string>
 </resources>

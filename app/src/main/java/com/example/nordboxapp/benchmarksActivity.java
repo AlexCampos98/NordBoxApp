@@ -1,11 +1,14 @@
 package com.example.nordboxapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -34,6 +38,11 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
     //Para el recycler
     List<ListBench> elements;
     ArrayList<EjerciciosBench> bench;
+    ArrayList<Integer> ids;
+
+    //Gif
+    LinearLayout layoutAnimado;
+
     boolean esperaHilo = true;
 
 
@@ -73,6 +82,7 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
         while (iterator.hasNext()) {
             EjerciciosBench ejerciciosBench = iterator.next();
             ListBench listBench = new ListBench();
+            listBench.setId(ejerciciosBench.getId());
             listBench.setName(ejerciciosBench.getNombre());
             listBench.setIcoImagen(Integer.toString(ejerciciosBench.getParteCuerpo()));
             switch (ejerciciosBench.getDificultad()) {
@@ -108,7 +118,15 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
 
     //TODO Añadir todos los diferentes botones, Los botones se crearan automaticamente, segun los que existan en la BD.
     public void initUI() {
-
+        layoutAnimado = (LinearLayout) findViewById(R.id.layoutAnimado);
+        ImageView imageGif = findViewById(R.id.imageGif);
+        imageGif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrar();
+            }
+        });
+        Glide.with(getBaseContext()).load(R.drawable.back_squat).into(imageGif);
     }
 
     //Metodo para mostrar y ocultar el menu
@@ -158,34 +176,62 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    //Metodo creado para mostrar la imagen gif
-//    public void mostrar(View button) {
-//        if (layoutAnimado.getVisibility() == View.GONE) {
-//            animar(true);
-//            layoutAnimado.setVisibility(View.VISIBLE);
-//        } else {
-//            animar(false);
-//            layoutAnimado.setVisibility(View.GONE);
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        getMenuInflater().inflate(R.menu.menu_contextual_mapa, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId())
+//        {
+//            case R.id.opcion1:
+//                Toast.makeText(this, "opcion 1", Toast.LENGTH_SHORT).show();
+//                return true;
+//            case 4:
+//                Toast.makeText(this, "aaaaaaaaaa", Toast.LENGTH_SHORT).show();
+//                return true;
 //        }
-//    }
+
+        mostrarGif(item.getItemId());
+
+        return super.onContextItemSelected(item);
+    }
+
+    //TODO Diferenciar por ejercicio
+    public void mostrarGif(Integer id) {
+        mostrar();
+    }
+    //Metodo creado para mostrar la imagen gif
+    public void mostrar() {
+        if (layoutAnimado.getVisibility() == View.INVISIBLE) {
+            animar(true);
+            layoutAnimado.setVisibility(View.VISIBLE);
+        } else {
+            layoutAnimado.setVisibility(View.INVISIBLE);
+        }
+    }
 
     //Animacion de la salida del gif
-//    private void animar(boolean mostrar) {
-//        AnimationSet set = new AnimationSet(true);
-//        Animation animation;
-//        if (mostrar) {
-//            //desde la esquina inferior derecha a la superior izquierda
-//            animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
-//        } else {
-//            //desde la esquina superior izquierda a la esquina inferior derecha
-//            animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
-//        }
-//        //duración en milisegundos
-//        animation.setDuration(500);
-//        set.addAnimation(animation);
-//        LayoutAnimationController controller = new LayoutAnimationController(set, 0.25f);
-//
-//        layoutAnimado.setLayoutAnimation(controller);
-//        layoutAnimado.startAnimation(animation);
-//    }
+    private void animar(boolean mostrar) {
+        AnimationSet set = new AnimationSet(true);
+        Animation animation;
+        if (mostrar) {
+            //desde la esquina inferior derecha a la superior izquierda
+            animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+        } else {
+            //desde la esquina superior izquierda a la esquina inferior derecha
+            animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 1.0f);
+        }
+        //duración en milisegundos
+        animation.setDuration(500);
+        set.addAnimation(animation);
+        LayoutAnimationController controller = new LayoutAnimationController(set, 0.25f);
+
+        layoutAnimado.setLayoutAnimation(controller);
+        layoutAnimado.startAnimation(animation);
+    }
 }
