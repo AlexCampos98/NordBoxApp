@@ -177,12 +177,12 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-
-        getMenuInflater().inflate(R.menu.menu_contextual_mapa, menu);
-    }
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+//        super.onCreateContextMenu(menu, v, menuInfo);
+//
+//        getMenuInflater().inflate(R.menu.menu_contextual_mapa, menu);
+//    }
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
