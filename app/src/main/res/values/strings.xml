@@ -65,4 +65,5 @@
     <string name="btnGuardarPerfil">Guardar datos</string>
     <string name="imagen_del_ejercicio">Imagen del Ejercicio</string>
     <string name="imagen_de_ayuda">Imagen de ayuda</string>
+    <string name="nordbox">NordBox</string>
 </resources>
