@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import nordboxcad.NordBoxCADCliente;
+import nordboxcad.Usuario;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +21,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +29,8 @@ import android.widget.Toast;
 
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.io.File;
 
 public class usuarioActivity extends AppCompatActivity {
 
@@ -47,7 +52,7 @@ public class usuarioActivity extends AppCompatActivity {
     private String[] cameraPermissions; // cámara y almacenamiento
     private String[] storagePermissions;// solo almacenamiento
     // variables (constain datos para guardar)
-    private Uri imageUri;
+    private Uri imageUri = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,7 @@ public class usuarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_usuario);
 
         initUI();
+//        btnGuardarPerfil.setOnClickListener((View.OnClickListener) this);
     }
 
     public void initUI() {
@@ -84,6 +90,7 @@ public class usuarioActivity extends AppCompatActivity {
 
         btnPerfilPassword = findViewById(R.id.btnPerfilPassword);
         btnGuardarPerfil = findViewById(R.id.btnGuardarPerfil);
+
         //Inicializamos Permisos arrays
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -93,10 +100,40 @@ public class usuarioActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // muestra el cuadro de diálogo de selección de imagen
                 imagePickDialog();
+                
             }
         });
     }
 
+    public void onClick(View v) {
+        int id = v.getId();
+        //Si se ha pulsado el boton de login
+        if (id == R.id.btnGuardarPerfil) {
+            Thread thread = new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+
+                    NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
+                    File file = null;
+
+                    if(imageUri != null)
+                    {
+                        file = new File(imageUri.getPath());
+                    }
+
+                    usuarioStatico.setUsuario(new Usuario(usuarioStatico.getUsuario().getId(), etPerfilEmail.getText().toString(), null, etPerfilNombre.getText().toString(), etPerfilPriApellido.getText().toString(), etPerfilSegApellido.getText().toString(), etPerfilTelefono.getText().toString(),
+                            etPerfilTelefonoEmergencia.getText().toString(), Integer.parseInt(etPerfilCodPostal.getText().toString()), etPerfilLocalidad.getText().toString(), etPerfilProvincia.getText().toString(), file));
+
+                    nordBoxCAD.modificarUsuarioNoPass(usuarioStatico.getUsuario());
+                }
+            });
+            thread.start();
+
+
+
+        }
+    }
 
     private void imagePickDialog() {
         // opciones para mostrar en el diálogo

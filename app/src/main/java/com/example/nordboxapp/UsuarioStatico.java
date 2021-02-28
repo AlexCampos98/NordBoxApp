@@ -13,8 +13,8 @@ class UsuarioStatico {
         return usuario;
     }
 
-    public void setUsuario(Usuario id) {
+    public void setUsuario(Usuario usuario) {
 
-        usuario = id;
+        UsuarioStatico.usuario = usuario;
     }
 }

@@ -75,7 +75,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
         tvLoginError = findViewById(R.id.tvLoginError);
     }
 
-    //Metodo que captura el click TODO Atacar a la BD, y cifrar la contraseña, y guadar los datos del usuario, para mandarlos a las demas activitys
+    //Metodo que captura el click
     public void onClick(View v) {
         int id = v.getId();
         //Si se ha pulsado el boton de login
