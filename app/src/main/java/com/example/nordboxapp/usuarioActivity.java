@@ -3,6 +3,7 @@ package com.example.nordboxapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -21,16 +22,19 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
-
-import java.io.File;
 
 public class usuarioActivity extends AppCompatActivity {
 
@@ -41,6 +45,7 @@ public class usuarioActivity extends AppCompatActivity {
 
     //Imagen circular
     CircleImageView imageUsuario;
+    RequestQueue request;
 
     //Permiso de la clase Constants
     private static final int CAMERA_REQUEST_CODE = 100;
@@ -60,11 +65,15 @@ public class usuarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_usuario);
 
         initUI();
-//        btnGuardarPerfil.setOnClickListener((View.OnClickListener) this);
     }
 
     public void initUI() {
         imageUsuario = findViewById(R.id.imageUsuario);
+        request = Volley.newRequestQueue(getApplicationContext());
+
+        if (usuarioStatico.getUsuario().getImg() != null) {
+            cargarImagenWebService();
+        }
 
         etPerfilEmail = findViewById(R.id.etPerfilEmail);
         etPerfilPassword = findViewById(R.id.etPerfilPassword);
@@ -100,7 +109,7 @@ public class usuarioActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // muestra el cuadro de diálogo de selección de imagen
                 imagePickDialog();
-                
+
             }
         });
     }
@@ -115,24 +124,38 @@ public class usuarioActivity extends AppCompatActivity {
                 public void run() {
 
                     NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
-                    File file = null;
+                    String urlImagen;
 
-                    if(imageUri != null)
-                    {
-                        file = new File(imageUri.getPath());
+                    if (imageUri != null) {
+                        urlImagen = imageUri.getPath();
+                    } else {
+                        urlImagen = null;
                     }
 
                     usuarioStatico.setUsuario(new Usuario(usuarioStatico.getUsuario().getId(), etPerfilEmail.getText().toString(), null, etPerfilNombre.getText().toString(), etPerfilPriApellido.getText().toString(), etPerfilSegApellido.getText().toString(), etPerfilTelefono.getText().toString(),
-                            etPerfilTelefonoEmergencia.getText().toString(), Integer.parseInt(etPerfilCodPostal.getText().toString()), etPerfilLocalidad.getText().toString(), etPerfilProvincia.getText().toString(), file));
+                            etPerfilTelefonoEmergencia.getText().toString(), Integer.parseInt(etPerfilCodPostal.getText().toString()), etPerfilLocalidad.getText().toString(), etPerfilProvincia.getText().toString(), urlImagen));
 
                     nordBoxCAD.modificarUsuarioNoPass(usuarioStatico.getUsuario());
                 }
             });
             thread.start();
-
-
-
         }
+    }
+
+    private void cargarImagenWebService() {
+        String url = "http://192.168.1.254/imgPerfil/" + usuarioStatico.getUsuario().getId() + ".jpg";
+        ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
+            @Override
+            public void onResponse(Bitmap response) {
+                imageUsuario.setImageBitmap(response);
+            }
+        }, 0, 0, ImageView.ScaleType.CENTER, null, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(getApplication(), "Error al cargar la imagen", Toast.LENGTH_LONG);
+            }
+        });
+        request.add(imageRequest);
     }
 
     private void imagePickDialog() {
@@ -243,7 +266,6 @@ public class usuarioActivity extends AppCompatActivity {
                         Toast.makeText(this, "Se requieren permisos de cámara y almacenamiento", Toast.LENGTH_SHORT).show();
                     }
                 }
-
             }
             break;
             case STORAGE_REQUEST_CODE: {
@@ -258,7 +280,6 @@ public class usuarioActivity extends AppCompatActivity {
                         Toast.makeText(this, "Se requiere permiso de almacenamiento", Toast.LENGTH_SHORT).show();
                     }
                 }
-
             }
             break;
         }
@@ -301,9 +322,7 @@ public class usuarioActivity extends AppCompatActivity {
                     Exception error = result.getError();
                     Toast.makeText(this, "" + error, Toast.LENGTH_SHORT).show();
                 }
-
             }
-
         }
 
         super.onActivityResult(requestCode, resultCode, data);

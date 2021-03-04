@@ -2,17 +2,22 @@ package com.example.nordboxapp;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -28,11 +33,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 //import org.json.JSONObject;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import nordboxcad.NordBoxCADCliente;
 import nordboxcad.Usuario;
 
 public class login extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
 
+    private static final int STORAGE_REQUEST_PERMISSION = 111;
     TextView tvLoginError;
     EditText etEmailLogin, etPasswordLogin;
     Button btnLogin;
@@ -80,6 +90,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
         int id = v.getId();
         //Si se ha pulsado el boton de login
         if (id == R.id.btnLogin) {
+
             Thread thread = new Thread(new Runnable() {
 
                 @Override
@@ -91,6 +102,10 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
                     u.setPassword(etPasswordLogin.getText().toString());
                     u.setCorreo(etEmailLogin.getText().toString());
                     idUsuario = nordBoxCAD.comprobarLogin(u);
+
+
+                    //TODO recoger la imgen de perfil y guardarla en el dispositivo.
+
                     usuarioStatico.setUsuario(idUsuario);
 
                     if (idUsuario.getId() != null) {
