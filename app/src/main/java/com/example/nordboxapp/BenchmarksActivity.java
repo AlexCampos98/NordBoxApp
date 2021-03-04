@@ -26,7 +26,7 @@ import java.util.List;
 import nordboxcad.EjerciciosBench;
 import nordboxcad.NordBoxCADCliente;
 
-public class benchmarksActivity extends AppCompatActivity implements View.OnClickListener {
+public class BenchmarksActivity extends AppCompatActivity implements View.OnClickListener {
 
     //Para el recycler
     List<ListBench> elements;
@@ -140,13 +140,13 @@ public class benchmarksActivity extends AppCompatActivity implements View.OnClic
             //TODO Añadir intent de cambio a la activity Contacto.
             Toast.makeText(this, "Opcion Contacto en proceso", Toast.LENGTH_LONG).show();
         } else if (id == R.id.overBenchmarks) {
-            i = new Intent(this, benchmarksActivity.class);
+            i = new Intent(this, BenchmarksActivity.class);
         } else if (id == R.id.overPerfil) {
-            //TODO Añadir intent de cambio a la activity Perfil.
-            i = new Intent(this, usuarioActivity.class);
+            //TAñadir intent de cambio a la activity Perfil.
+            i = new Intent(this, UsuarioActivity.class);
         } else if (id == R.id.overSalir) {
-            //TODO Cerrar la sesion al Salir.
-            i = new Intent(this, login.class);
+            //Cerrar la sesion al Salir.
+            i = new Intent(this, Login.class);
         }
 
         if (i != null) {

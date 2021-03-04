@@ -2,22 +2,17 @@ package com.example.nordboxapp;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -33,14 +28,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 //import org.json.JSONObject;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import nordboxcad.NordBoxCADCliente;
 import nordboxcad.Usuario;
 
-public class login extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
+public class Login extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
 
     private static final int STORAGE_REQUEST_PERMISSION = 111;
     TextView tvLoginError;
@@ -103,9 +94,6 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
                     u.setCorreo(etEmailLogin.getText().toString());
                     idUsuario = nordBoxCAD.comprobarLogin(u);
 
-
-                    //TODO recoger la imgen de perfil y guardarla en el dispositivo.
-
                     usuarioStatico.setUsuario(idUsuario);
 
                     if (idUsuario.getId() != null) {
@@ -133,7 +121,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
 
     public void iniciarActividad(Boolean iniciar) {
         if (iniciar) {
-            Intent i = new Intent(this, menuActivity.class);
+            Intent i = new Intent(this, MenuActivity.class);
             startActivity(i);
         } else {
             tvLoginError.setVisibility(View.VISIBLE);
@@ -157,8 +145,6 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
             //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
             //                                          int[] grantResults)
@@ -170,7 +156,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, On
 
         mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
-        LocationManager locationManager = (LocationManager) login.this.getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) Login.this.getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {

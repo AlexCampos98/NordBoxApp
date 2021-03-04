@@ -36,7 +36,7 @@ import com.android.volley.toolbox.Volley;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-public class usuarioActivity extends AppCompatActivity {
+public class UsuarioActivity extends AppCompatActivity {
 
     EditText etPerfilEmail, etPerfilPassword, etPerfilNombre, etPerfilPriApellido, etPerfilSegApellido, etPerfilTelefono, etPerfilTelefonoEmergencia, etPerfilCodPostal, etPerfilLocalidad, etPerfilProvincia;
     Button btnPerfilPassword, btnGuardarPerfil;

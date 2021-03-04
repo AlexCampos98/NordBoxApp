@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".benchmarksActivity">
+    tools:context=".BenchmarksActivity">
 <!--    TODO Para este menu hay que introducir un recyclerList y dentro crear un item.xml en el que esten los cardview, que es solo 1, para poder hacer las tarjetas. -->
 
     <androidx.recyclerview.widget.RecyclerView

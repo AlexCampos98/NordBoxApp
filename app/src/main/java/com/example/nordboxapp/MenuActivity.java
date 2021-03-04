@@ -7,12 +7,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-public class menuActivity extends AppCompatActivity implements View.OnClickListener {
+public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton btnReservar, btnContacto, btnBenchmarks, btnPerfil, btnSalir;
 
@@ -59,13 +57,13 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
             //TODO Añadir intent de cambio a la activity Contacto.
             Toast.makeText(this,"Opcion Contacto en proceso",Toast.LENGTH_LONG).show();
         } else if (id == R.id.overBenchmarks) {
-            i = new Intent(this, benchmarksActivity.class);
+            i = new Intent(this, BenchmarksActivity.class);
         } else if (id == R.id.overPerfil) {
-            //TODO Añadir intent de cambio a la activity Perfil.
-            i = new Intent(this, usuarioActivity.class);
+            //Añadir intent de cambio a la activity Perfil.
+            i = new Intent(this, UsuarioActivity.class);
         } else if (id == R.id.overSalir) {
-            //TODO Cerrar la sesion al Salir.
-            i = new Intent(this, login.class);
+            //Cerrar la sesion al Salir.
+            i = new Intent(this, Login.class);
         }
 
         if (i != null) {
@@ -85,16 +83,16 @@ public class menuActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this,"Opcion Calendario en proceso",Toast.LENGTH_LONG).show();
         } else if (id == R.id.btnContacto) {
             //TODO Añadir intent de cambio a la activity Contacto.
-//            Toast.makeText(this,"Opcion Contacto en proceso",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Opcion Contacto en proceso",Toast.LENGTH_LONG).show();
 //            i = new Intent(this, ma)
         } else if (id == R.id.btnBenchmarks) {
-            i = new Intent(this, benchmarksActivity.class);
+            i = new Intent(this, BenchmarksActivity.class);
         } else if (id == R.id.btnPerfil) {
-            //TODO Añadir intent de cambio a la activity Perfil.
-            i = new Intent(this, usuarioActivity.class);
+            //Añadir intent de cambio a la activity Perfil.
+            i = new Intent(this, UsuarioActivity.class);
         } else if (id == R.id.btnSalir) {
-            //TODO Cerrar la sesion al Salir.
-            i = new Intent(this, login.class);
+            //Cerrar la sesion al Salir.
+            i = new Intent(this, Login.class);
         }
 
         if (i != null) {

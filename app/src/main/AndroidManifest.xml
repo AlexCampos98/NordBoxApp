@@ -47,12 +47,12 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".usuarioActivity" />
-        <activity android:name=".benchmarkEjercicioActivity" />
-        <activity android:name=".menuActivity" />
-        <activity android:name=".benchmarksActivity" />
-        <activity android:name=".creacionUsuario" />
-        <activity android:name=".login">
+        <activity android:name=".UsuarioActivity" />
+        <activity android:name=".BenchmarkEjercicioActivity" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".BenchmarksActivity" />
+        <activity android:name=".CreacionUsuario" />
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
