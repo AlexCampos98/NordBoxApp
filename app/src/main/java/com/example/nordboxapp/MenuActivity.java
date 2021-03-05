@@ -1,8 +1,18 @@
 package com.example.nordboxapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +24,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     ImageButton btnReservar, btnContacto, btnBenchmarks, btnPerfil, btnSalir;
 
+    private PendingIntent pendingIntent;
+    private final static String CHANNEL_ID = "NOTIFICACION";
+    private final static int NOTIFICACION_ID = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +35,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         initUI();
 
+        setPendingIntent();
+        createNotificatonChannel();
+        createNotification("Hora de fortalecerse", "Es hora de hacer ejercicios y apuntar los resultados.");
+
+//        Notificaciones notificaciones = new Notificaciones(this);
+//        notificaciones.setPendingIntent(BenchmarksActivity.class);
+//        Notificaciones.createNotificatonChannel();
+//        Notificaciones.createNotification("Hora de fortalecerse", "Es hora de hacer ejercicios y apuntar los resultados.");
 
     }
 
@@ -98,5 +120,39 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         if (i != null) {
             startActivity(i);
         }
+    }
+
+    public void createNotification(String titulo, String texto){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
+        builder.setSmallIcon(R.drawable.brazo);
+        builder.setContentTitle(titulo);
+        builder.setContentText(texto);
+        builder.setColor(Color.BLUE);
+        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        builder.setLights(Color.BLUE, 1000, 1000);
+        builder.setVibrate(new long[]{1000});
+        builder.setDefaults(Notification.DEFAULT_SOUND);
+
+        builder.setContentIntent(pendingIntent);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
+        notificationManagerCompat.notify(NOTIFICACION_ID, builder.build());
+    }
+
+    public void createNotificatonChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "NOTIFICACION";
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+    }
+
+    public void setPendingIntent() {
+        Intent intent = new Intent(this, BenchmarksActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(BenchmarksActivity.class);
+        stackBuilder.addNextIntent(intent);
+        pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }

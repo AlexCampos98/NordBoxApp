@@ -50,7 +50,10 @@
         <activity android:name=".UsuarioActivity" />
         <activity android:name=".BenchmarkEjercicioActivity" />
         <activity android:name=".MenuActivity" />
-        <activity android:name=".BenchmarksActivity" />
+        <activity android:name=".BenchmarksActivity" android:parentActivityName=".MenuActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                 android:value=".MenuActivity"/>
+        </activity>
         <activity android:name=".CreacionUsuario" />
         <activity android:name=".Login">
             <intent-filter>

@@ -128,6 +128,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
         }
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        usuarioStatico = new UsuarioStatico();
+    }
+
     /**
      * Metodo usado para poder obtener la localizacion
      */
