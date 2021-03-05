@@ -2,10 +2,10 @@
 <resources>
 
     <!--Login-->
-    <string name="tvLogin">Bienvenido a NordBox, inicie sesion para continuar.</string>
+    <string name="tvLogin">Bienvenido a NordBox, inicie sesión para continuar.</string>
     <string name="etEmailLogin">Introduce tu email</string>
     <string name="etPasswordLogin">Introduce la contraseña</string>
-    <string name="btnLogin">Iniciar Sesion</string>
+    <string name="btnLogin">Iniciar Sesión</string>
     <string name="imgLogin">Logotipo oficial de NordBox</string>
     <string name="tvLoginError">* Email o contraseña incorrectos</string>
 

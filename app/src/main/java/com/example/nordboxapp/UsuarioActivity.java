@@ -33,14 +33,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputLayout;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 public class UsuarioActivity extends AppCompatActivity {
 
     EditText etPerfilEmail, etPerfilPassword, etPerfilNombre, etPerfilPriApellido, etPerfilSegApellido, etPerfilTelefono, etPerfilTelefonoEmergencia, etPerfilCodPostal, etPerfilLocalidad, etPerfilProvincia;
+    TextInputLayout inpPerfilEmail, inpPerfilPassword, inpPerfilNombre, inpPerfilPriApellido, inpPerfilSegApellido, inpPerfilTelefono, inpPerfilTelefonoEmergencia, inpPerfilCodPostal, inpPerfilLocalidad, inpPerfilProvincia;
     Button btnPerfilPassword, btnGuardarPerfil;
-    //TODO Crear la accion en el boton cambiarPassword, cuando se pulse se habilita el campo y se procede a enviar de forma normal.
+    boolean cambiarPassword = false;
+
     UsuarioStatico usuarioStatico = new UsuarioStatico();
 
     //Imagen circular
@@ -65,6 +68,7 @@ public class UsuarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_usuario);
 
         initUI();
+        initUIInput();
     }
 
     public void initUI() {
@@ -85,7 +89,6 @@ public class UsuarioActivity extends AppCompatActivity {
         etPerfilCodPostal = findViewById(R.id.etPerfilCodPostal);
         etPerfilLocalidad = findViewById(R.id.etPerfilLocalidad);
         etPerfilProvincia = findViewById(R.id.etPerfilProvincia);
-
         etPerfilEmail.append(usuarioStatico.getUsuario().getCorreo());
         etPerfilPassword.append(usuarioStatico.getUsuario().getPassword());
         etPerfilNombre.append(usuarioStatico.getUsuario().getNombre());
@@ -114,31 +117,106 @@ public class UsuarioActivity extends AppCompatActivity {
         });
     }
 
+    public void initUIInput() {
+        inpPerfilEmail = findViewById(R.id.inpPerfilEmail);
+        inpPerfilPassword = findViewById(R.id.inpPerfilPassword);
+        inpPerfilNombre = findViewById(R.id.inpPerfilNombre);
+        inpPerfilPriApellido = findViewById(R.id.inpPerfilPriApellido);
+        inpPerfilSegApellido = findViewById(R.id.inpPerfilSegApellido);
+        inpPerfilTelefono = findViewById(R.id.inpPerfilTelefono);
+        inpPerfilTelefonoEmergencia = findViewById(R.id.inpPerfilTelefonoEmergencia);
+        inpPerfilCodPostal = findViewById(R.id.inpPerfilCodPostal);
+        inpPerfilLocalidad = findViewById(R.id.inpPerfilLocalidad);
+        inpPerfilProvincia = findViewById(R.id.inpPerfilProvincia);
+    }
+
     public void onClick(View v) {
         int id = v.getId();
         //Si se ha pulsado el boton de login
         if (id == R.id.btnGuardarPerfil) {
-            Thread thread = new Thread(new Runnable() {
+            boolean comprobacion = true;
+            if (etPerfilEmail.getText().toString().equals("")) {
+                inpPerfilEmail.setErrorEnabled(true);
+                inpPerfilEmail.setError("No puede estar vació.");
+                comprobacion = false;
+            }
+            if (etPerfilPassword.getText().toString().equals("")) {
+                inpPerfilPassword.setErrorEnabled(true);
+                inpPerfilPassword.setError("No puede estar vació.");
+                comprobacion = false;
+            }
+            if (etPerfilNombre.getText().toString().equals("")) {
+                inpPerfilNombre.setErrorEnabled(true);
+                inpPerfilNombre.setError("No puede estar vació.");
+                comprobacion = false;
+            }
+            if (etPerfilPriApellido.getText().toString().equals("")) {
+                inpPerfilPriApellido.setErrorEnabled(true);
+                inpPerfilPriApellido.setError("No puede estar vació.");
+                comprobacion = false;
+            }
+            if (etPerfilSegApellido.getText().toString().equals("")) {
+                inpPerfilSegApellido.setErrorEnabled(true);
+                inpPerfilSegApellido.setError("No puede estar vació.");
+                comprobacion = false;
+            }
+            if (etPerfilTelefono.getText().toString().equals("")) {
+                inpPerfilTelefono.setErrorEnabled(true);
+                inpPerfilTelefono.setError("No puede estar vació.");
+                comprobacion = false;
+            }
+            if (etPerfilTelefonoEmergencia.getText().toString().equals("")) {
+                inpPerfilTelefonoEmergencia.setErrorEnabled(true);
+                inpPerfilTelefonoEmergencia.setError("No puede estar vació.");
+                comprobacion = false;
+            }
+            if (etPerfilCodPostal.getText().toString().equals("")) {
+                inpPerfilCodPostal.setErrorEnabled(true);
+                inpPerfilCodPostal.setError("No puede estar vació.");
+                comprobacion = false;
+            }
+            if (etPerfilLocalidad.getText().toString().equals("")) {
+                inpPerfilLocalidad.setErrorEnabled(true);
+                inpPerfilLocalidad.setError("No puede estar vació.");
+                comprobacion = false;
+            }
+            if (etPerfilProvincia.getText().toString().equals("")) {
+                inpPerfilProvincia.setErrorEnabled(true);
+                inpPerfilProvincia.setError("No puede estar vació.");
+                comprobacion = false;
+            }
 
-                @Override
-                public void run() {
+            if (comprobacion) {
+                Thread thread = new Thread(new Runnable() {
 
-                    NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
-                    String urlImagen;
+                    @Override
+                    public void run() {
 
-                    if (imageUri != null) {
-                        urlImagen = imageUri.getPath();
-                    } else {
-                        urlImagen = null;
+                        NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
+                        String urlImagen;
+
+                        if (imageUri != null) {
+                            urlImagen = imageUri.getPath();
+                        } else {
+                            urlImagen = null;
+                        }
+
+                        usuarioStatico.setUsuario(new Usuario(usuarioStatico.getUsuario().getId(), etPerfilEmail.getText().toString(), etPerfilPassword.getText().toString(), etPerfilNombre.getText().toString(), etPerfilPriApellido.getText().toString(), etPerfilSegApellido.getText().toString(), etPerfilTelefono.getText().toString(),
+                                etPerfilTelefonoEmergencia.getText().toString(), Integer.parseInt(etPerfilCodPostal.getText().toString()), etPerfilLocalidad.getText().toString(), etPerfilProvincia.getText().toString(), urlImagen));
+
+                        if (cambiarPassword) {
+                            nordBoxCAD.modificarUsuarioPass(usuarioStatico.getUsuario());
+                        } else {
+                            nordBoxCAD.modificarUsuarioNoPass(usuarioStatico.getUsuario());
+                        }
                     }
-
-                    usuarioStatico.setUsuario(new Usuario(usuarioStatico.getUsuario().getId(), etPerfilEmail.getText().toString(), null, etPerfilNombre.getText().toString(), etPerfilPriApellido.getText().toString(), etPerfilSegApellido.getText().toString(), etPerfilTelefono.getText().toString(),
-                            etPerfilTelefonoEmergencia.getText().toString(), Integer.parseInt(etPerfilCodPostal.getText().toString()), etPerfilLocalidad.getText().toString(), etPerfilProvincia.getText().toString(), urlImagen));
-
-                    nordBoxCAD.modificarUsuarioNoPass(usuarioStatico.getUsuario());
-                }
-            });
-            thread.start();
+                });
+                thread.start();
+            }
+        } else if (id == R.id.btnPerfilPassword) {
+            etPerfilPassword.setEnabled(true);
+            etPerfilPassword.setText("");
+            cambiarPassword = true;
         }
     }
 

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="btnBack_Squat_info">Back Squat</string>
-    <string name="imageGif">Visualizacion del ejercicio seleccionado</string>
-    <string name="tvTituloMenu">Menu</string>
+    <string name="imageGif">Visualización del ejercicio seleccionado</string>
+    <string name="tvTituloMenu">Menú</string>
     <string name="tvReservar">Reservar clase</string>
     <string name="tvContacto">Contacto</string>
     <string name="tvPerfil">Perfil</string>
     <string name="tvSalir">Salir</string>
     <string name="tvBenchmarks">Benchmarks</string>
-    <string name="tvPerfilEmail">Correo electronico (email)</string>
+    <string name="tvPerfilEmail">Correo electrónico (email)</string>
     <string name="etPerfilEmail">Introduce el correo</string>
     <string name="tvPerfilPassword">Contraseña</string>
     <string name="etPerfilPassword">Introduce una constraseña</string>
@@ -19,12 +19,12 @@
     <string name="etPerfilPriApellido">Introduce el primer apellido</string>
     <string name="tvPerfilSegApellido">Segundo apellido</string>
     <string name="etPerfilSegApellido">Introduce el segundo apellido</string>
-    <string name="tvPerfilTelefono">Telefono</string>
-    <string name="etPerfilTelefono">Introduce el telefono</string>
-    <string name="tvPerfilTelefonoEmergencia">Telefono de emergencia</string>
-    <string name="etPerfilTelefonoEmergencia">Telefono de emergencia</string>
-    <string name="tvPerfilCodPostal">Codigo postal</string>
-    <string name="etPerfilCodPostal">Introduce el codigo postal</string>
+    <string name="tvPerfilTelefono">Teléfono</string>
+    <string name="etPerfilTelefono">Introduce el teléfono</string>
+    <string name="tvPerfilTelefonoEmergencia">Teléfono de emergencia</string>
+    <string name="etPerfilTelefonoEmergencia">Teléfono de emergencia</string>
+    <string name="tvPerfilCodPostal">Código postal</string>
+    <string name="etPerfilCodPostal">Introduce el código postal</string>
     <string name="tvPerfilLocalidad">Localidad</string>
     <string name="etPerfilLocalidad">Introduce la localidad</string>
     <string name="tvPerfilProvincia">Provincia</string>

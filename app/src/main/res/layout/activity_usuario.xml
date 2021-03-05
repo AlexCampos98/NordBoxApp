@@ -43,19 +43,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageUsuario" />
 
-            <EditText
-                android:id="@+id/etPerfilEmail"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inpPerfilEmail"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/etPerfilEmail"
-                android:inputType="textEmailAddress"
+                android:textColorHint="@color/md_blue_600"
+                app:boxStrokeColor="@color/md_blue_900"
+                app:hintTextColor="@color/md_blue_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPerfilEmail">
+
+                <EditText
+                    android:id="@+id/etPerfilEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/etPerfilEmail"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvPerfilPassword"
@@ -67,33 +78,42 @@
                 android:text="@string/tvPerfilPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/inpPerfilEmail" />
 
-            <EditText
-                android:id="@+id/etPerfilPassword"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inpPerfilPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="43dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:enabled="false"
-                android:hint="@string/etPerfilPassword"
-                android:inputType="textPassword"
-                app:layout_constraintEnd_toStartOf="@+id/btnPerfilPassword"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilPassword" />
-
-            <Button
-                android:id="@+id/btnPerfilPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/btnPerfilPassword"
-                app:layout_constraintBottom_toBottomOf="@+id/etPerfilPassword"
+                android:textColorHint="@color/md_blue_600"
+                app:boxStrokeColor="@color/md_blue_900"
+                app:hintTextColor="@color/md_blue_700"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/etPerfilPassword"
-                app:layout_constraintTop_toTopOf="@+id/etPerfilPassword" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPerfilPassword">
+
+                <EditText
+                    android:id="@+id/etPerfilPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:enabled="false"
+                    android:hint="@string/etPerfilPassword"
+                    android:inputType="textPassword" />
+
+                <Button
+                    android:id="@+id/btnPerfilPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:onClick="onClick"
+                    android:text="@string/btnPerfilPassword"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvPerfilNombre"
@@ -105,21 +125,31 @@
                 android:text="@string/tvPerfilNombre"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/inpPerfilPassword" />
 
-            <EditText
-                android:id="@+id/etPerfilNombre"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inpPerfilNombre"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/etPerfilNombre"
-                android:inputType="textPersonName"
+                android:textColorHint="@color/md_blue_600"
+                app:boxStrokeColor="@color/md_blue_900"
+                app:hintTextColor="@color/md_blue_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombre" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombre">
+
+                <EditText
+                    android:id="@+id/etPerfilNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/etPerfilNombre"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvPerfilPriApellido"
@@ -131,21 +161,31 @@
                 android:text="@string/tvPerfilPriApellido"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilNombre" />
+                app:layout_constraintTop_toBottomOf="@+id/inpPerfilNombre" />
 
-            <EditText
-                android:id="@+id/etPerfilPriApellido"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inpPerfilPriApellido"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/etPerfilPriApellido"
-                android:inputType="textPersonName"
+                android:textColorHint="@color/md_blue_600"
+                app:boxStrokeColor="@color/md_blue_900"
+                app:hintTextColor="@color/md_blue_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilPriApellido" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPerfilPriApellido">
+
+                <EditText
+                    android:id="@+id/etPerfilPriApellido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/etPerfilPriApellido"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvPerfilSegApellido"
@@ -157,21 +197,31 @@
                 android:text="@string/tvPerfilSegApellido"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilPriApellido" />
+                app:layout_constraintTop_toBottomOf="@+id/inpPerfilPriApellido" />
 
-            <EditText
-                android:id="@+id/etPerfilSegApellido"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inpPerfilSegApellido"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/etPerfilSegApellido"
-                android:inputType="textPersonName"
+                android:textColorHint="@color/md_blue_600"
+                app:boxStrokeColor="@color/md_blue_900"
+                app:hintTextColor="@color/md_blue_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilSegApellido" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPerfilSegApellido">
+
+                <EditText
+                    android:id="@+id/etPerfilSegApellido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/etPerfilSegApellido"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvPerfilTelefono"
@@ -183,21 +233,31 @@
                 android:text="@string/tvPerfilTelefono"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilSegApellido" />
+                app:layout_constraintTop_toBottomOf="@+id/inpPerfilSegApellido" />
 
-            <EditText
-                android:id="@+id/etPerfilTelefono"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inpPerfilTelefono"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/etPerfilTelefono"
-                android:inputType="textPersonName"
+                android:textColorHint="@color/md_blue_600"
+                app:boxStrokeColor="@color/md_blue_900"
+                app:hintTextColor="@color/md_blue_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilTelefono" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPerfilTelefono">
+
+                <EditText
+                    android:id="@+id/etPerfilTelefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/etPerfilTelefono"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvPerfilTelefonoEmergencia"
@@ -209,21 +269,31 @@
                 android:text="@string/tvPerfilTelefonoEmergencia"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilTelefono" />
+                app:layout_constraintTop_toBottomOf="@+id/inpPerfilTelefono" />
 
-            <EditText
-                android:id="@+id/etPerfilTelefonoEmergencia"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inpPerfilTelefonoEmergencia"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/etPerfilTelefonoEmergencia"
-                android:inputType="textPersonName"
+                android:textColorHint="@color/md_blue_600"
+                app:boxStrokeColor="@color/md_blue_900"
+                app:hintTextColor="@color/md_blue_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilTelefonoEmergencia" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPerfilTelefonoEmergencia">
+
+                <EditText
+                    android:id="@+id/etPerfilTelefonoEmergencia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/etPerfilTelefonoEmergencia"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvPerfilCodPostal"
@@ -235,21 +305,31 @@
                 android:text="@string/tvPerfilCodPostal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilTelefonoEmergencia" />
+                app:layout_constraintTop_toBottomOf="@+id/inpPerfilTelefonoEmergencia" />
 
-            <EditText
-                android:id="@+id/etPerfilCodPostal"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inpPerfilCodPostal"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/etPerfilCodPostal"
-                android:inputType="number"
+                android:textColorHint="@color/md_blue_600"
+                app:boxStrokeColor="@color/md_blue_900"
+                app:hintTextColor="@color/md_blue_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilCodPostal" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPerfilCodPostal">
+
+                <EditText
+                    android:id="@+id/etPerfilCodPostal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/etPerfilCodPostal"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvPerfilLocalidad"
@@ -261,21 +341,31 @@
                 android:text="@string/tvPerfilLocalidad"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilCodPostal" />
+                app:layout_constraintTop_toBottomOf="@+id/inpPerfilCodPostal" />
 
-            <EditText
-                android:id="@+id/etPerfilLocalidad"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inpPerfilLocalidad"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/etPerfilLocalidad"
-                android:inputType="textPersonName"
+                android:textColorHint="@color/md_blue_600"
+                app:boxStrokeColor="@color/md_blue_900"
+                app:hintTextColor="@color/md_blue_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilLocalidad" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPerfilLocalidad">
+
+                <EditText
+                    android:id="@+id/etPerfilLocalidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/etPerfilLocalidad"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/tvPerfilProvincia"
@@ -287,21 +377,31 @@
                 android:text="@string/tvPerfilProvincia"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilLocalidad" />
+                app:layout_constraintTop_toBottomOf="@+id/inpPerfilLocalidad" />
 
-            <EditText
-                android:id="@+id/etPerfilProvincia"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inpPerfilProvincia"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/etPerfilProvincia"
-                android:inputType="textPersonName"
+                android:textColorHint="@color/md_blue_600"
+                app:boxStrokeColor="@color/md_blue_900"
+                app:hintTextColor="@color/md_blue_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPerfilProvincia" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPerfilProvincia">
+
+                <EditText
+                    android:id="@+id/etPerfilProvincia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/etPerfilProvincia"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnGuardarPerfil"
@@ -314,7 +414,7 @@
                 android:text="@string/btnGuardarPerfil"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPerfilProvincia" />
+                app:layout_constraintTop_toBottomOf="@+id/inpPerfilProvincia" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

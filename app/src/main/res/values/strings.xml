@@ -2,10 +2,10 @@
     <string name="app_name" translatable="false">NordBoxApp</string>
 
     <!--Login-->
-    <string name="tvLogin">Bienvenido a NordBox, inicie sesion para continuar.</string>
+    <string name="tvLogin">Bienvenido a NordBox, inicie sesión para continuar.</string>
     <string name="etEmailLogin">Introduce tu email</string>
     <string name="etPasswordLogin">Introduce la contraseña</string>
-    <string name="btnLogin">Iniciar Sesion</string>
+    <string name="btnLogin">Iniciar Sesión</string>
     <string name="imgLogin">Logotipo oficial de NordBox</string>
     <string name="tvLoginError">* Email o contraseña incorrectos</string>
 
@@ -17,7 +17,7 @@
     <string name="overSalir">Salir</string>
 
     <!--    Menu Activity-->
-    <string name="tvTituloMenu">Menu</string>
+    <string name="tvTituloMenu">Menú</string>
     <string name="btnReservar">Reservar clases</string>
     <string name="tvReservar">Reservar clase</string>
     <string name="btnContacto">Contacto</string>
@@ -38,10 +38,10 @@
     <string name="btnBench_lunges_info" translatable="false">Bench_lunges_info</string>
     <string name="btnBench_Press">Bench Press</string>
     <string name="btnBench_Press_info" translatable="false">Bench_Press_info</string>
-    <string name="imageGif">Visualizacion del ejercicio seleccionado</string>
+    <string name="imageGif">Visualización del ejercicio seleccionado</string>
 
     <!--    Perfil-->
-    <string name="tvPerfilEmail">Correo electronico (email)</string>
+    <string name="tvPerfilEmail">Correo electrónico (email)</string>
     <string name="etPerfilEmail">Introduce el correo</string>
     <string name="tvPerfilPassword">Contraseña</string>
     <string name="etPerfilPassword">Introduce una constraseña</string>
@@ -52,12 +52,12 @@
     <string name="etPerfilPriApellido">Introduce el primer apellido</string>
     <string name="tvPerfilSegApellido">Segundo apellido</string>
     <string name="etPerfilSegApellido">Introduce el segundo apellido</string>
-    <string name="tvPerfilTelefono">Telefono</string>
-    <string name="etPerfilTelefono">Introduce el telefono</string>
-    <string name="tvPerfilTelefonoEmergencia">Telefono de emergencia</string>
-    <string name="etPerfilTelefonoEmergencia">Telefono de emergencia</string>
-    <string name="tvPerfilCodPostal">Codigo postal</string>
-    <string name="etPerfilCodPostal">Introduce el codigo postal</string>
+    <string name="tvPerfilTelefono">Teléfono</string>
+    <string name="etPerfilTelefono">Introduce el teléfono</string>
+    <string name="tvPerfilTelefonoEmergencia">Teléfono de emergencia</string>
+    <string name="etPerfilTelefonoEmergencia">Teléfono de emergencia</string>
+    <string name="tvPerfilCodPostal">Código postal</string>
+    <string name="etPerfilCodPostal">Introduce el código postal</string>
     <string name="tvPerfilLocalidad">Localidad</string>
     <string name="etPerfilLocalidad">Introduce la localidad</string>
     <string name="tvPerfilProvincia">Provincia</string>
