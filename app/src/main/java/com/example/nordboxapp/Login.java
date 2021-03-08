@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -59,6 +60,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
         mapFragment.getMapAsync(this);
         getLocalizacion();
 
+        //Musica sencilla.
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.intro);
+        mp.start();
 
 //        requestQueue = Volley.newRequestQueue(this);
 

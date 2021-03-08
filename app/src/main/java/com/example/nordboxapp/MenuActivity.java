@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -12,6 +13,7 @@ import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,7 +47,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 //        notificaciones.setPendingIntent(BenchmarksActivity.class);
 //        Notificaciones.createNotificatonChannel();
 //        Notificaciones.createNotification("Hora de fortalecerse", "Es hora de hacer ejercicios y apuntar los resultados.");
-
     }
 
     public void initUI() {
@@ -95,6 +98,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //Metodo que captura el click
+    @SuppressLint("ResourceAsColor")
     public void onClick(View v) {
         int id = v.getId();
 
@@ -102,7 +106,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         if (id == R.id.btnReservar) {
             //TODO Añadir intent de cambio a la activity calendario.
-            Toast.makeText(this,"Opcion Calendario en proceso",Toast.LENGTH_LONG).show();
+            Snackbar snackbar = Snackbar.make(v, R.string.btnBack_Squat , Snackbar.LENGTH_LONG);
+            snackbar.setDuration(2000);
+            snackbar.show();
+            snackbar.show();
         } else if (id == R.id.btnContacto) {
             //TODO Añadir intent de cambio a la activity Contacto.
             Toast.makeText(this,"Opcion Contacto en proceso",Toast.LENGTH_LONG).show();

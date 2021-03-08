@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -134,6 +135,9 @@ public class UsuarioActivity extends AppCompatActivity {
         int id = v.getId();
         //Si se ha pulsado el boton de login
         if (id == R.id.btnGuardarPerfil) {
+            //Musica sencilla.
+            MediaPlayer mp = MediaPlayer.create(this, R.raw.wololoo);
+            mp.start();
             boolean comprobacion = true;
             if (etPerfilEmail.getText().toString().equals("")) {
                 inpPerfilEmail.setErrorEnabled(true);
