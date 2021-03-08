@@ -11,8 +11,10 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -407,14 +409,24 @@
                 android:id="@+id/btnGuardarPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
                 android:onClick="onClick"
                 android:text="@string/btnGuardarPerfil"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.7"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/inpPerfilProvincia" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchMusica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:checked="true"
+                android:text="@string/switchMusica"
+                app:layout_constraintBottom_toBottomOf="@+id/btnGuardarPerfil"
+                app:layout_constraintEnd_toStartOf="@+id/btnGuardarPerfil"
+                app:layout_constraintTop_toTopOf="@+id/btnGuardarPerfil"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

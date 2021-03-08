@@ -3,6 +3,7 @@ package com.example.nordboxapp;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -60,9 +61,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
         mapFragment.getMapAsync(this);
         getLocalizacion();
 
-        //Musica sencilla.
-        MediaPlayer mp = MediaPlayer.create(this, R.raw.intro);
-        mp.start();
+        if(cargarPreferencias())
+        {
+            //Musica sencilla.
+            MediaPlayer mp = MediaPlayer.create(this, R.raw.intro);
+            mp.start();
+        }
+
 
 //        requestQueue = Volley.newRequestQueue(this);
 
@@ -225,7 +230,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
 //        queue.add(stringRequest);
     }
 
-//    private void trazarRuta(JSONObject jso) {
+    //    private void trazarRuta(JSONObject jso) {
 //
 //        JSONArray jRoutes;
 //        JSONArray jLegs;
@@ -254,4 +259,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
 //            e.printStackTrace();
 //        }
 //    }
+    private boolean cargarPreferencias() {
+        SharedPreferences preferences = getSharedPreferences("Musica", Context.MODE_PRIVATE);
+        boolean sonidoActivado = preferences.getBoolean("Musica", true);
+        return sonidoActivado;
+    }
 }

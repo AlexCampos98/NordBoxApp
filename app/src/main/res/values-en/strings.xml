@@ -50,4 +50,16 @@
     <string name="imagen_del_ejercicio">Imagen del Ejercicio</string>
     <string name="imagen_de_ayuda">Imagen de ayuda</string>
     <string name="nordbox">NordBox</string>
+    <string name="errorPerfilEmail">The email cannot be empty</string>
+    <string name="errorPerfilPassword">The password cannot be empty</string>
+    <string name="errorPerfilNombre">The name is required</string>
+    <string name="errorPerfilPriApellido">The first surname is required</string>
+    <string name="errorPerfilSegApellido">The second surname is required</string>
+    <string name="errorPerfilTelefono">The phone is necessary</string>
+    <string name="errorPerfilTelefonoEmergencia">It cant be empty</string>
+    <string name="errorPerfilTelefonoEmergenciaMismo">It can\'t be the same as the phone</string>
+    <string name="errorPerfilCodPostal">The field is necessary</string>
+    <string name="errorPerfilLocalidad">The field is necessary</string>
+    <string name="errorPerfilProvincia">The field is necessary</string>
+    <string name="switchMusica">Music</string>
 </resources>

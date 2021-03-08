@@ -2,7 +2,10 @@ package com.example.nordboxapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -25,6 +28,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -34,6 +38,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputLayout;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -43,6 +48,8 @@ public class UsuarioActivity extends AppCompatActivity {
     EditText etPerfilEmail, etPerfilPassword, etPerfilNombre, etPerfilPriApellido, etPerfilSegApellido, etPerfilTelefono, etPerfilTelefonoEmergencia, etPerfilCodPostal, etPerfilLocalidad, etPerfilProvincia;
     TextInputLayout inpPerfilEmail, inpPerfilPassword, inpPerfilNombre, inpPerfilPriApellido, inpPerfilSegApellido, inpPerfilTelefono, inpPerfilTelefonoEmergencia, inpPerfilCodPostal, inpPerfilLocalidad, inpPerfilProvincia;
     Button btnPerfilPassword, btnGuardarPerfil;
+    SwitchMaterial switchMusica;
+
     boolean cambiarPassword = false;
 
     UsuarioStatico usuarioStatico = new UsuarioStatico();
@@ -104,6 +111,19 @@ public class UsuarioActivity extends AppCompatActivity {
         btnPerfilPassword = findViewById(R.id.btnPerfilPassword);
         btnGuardarPerfil = findViewById(R.id.btnGuardarPerfil);
 
+        switchMusica = findViewById(R.id.switchMusica);
+        switchMusica.setChecked(cargarPreferencias());
+
+        switchMusica.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    activarMusica();
+                } else {
+                    desactivarMusica();
+                }
+            }
+        });
+
         //Inicializamos Permisos arrays
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -131,62 +151,70 @@ public class UsuarioActivity extends AppCompatActivity {
         inpPerfilProvincia = findViewById(R.id.inpPerfilProvincia);
     }
 
+    @SuppressLint("ResourceType")
     public void onClick(View v) {
         int id = v.getId();
         //Si se ha pulsado el boton de login
         if (id == R.id.btnGuardarPerfil) {
-            //Musica sencilla.
-            MediaPlayer mp = MediaPlayer.create(this, R.raw.wololoo);
-            mp.start();
+            if (cargarPreferencias()) {
+                //Musica sencilla.
+                MediaPlayer mp = MediaPlayer.create(this, R.raw.wololoo);
+                mp.start();
+            }
+
             boolean comprobacion = true;
             if (etPerfilEmail.getText().toString().equals("")) {
                 inpPerfilEmail.setErrorEnabled(true);
-                inpPerfilEmail.setError("No puede estar vació.");
+                inpPerfilEmail.setError(getString(R.string.errorPerfilEmail));
                 comprobacion = false;
             }
             if (etPerfilPassword.getText().toString().equals("")) {
                 inpPerfilPassword.setErrorEnabled(true);
-                inpPerfilPassword.setError("No puede estar vació.");
+                inpPerfilPassword.setError(getString(R.string.errorPerfilPassword));
                 comprobacion = false;
             }
             if (etPerfilNombre.getText().toString().equals("")) {
                 inpPerfilNombre.setErrorEnabled(true);
-                inpPerfilNombre.setError("No puede estar vació.");
+                inpPerfilNombre.setError(getString(R.string.errorPerfilNombre));
                 comprobacion = false;
             }
             if (etPerfilPriApellido.getText().toString().equals("")) {
                 inpPerfilPriApellido.setErrorEnabled(true);
-                inpPerfilPriApellido.setError("No puede estar vació.");
+                inpPerfilPriApellido.setError(getString(R.string.errorPerfilPriApellido));
                 comprobacion = false;
             }
             if (etPerfilSegApellido.getText().toString().equals("")) {
                 inpPerfilSegApellido.setErrorEnabled(true);
-                inpPerfilSegApellido.setError("No puede estar vació.");
+                inpPerfilSegApellido.setError(getString(R.string.errorPerfilSegApellido));
                 comprobacion = false;
             }
             if (etPerfilTelefono.getText().toString().equals("")) {
                 inpPerfilTelefono.setErrorEnabled(true);
-                inpPerfilTelefono.setError("No puede estar vació.");
+                inpPerfilTelefono.setError(getString(R.string.errorPerfilTelefono));
                 comprobacion = false;
             }
             if (etPerfilTelefonoEmergencia.getText().toString().equals("")) {
                 inpPerfilTelefonoEmergencia.setErrorEnabled(true);
-                inpPerfilTelefonoEmergencia.setError("No puede estar vació.");
+                inpPerfilTelefonoEmergencia.setError(getString(R.string.errorPerfilTelefonoEmergencia));
+                comprobacion = false;
+            } else if (etPerfilTelefonoEmergencia.getText().toString().equals(etPerfilTelefono.getText().toString())) {
+                inpPerfilTelefonoEmergencia.setErrorEnabled(true);
+                inpPerfilTelefonoEmergencia.setError(getString(R.string.errorPerfilTelefonoEmergenciaMismo));
                 comprobacion = false;
             }
             if (etPerfilCodPostal.getText().toString().equals("")) {
                 inpPerfilCodPostal.setErrorEnabled(true);
-                inpPerfilCodPostal.setError("No puede estar vació.");
+                inpPerfilCodPostal.setError(getString(R.string.errorPerfilCodPostal));
                 comprobacion = false;
             }
             if (etPerfilLocalidad.getText().toString().equals("")) {
                 inpPerfilLocalidad.setErrorEnabled(true);
-                inpPerfilLocalidad.setError("No puede estar vació.");
+                inpPerfilLocalidad.setError(getString(R.string.errorPerfilLocalidad));
                 comprobacion = false;
             }
             if (etPerfilProvincia.getText().toString().equals("")) {
                 inpPerfilProvincia.setErrorEnabled(true);
-                inpPerfilProvincia.setError("No puede estar vació.");
+                inpPerfilProvincia.setError(getString(R.string.errorPerfilProvincia));
                 comprobacion = false;
             }
 
@@ -238,6 +266,26 @@ public class UsuarioActivity extends AppCompatActivity {
             }
         });
         request.add(imageRequest);
+    }
+
+    public void activarMusica() {
+        SharedPreferences preferences = getSharedPreferences("Musica", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharePreference = preferences.edit();
+        sharePreference.putBoolean("Musica", true);
+        sharePreference.apply();
+    }
+
+    public void desactivarMusica() {
+        SharedPreferences preferences = getSharedPreferences("Musica", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharePreference = preferences.edit();
+        sharePreference.putBoolean("Musica", false);
+        sharePreference.apply();
+    }
+
+    private boolean cargarPreferencias() {
+        SharedPreferences preferences = getSharedPreferences("Musica", Context.MODE_PRIVATE);
+        boolean sonidoActivado = preferences.getBoolean("Musica", true);
+        return sonidoActivado;
     }
 
     private void imagePickDialog() {

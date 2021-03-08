@@ -66,4 +66,16 @@
     <string name="imagen_del_ejercicio">Imagen del Ejercicio</string>
     <string name="imagen_de_ayuda">Imagen de ayuda</string>
     <string name="nordbox">NordBox</string>
+    <string name="errorPerfilEmail">El email no puede estar vacío</string>
+    <string name="errorPerfilPassword">No puede estar vacía la contraseña</string>
+    <string name="errorPerfilNombre">El nombre es obligatorio</string>
+    <string name="errorPerfilPriApellido">El primer apellido es necesario</string>
+    <string name="errorPerfilSegApellido">El segundo apellido es necesario</string>
+    <string name="errorPerfilTelefono">El teléfono es necesario</string>
+    <string name="errorPerfilTelefonoEmergencia">No puede estar vacío</string>
+    <string name="errorPerfilTelefonoEmergenciaMismo">No puede ser el mismo que el teléfono</string>
+    <string name="errorPerfilCodPostal">El campo es necesario</string>
+    <string name="errorPerfilLocalidad">El campo es necesario</string>
+    <string name="errorPerfilProvincia">El campo es necesario</string>
+    <string name="switchMusica">Música</string>
 </resources>
