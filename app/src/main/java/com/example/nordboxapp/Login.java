@@ -56,13 +56,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if(isPerfilValidado())
+        {
+            iniciarActividad(true);
+        }
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         getLocalizacion();
 
-        if(cargarPreferencias())
-        {
+        if (cargarPreferencias()) {
             //Musica sencilla.
             MediaPlayer mp = MediaPlayer.create(this, R.raw.intro);
             mp.start();
@@ -121,6 +125,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
                     bucleEspFinHilo = false;
                 }
             }
+            guardarPerfilValidado(idUsuario.getId());
             esperaHilo = false;
             iniciarActividad(iniciarI);
             iniciarI = false;
@@ -263,5 +268,32 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
         SharedPreferences preferences = getSharedPreferences("Musica", Context.MODE_PRIVATE);
         boolean sonidoActivado = preferences.getBoolean("Musica", true);
         return sonidoActivado;
+    }
+
+    private boolean isPerfilValidado() {
+        SharedPreferences preferences = getSharedPreferences("perfilValidado", Context.MODE_PRIVATE);
+        final Usuario usuario = new Usuario(preferences.getInt("perfilValidado", -1));
+        if (usuario.getId() != -1) {
+            Thread thread = new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+
+                    NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
+
+                    usuarioStatico.setUsuario(nordBoxCAD.buscarUsuarioID(usuario));
+                }
+            });
+            thread.start();
+            return true;
+        }
+        return false;
+    }
+
+    public void guardarPerfilValidado(int id) {
+        SharedPreferences preferences = getSharedPreferences("perfilValidado", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharePreference = preferences.edit();
+        sharePreference.putInt("perfilValidado", id);
+        sharePreference.apply();
     }
 }

@@ -12,6 +12,7 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -88,6 +89,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             i = new Intent(this, UsuarioActivity.class);
         } else if (id == R.id.overSalir) {
             //Cerrar la sesion al Salir.
+            logoutPerfilValidado();
             i = new Intent(this, Login.class);
         }
 
@@ -121,6 +123,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             i = new Intent(this, UsuarioActivity.class);
         } else if (id == R.id.btnSalir) {
             //Cerrar la sesion al Salir.
+            logoutPerfilValidado();
             i = new Intent(this, Login.class);
         }
 
@@ -161,5 +164,12 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         stackBuilder.addParentStack(BenchmarksActivity.class);
         stackBuilder.addNextIntent(intent);
         pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
+    public void logoutPerfilValidado() {
+        SharedPreferences preferences = getSharedPreferences("perfilValidado", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharePreference = preferences.edit();
+        sharePreference.putInt("perfilValidado", -1);
+        sharePreference.apply();
     }
 }

@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -146,6 +148,7 @@ public class BenchmarksActivity extends AppCompatActivity implements View.OnClic
             i = new Intent(this, UsuarioActivity.class);
         } else if (id == R.id.overSalir) {
             //Cerrar la sesion al Salir.
+            logoutPerfilValidado();
             i = new Intent(this, Login.class);
         }
 
@@ -224,5 +227,12 @@ public class BenchmarksActivity extends AppCompatActivity implements View.OnClic
 
         layoutAnimado.setLayoutAnimation(controller);
         layoutAnimado.startAnimation(animation);
+    }
+
+    public void logoutPerfilValidado() {
+        SharedPreferences preferences = getSharedPreferences("perfilValidado", Context.MODE_PRIVATE);
+        SharedPreferences.Editor sharePreference = preferences.edit();
+        sharePreference.putInt("perfilValidado", -1);
+        sharePreference.apply();
     }
 }
