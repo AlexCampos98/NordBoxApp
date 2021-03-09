@@ -38,6 +38,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputLayout;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -245,11 +246,20 @@ public class UsuarioActivity extends AppCompatActivity {
                 });
                 thread.start();
             }
+
+            mensajeEmergente(v, R.string.perfilExitoGuardado);
         } else if (id == R.id.btnPerfilPassword) {
             etPerfilPassword.setEnabled(true);
             etPerfilPassword.setText("");
             cambiarPassword = true;
         }
+    }
+
+    private void mensajeEmergente(View v, int mensaje) {
+        Snackbar snackbar = Snackbar.make(v, mensaje, Snackbar.LENGTH_LONG);
+        snackbar.setDuration(2000);
+        snackbar.show();
+        snackbar.show();
     }
 
     private void cargarImagenWebService() {
@@ -268,14 +278,14 @@ public class UsuarioActivity extends AppCompatActivity {
         request.add(imageRequest);
     }
 
-    public void activarMusica() {
+    private void activarMusica() {
         SharedPreferences preferences = getSharedPreferences("Musica", Context.MODE_PRIVATE);
         SharedPreferences.Editor sharePreference = preferences.edit();
         sharePreference.putBoolean("Musica", true);
         sharePreference.apply();
     }
 
-    public void desactivarMusica() {
+    private void desactivarMusica() {
         SharedPreferences preferences = getSharedPreferences("Musica", Context.MODE_PRIVATE);
         SharedPreferences.Editor sharePreference = preferences.edit();
         sharePreference.putBoolean("Musica", false);
@@ -284,8 +294,7 @@ public class UsuarioActivity extends AppCompatActivity {
 
     private boolean cargarPreferencias() {
         SharedPreferences preferences = getSharedPreferences("Musica", Context.MODE_PRIVATE);
-        boolean sonidoActivado = preferences.getBoolean("Musica", true);
-        return sonidoActivado;
+        return preferences.getBoolean("Musica", true);
     }
 
     private void imagePickDialog() {

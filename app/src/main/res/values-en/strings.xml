@@ -56,10 +56,15 @@
     <string name="errorPerfilPriApellido">The first surname is required</string>
     <string name="errorPerfilSegApellido">The second surname is required</string>
     <string name="errorPerfilTelefono">The phone is necessary</string>
-    <string name="errorPerfilTelefonoEmergencia">It cant be empty</string>
+    <string name="errorPerfilTelefonoEmergencia">It can not be empty</string>
     <string name="errorPerfilTelefonoEmergenciaMismo">It can\'t be the same as the phone</string>
     <string name="errorPerfilCodPostal">The field is necessary</string>
     <string name="errorPerfilLocalidad">The field is necessary</string>
     <string name="errorPerfilProvincia">The field is necessary</string>
     <string name="switchMusica">Music</string>
+    <string name="procesoReservar">Option Book in process</string>
+    <string name="procesoContacto">Contact in process option</string>
+    <string name="notificacionTitulo">Time to get stronger</string>
+    <string name="notificacionCuerpo">It is time to exercise and record the results.</string>
+    <string name="perfilExitoGuardado">Has been saved successfully</string>
 </resources>

@@ -4,9 +4,11 @@
 
     <item
         android:id="@+id/overReservar"
+        android:enabled="false"
         android:title="@string/overReservar" />
     <item
         android:id="@+id/overContacto"
+        android:enabled="false"
         android:title="@string/overContacto" />
     <item
         android:id="@+id/overBenchmarks"

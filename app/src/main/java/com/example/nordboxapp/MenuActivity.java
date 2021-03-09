@@ -14,7 +14,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -42,7 +41,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         setPendingIntent();
         createNotificatonChannel();
-        createNotification("Hora de fortalecerse", "Es hora de hacer ejercicios y apuntar los resultados.");
+        createNotification(getString(R.string.notificacionTitulo), getString(R.string.notificacionCuerpo));
 
 //        Notificaciones notificaciones = new Notificaciones(this);
 //        notificaciones.setPendingIntent(BenchmarksActivity.class);
@@ -78,10 +77,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         //TODO, terminar los diferentes intent
         if (id == R.id.overReservar) {
             //TODO Añadir intent de cambio a la activity calendario.
-            Toast.makeText(this,"Opcion Calendario en proceso",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.procesoReservar), Toast.LENGTH_LONG).show();
         } else if (id == R.id.overContacto) {
             //TODO Añadir intent de cambio a la activity Contacto.
-            Toast.makeText(this,"Opcion Contacto en proceso",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.procesoContacto), Toast.LENGTH_LONG).show();
         } else if (id == R.id.overBenchmarks) {
             i = new Intent(this, BenchmarksActivity.class);
         } else if (id == R.id.overPerfil) {
@@ -100,7 +99,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //Metodo que captura el click
-    @SuppressLint("ResourceAsColor")
     public void onClick(View v) {
         int id = v.getId();
 
@@ -108,14 +106,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         if (id == R.id.btnReservar) {
             //TODO Añadir intent de cambio a la activity calendario.
-            Snackbar snackbar = Snackbar.make(v, R.string.btnBack_Squat , Snackbar.LENGTH_LONG);
-            snackbar.setDuration(2000);
-            snackbar.show();
-            snackbar.show();
+            mensajeEmergente(v, R.string.procesoReservar);
         } else if (id == R.id.btnContacto) {
             //TODO Añadir intent de cambio a la activity Contacto.
-            Toast.makeText(this,"Opcion Contacto en proceso",Toast.LENGTH_LONG).show();
-//            i = new Intent(this, ma)
+            mensajeEmergente(v , R.string.procesoContacto);
         } else if (id == R.id.btnBenchmarks) {
             i = new Intent(this, BenchmarksActivity.class);
         } else if (id == R.id.btnPerfil) {
@@ -132,7 +126,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void createNotification(String titulo, String texto){
+    private void mensajeEmergente(View v, int mensaje) {
+        Snackbar snackbar = Snackbar.make(v, mensaje, Snackbar.LENGTH_LONG);
+        snackbar.setDuration(2000);
+        snackbar.show();
+        snackbar.show();
+    }
+
+    private void createNotification(String titulo, String texto) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
         builder.setSmallIcon(R.drawable.brazo);
         builder.setContentTitle(titulo);
@@ -149,8 +150,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         notificationManagerCompat.notify(NOTIFICACION_ID, builder.build());
     }
 
-    public void createNotificatonChannel(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+    private void createNotificatonChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "NOTIFICACION";
             NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -158,7 +159,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void setPendingIntent() {
+    private void setPendingIntent() {
         Intent intent = new Intent(this, BenchmarksActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addParentStack(BenchmarksActivity.class);
@@ -166,7 +167,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    public void logoutPerfilValidado() {
+    private void logoutPerfilValidado() {
         SharedPreferences preferences = getSharedPreferences("perfilValidado", Context.MODE_PRIVATE);
         SharedPreferences.Editor sharePreference = preferences.edit();
         sharePreference.putInt("perfilValidado", -1);

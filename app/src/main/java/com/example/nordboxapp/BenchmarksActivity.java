@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -137,10 +138,10 @@ public class BenchmarksActivity extends AppCompatActivity implements View.OnClic
         //TODO, terminar los diferentes intent
         if (id == R.id.overReservar) {
             //TODO Añadir intent de cambio a la activity calendario.
-            Toast.makeText(this, "Opcion Calendario en proceso", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.procesoReservar), Toast.LENGTH_LONG).show();
         } else if (id == R.id.overContacto) {
             //TODO Añadir intent de cambio a la activity Contacto.
-            Toast.makeText(this, "Opcion Contacto en proceso", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.procesoContacto), Toast.LENGTH_LONG).show();
         } else if (id == R.id.overBenchmarks) {
             i = new Intent(this, BenchmarksActivity.class);
         } else if (id == R.id.overPerfil) {

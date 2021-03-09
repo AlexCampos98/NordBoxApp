@@ -45,4 +45,9 @@
     <string name="errorPerfilLocalidad">El campo es necesario</string>
     <string name="errorPerfilProvincia">El campo es necesario</string>
     <string name="switchMusica">Música</string>
+    <string name="procesoContacto">Opción Contacto en proceso</string>
+    <string name="procesoReservar">Opción Reservar en proceso</string>
+    <string name="notificacionCuerpo">Es hora de hacer ejercicios y apuntar los resultados.</string>
+    <string name="notificacionTitulo">Hora de fortalecerse</string>
+    <string name="perfilExitoGuardado">Se ha guardado con éxito</string>
 </resources>
