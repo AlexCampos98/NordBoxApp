@@ -83,4 +83,6 @@
     <string name="notificacionTitulo">Hora de fortalecerse</string>
     <string name="notificacionCuerpo">Es hora de hacer ejercicios y apuntar los resultados.</string>
     <string name="perfilExitoGuardado">Se ha guardado con éxito</string>
+    <string name="tvTituloCreacionUsu">Agregar usuario</string>
+    <string name="tvDescripcionCreacionUsu">Para añadir una persona en la aplicación, introduce su correo. Le enviaremos al usuario la información necesaria para entrar en la aplicación.</string>
 </resources>
