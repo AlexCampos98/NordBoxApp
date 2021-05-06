@@ -85,4 +85,10 @@
     <string name="perfilExitoGuardado">Se ha guardado con éxito</string>
     <string name="tvTituloCreacionUsu">Agregar usuario</string>
     <string name="tvDescripcionCreacionUsu">Para añadir una persona en la aplicación, introduce su correo. Le enviaremos al usuario la información necesaria para entrar en la aplicación.</string>
+    <string name="EjercicioPeso">Peso utilizado en Kg</string>
+    <string name="EjercicioRonda">Nº de rondas</string>
+    <string name="EjercicioFecha">Fecha</string>
+    <string name="EjercicioInputPeso">Introduce el peso en Kg</string>
+    <string name="EjercicioInputRonda">Introduce el Nº de rondas</string>
+    <string name="EjercicioInputFecha">Introduce la fecha</string>
 </resources>

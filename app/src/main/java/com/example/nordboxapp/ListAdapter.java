@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.app.AppCompatActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -78,7 +77,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             name = itemView.findViewById(R.id.nombreRc);
             city = itemView.findViewById(R.id.city);
             status = itemView.findViewById(R.id.status);
-            relativeLayout = itemView.findViewById(R.id.rl);
+            relativeLayout = itemView.findViewById(R.id.rlEjercicio);
         }
 
         void bindData(final ListBench item)
