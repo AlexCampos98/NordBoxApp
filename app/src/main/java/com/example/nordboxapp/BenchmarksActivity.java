@@ -54,26 +54,34 @@ public class BenchmarksActivity extends AppCompatActivity implements View.OnClic
         recycler();
     }
 
+    /**
+     * Metodo usado para crear el recyclerView con los datos obtenidos de la BD.
+     */
     public void recycler() {
         elements = new ArrayList<>();
         Thread thread = new Thread(new Runnable() {
 
             @Override
             public void run() {
-
+                //Conectamos con el servidor.
                 NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
 
+                //Guardo los diferentes tipos de ejercicios.
                 bench = nordBoxCAD.ejeBench();
                 esperaHilo = false;
             }
         });
         thread.start();
+
+        //Bucle de espera de hilo.
         boolean bucleEspFinHilo = true;
         while (bucleEspFinHilo) {
             if (!esperaHilo) {
                 bucleEspFinHilo = false;
             }
         }
+
+        //Introduzco los diferentes ejercicios en una lista
         for (EjerciciosBench ejerciciosBench : bench) {
             ListBench listBench = new ListBench();
             listBench.setId(ejerciciosBench.getId());
@@ -96,13 +104,14 @@ public class BenchmarksActivity extends AppCompatActivity implements View.OnClic
                     listBench.setColor("#1B1EF2");
             }
 
-
+            //TODO falra dar valor al ultimo dia de ejercicio y cuantos tiene.
             listBench.setUltimaModificacion("Ultimo dia: 29/01/2021");
             listBench.setnEjerciciosCreados("0");
 
             elements.add(listBench);
         }
 
+        //Agregamos los elementos al recyclerView
         ListAdapter listAdapter = new ListAdapter(elements, this);
         RecyclerView recyclerView = findViewById(R.id.rvBenchmark);
         recyclerView.setHasFixedSize(true);
@@ -123,13 +132,19 @@ public class BenchmarksActivity extends AppCompatActivity implements View.OnClic
         Glide.with(getBaseContext()).load(R.drawable.back_squat).into(imageGif);
     }
 
-    //Metodo para mostrar y ocultar el menu
+    /**
+     * Metodo para mostrar u ocultar el menu
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_overflow, menu);
         return true;
     }
 
-    //Metodopara asignar las funciones al menu
+    /**
+     * Metodo para asignar las funciones al menu
+     * @param item Clase MenuItem
+     * @return super.onOptionsItemSelected(item)
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
@@ -179,6 +194,11 @@ public class BenchmarksActivity extends AppCompatActivity implements View.OnClic
 //        getMenuInflater().inflate(R.menu.menu_contextual_mapa, menu);
 //    }
 
+    /**
+     * Metodo usado para la pulsacion larga.
+     * @param item Clase MenuItem
+     * @return super.onContextItemSelected(item)
+     */
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 //        switch (item.getItemId())
@@ -190,13 +210,17 @@ public class BenchmarksActivity extends AppCompatActivity implements View.OnClic
 //                Toast.makeText(this, "aaaaaaaaaa", Toast.LENGTH_SHORT).show();
 //                return true;
 //        }
-
+        //Muestra el gif del ejercicio.
         mostrarGif(item.getItemId());
 
         return super.onContextItemSelected(item);
     }
 
     //TODO Diferenciar por ejercicio
+    /**
+     * Metodo usado para mostrar en pantalla el gif del ejercicio seleccionado.
+     * @param id Identificacdor del ejercicio a mostrar en el gif
+     */
     public void mostrarGif(Integer id) {
         mostrar();
     }
@@ -210,7 +234,10 @@ public class BenchmarksActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    //Animacion de la salida del gif
+    /**
+     * Animacion de la salida del gif
+     * @param mostrar boleano para mostrar u ocultar.
+     */
     private void animar(boolean mostrar) {
         AnimationSet set = new AnimationSet(true);
         Animation animation;
@@ -230,6 +257,9 @@ public class BenchmarksActivity extends AppCompatActivity implements View.OnClic
         layoutAnimado.startAnimation(animation);
     }
 
+    /**
+     * Metodo usado para desloguarse, con el quitas el inicio de sesion automatico.
+     */
     public void logoutPerfilValidado() {
         SharedPreferences preferences = getSharedPreferences("perfilValidado", Context.MODE_PRIVATE);
         SharedPreferences.Editor sharePreference = preferences.edit();

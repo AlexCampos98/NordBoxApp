@@ -28,25 +28,12 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     ImageButton btnReservar, btnContacto, btnBenchmarks, btnPerfil, btnSalir;
 
-    private PendingIntent pendingIntent;
-    private final static String CHANNEL_ID = "NOTIFICACION";
-    private final static int NOTIFICACION_ID = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
         initUI();
-
-        setPendingIntent();
-        createNotificatonChannel();
-        createNotification(getString(R.string.notificacionTitulo), getString(R.string.notificacionCuerpo));
-
-//        Notificaciones notificaciones = new Notificaciones(this);
-//        notificaciones.setPendingIntent(BenchmarksActivity.class);
-//        Notificaciones.createNotificatonChannel();
-//        Notificaciones.createNotification("Hora de fortalecerse", "Es hora de hacer ejercicios y apuntar los resultados.");
     }
 
     public void initUI() {
@@ -62,13 +49,21 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         btnSalir.setOnClickListener(this);
     }
 
-    //Metodo para mostrar y ocultar el menu
+    /**
+     * Metodo para mostrar u ocultar el menu
+     * @param menu Clase menu
+     * @return True siempre
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_overflow, menu);
         return true;
     }
 
-    //Metodopara asignar las funciones al menu
+    /**
+     * Metodo para asignar las funciones al menu
+     * @param item Clase MenuItem
+     * @return super.onOptionsItemSelected(item)
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
@@ -98,7 +93,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-    //Metodo que captura el click
+    /**
+     * Metodo que captura el click
+     * @param v Clase View, con la vista actual.
+     */
     public void onClick(View v) {
         int id = v.getId();
 
@@ -126,6 +124,11 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * TODO no recuero para que es esto, probarlo y añadir descripcion.
+     * @param v Clase View, con la vista actual.
+     * @param mensaje a
+     */
     private void mensajeEmergente(View v, int mensaje) {
         Snackbar snackbar = Snackbar.make(v, mensaje, Snackbar.LENGTH_LONG);
         snackbar.setDuration(2000);
@@ -133,40 +136,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         snackbar.show();
     }
 
-    private void createNotification(String titulo, String texto) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
-        builder.setSmallIcon(R.drawable.brazo);
-        builder.setContentTitle(titulo);
-        builder.setContentText(texto);
-        builder.setColor(Color.BLUE);
-        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        builder.setLights(Color.BLUE, 1000, 1000);
-        builder.setVibrate(new long[]{1000});
-        builder.setDefaults(Notification.DEFAULT_SOUND);
-
-        builder.setContentIntent(pendingIntent);
-
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
-        notificationManagerCompat.notify(NOTIFICACION_ID, builder.build());
-    }
-
-    private void createNotificatonChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "NOTIFICACION";
-            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.createNotificationChannel(notificationChannel);
-        }
-    }
-
-    private void setPendingIntent() {
-        Intent intent = new Intent(this, BenchmarksActivity.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(BenchmarksActivity.class);
-        stackBuilder.addNextIntent(intent);
-        pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
-    }
-
+    /**
+     * Metodo usado para desloguarse, con el quitas el inicio de sesion automatico.
+     */
     private void logoutPerfilValidado() {
         SharedPreferences preferences = getSharedPreferences("perfilValidado", Context.MODE_PRIVATE);
         SharedPreferences.Editor sharePreference = preferences.edit();

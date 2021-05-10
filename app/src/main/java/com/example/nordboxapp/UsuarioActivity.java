@@ -115,6 +115,7 @@ public class UsuarioActivity extends AppCompatActivity {
         switchMusica = findViewById(R.id.switchMusica);
         switchMusica.setChecked(cargarPreferencias());
 
+        //TODO posible eliminacion de la musica.
         switchMusica.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -155,7 +156,7 @@ public class UsuarioActivity extends AppCompatActivity {
     @SuppressLint("ResourceType")
     public void onClick(View v) {
         int id = v.getId();
-        //Si se ha pulsado el boton de login
+        //Si se pulsa el boton de guardar perfil
         if (id == R.id.btnGuardarPerfil) {
             if (cargarPreferencias()) {
                 //Musica sencilla.
@@ -163,6 +164,7 @@ public class UsuarioActivity extends AppCompatActivity {
                 mp.start();
             }
 
+            //Comprobaciones campo por campo, de los errores en ellos.
             boolean comprobacion = true;
             if (etPerfilEmail.getText().toString().equals("")) {
                 inpPerfilEmail.setErrorEnabled(true);
@@ -219,6 +221,7 @@ public class UsuarioActivity extends AppCompatActivity {
                 comprobacion = false;
             }
 
+            //En caso de estar los campos correctos, se modifica el usuario en el servidor.
             if (comprobacion) {
                 Thread thread = new Thread(new Runnable() {
 
@@ -248,6 +251,8 @@ public class UsuarioActivity extends AppCompatActivity {
             }
 
             mensajeEmergente(v, R.string.perfilExitoGuardado);
+
+        //En caso de querer cambiar la contraseña.
         } else if (id == R.id.btnPerfilPassword) {
             etPerfilPassword.setEnabled(true);
             etPerfilPassword.setText("");
@@ -255,6 +260,11 @@ public class UsuarioActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Metodo usado para mostrar un mensaje de exito al guardar.
+     * @param v Clase View
+     * @param mensaje identificador del String a usar.
+     */
     private void mensajeEmergente(View v, int mensaje) {
         Snackbar snackbar = Snackbar.make(v, mensaje, Snackbar.LENGTH_LONG);
         snackbar.setDuration(2000);
@@ -262,6 +272,9 @@ public class UsuarioActivity extends AppCompatActivity {
         snackbar.show();
     }
 
+    /**
+     * Metodo usado para obtener la img del servidor, para el usuario.
+     */
     private void cargarImagenWebService() {
         String url = "http://192.168.1.254/imgPerfil/" + usuarioStatico.getUsuario().getId() + ".jpg";
         ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
@@ -278,6 +291,7 @@ public class UsuarioActivity extends AppCompatActivity {
         request.add(imageRequest);
     }
 
+    //TODO posible eliminacion
     private void activarMusica() {
         SharedPreferences preferences = getSharedPreferences("Musica", Context.MODE_PRIVATE);
         SharedPreferences.Editor sharePreference = preferences.edit();
@@ -285,6 +299,7 @@ public class UsuarioActivity extends AppCompatActivity {
         sharePreference.apply();
     }
 
+    //TODO posible eliminacion
     private void desactivarMusica() {
         SharedPreferences preferences = getSharedPreferences("Musica", Context.MODE_PRIVATE);
         SharedPreferences.Editor sharePreference = preferences.edit();
@@ -292,6 +307,7 @@ public class UsuarioActivity extends AppCompatActivity {
         sharePreference.apply();
     }
 
+    //TODO posible eliminacion
     private boolean cargarPreferencias() {
         SharedPreferences preferences = getSharedPreferences("Musica", Context.MODE_PRIVATE);
         return preferences.getBoolean("Musica", true);

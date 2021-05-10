@@ -35,15 +35,22 @@ import nordboxcad.Usuario;
 
 public class Login extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
 
-    private static final int STORAGE_REQUEST_PERMISSION = 111;
+    //Atributo con el mensaje de error al iniciar sesion
     TextView tvLoginError;
+
     EditText etEmailLogin, etPasswordLogin;
     Button btnLogin;
+
+    //Objeto usuario en el que guardaremos los datos del usuario, viene de la libreria nordboxcad
     Usuario idUsuario = new Usuario();
+
+    //Controladores para iniciar intent y esperar a la finalizacion del hilo.
     boolean iniciarI = false, esperaHilo = false;
 
+    //Clase para guardar los datos del usuario durante el uso de la aplicacion.
     UsuarioStatico usuarioStatico = new UsuarioStatico();
 
+    //TODO eliminar todo lo que tenga que ver con el mapa.
     private GoogleMap mMap;
 //    Boolean actualPosicion;
 //    JSONObject jso;
@@ -61,11 +68,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
             iniciarActividad(true);
         }
 
+        //TODO eliminar todo lo que tenga que ver con el mapa.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         getLocalizacion();
 
+        //TODO Posible eliminacion de la musica
         if (cargarPreferencias()) {
             //Musica sencilla.
             MediaPlayer mp = MediaPlayer.create(this, R.raw.intro);
@@ -81,7 +90,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
         btnLogin.setOnClickListener(this);
     }
 
-    //Metodo creado para inicializar todos los componentes de la activity
+    /**
+     * Metodo creado para inicializar todos los componentes de la activity
+     */
     private void initUI() {
         etEmailLogin = findViewById(R.id.etEmailLogin);
         etPasswordLogin = findViewById(R.id.etPasswordLogin);
@@ -89,43 +100,58 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
         tvLoginError = findViewById(R.id.tvLoginError);
     }
 
-    //Metodo que captura el click
+    /**
+     * Metodo que captura el click en los componentes.
+     * @param v Clase View
+     */
     public void onClick(View v) {
         int id = v.getId();
         //Si se ha pulsado el boton de login
         if (id == R.id.btnLogin) {
 
+            //Inicio un hilo para comprobar que el usuario este en la BD.
             Thread thread = new Thread(new Runnable() {
-
                 @Override
                 public void run() {
-
+                    //Conectamos con el servidor.
                     NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
                     Usuario u = new Usuario();
 
                     u.setPassword(etPasswordLogin.getText().toString());
                     u.setCorreo(etEmailLogin.getText().toString());
+
+                    //Llamo al metodo para comprobar que exista y guardamos los datos del usuario.
                     idUsuario = nordBoxCAD.comprobarLogin(u);
 
+                    //Guardamos los datos del usuario para uso en la app.
                     usuarioStatico.setUsuario(idUsuario);
 
+                    //Cambio el valor de controlador de inicio de intent
                     if (idUsuario.getId() != null) {
                         iniciarI = true;
                     } else {
                         iniciarI = false;
                     }
+                    //Cambio el valor del controlador de espera de hilo.
                     esperaHilo = true;
                 }
             });
             thread.start();
 
+            //Bucle que espera a que el hilo termine.
             boolean bucleEspFinHilo = true;
             while (bucleEspFinHilo) {
                 if (esperaHilo) {
                     bucleEspFinHilo = false;
                 }
             }
-            guardarPerfilValidado(idUsuario.getId());
+
+            //Guardo el inicio de sesion.
+            if(iniciarI){
+                guardarPerfilValidado(idUsuario.getId());
+            }
+
+            //TODO Revisar, aqui puede que casque la aplicacion, debido a que cuando volvemos a esta activity el iniciarI y el idUsuario estan sin valor por defecto.
             esperaHilo = false;
             iniciarActividad(iniciarI);
             iniciarI = false;
@@ -133,6 +159,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
         }
     }
 
+    /**
+     * Metodo usado para en caso de login correcto cambiar de intent y en caso incorrecto mostrar
+     * un mensaje de error.
+     * @param iniciar Booleano con resolucion del login del usuario.
+     */
     public void iniciarActividad(Boolean iniciar) {
         if (iniciar) {
             Intent i = new Intent(this, MenuActivity.class);
@@ -142,6 +173,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
         }
     }
 
+    //TODO Posibles pruebas, revisar y quitar en caso de no uso.
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -150,6 +182,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
 
     /**
      * Metodo usado para poder obtener la localizacion
+     * TODO Eliminacion del mapa.
      */
     private void getLocalizacion() {
         int permiso = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
@@ -161,6 +194,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
         }
     }
 
+    //TODO Eliminacion del mapa.
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -211,68 +245,27 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
                 .tilt(45)
                 .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
-//        String url = "";
-
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                try {
-//                    jso = new JSONObject(response);
-//                    trazarRuta(jso);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//
-//            }
-//        });
-//
-//        queue.add(stringRequest);
     }
 
-    //    private void trazarRuta(JSONObject jso) {
-//
-//        JSONArray jRoutes;
-//        JSONArray jLegs;
-//        JSONArray jSteps;
-//
-//        try {
-//            jRoutes = jso.getJSONArray("routes");
-//            for (int i=0; i<jRoutes.length();i++){
-//
-//                jLegs = ((JSONObject)(jRoutes.get(i))).getJSONArray("legs");
-//
-//                for (int j=0; j<jLegs.length();j++){
-//
-//                    jSteps = ((JSONObject)jLegs.get(j)).getJSONArray("steps");
-//
-//                    for (int k = 0; k<jSteps.length();k++){
-//
-//                        String polyline = ""+((JSONObject)((JSONObject)jSteps.get(k)).get("polyline")).get("points");
-//                        Log.i("end",""+polyline);
-//                        List<LatLng> list = PolyUtil.decode(polyline);
-//                        mMap.addPolyline(new PolylineOptions().addAll(list).color(Color.GRAY).width(5));
-//                    }
-//                }
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    /**
+     * TODO Posible eliminacion de la musica.
+     * @return a
+     */
     private boolean cargarPreferencias() {
         SharedPreferences preferences = getSharedPreferences("Musica", Context.MODE_PRIVATE);
-        boolean sonidoActivado = preferences.getBoolean("Musica", true);
-        return sonidoActivado;
+        return preferences.getBoolean("Musica", true);
     }
 
+    /**
+     * Metodo usado para identificar si anteriormente ya inicio sesion, para saltarse esta
+     * activity.
+     * @return Devuelve booleano, true si ya inicio sesion previamente y hay datos guardados y false
+     * si no hay datos guardados de inicio de sesion.
+     */
     private boolean isPerfilValidado() {
         SharedPreferences preferences = getSharedPreferences("perfilValidado", Context.MODE_PRIVATE);
         final Usuario usuario = new Usuario(preferences.getInt("perfilValidado", -1));
+        //En caso de exitir, obtengo los datos del usuario y los guardo.
         if (usuario.getId() != -1) {
             Thread thread = new Thread(new Runnable() {
 
@@ -290,6 +283,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
         return false;
     }
 
+    /**
+     * Metodo usado para guardar el inicio de sesion del usuario.
+     * @param id Identificador del usuario.
+     */
     public void guardarPerfilValidado(int id) {
         SharedPreferences preferences = getSharedPreferences("perfilValidado", Context.MODE_PRIVATE);
         SharedPreferences.Editor sharePreference = preferences.edit();
