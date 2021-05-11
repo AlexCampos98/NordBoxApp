@@ -91,4 +91,7 @@
     <string name="EjercicioInputPeso">Introduce el peso en Kg</string>
     <string name="EjercicioInputRonda">Introduce el Nº de rondas</string>
     <string name="EjercicioInputFecha">Introduce la fecha</string>
+    <string name="fecha_del_ejercicio">Fecha del ejercicio</string>
+    <string name="n_de_rondas">Nº de rondas</string>
+    <string name="peso_usado_en_kg">Peso usado en Kg</string>
 </resources>

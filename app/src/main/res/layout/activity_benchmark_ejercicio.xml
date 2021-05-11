@@ -117,6 +117,7 @@
             android:id="@+id/tablaEjerciciosBench"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/borde_tabla"
             android:stretchColumns="*">
 
             <TableRow
@@ -124,22 +125,34 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/tablaTituloRonda"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nº de rondas" />
+                    android:background="@drawable/borde_tabla_titulo"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="0dp"
+                    android:text="@string/n_de_rondas"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/tablaTituloPeso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Peso usado en Kg" />
+                    android:background="@drawable/borde_tabla_titulo"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="0dp"
+                    android:text="@string/peso_usado_en_kg"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/tablaTituloFecha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fecha del ejercicio" />
+                    android:background="@drawable/borde_tabla_titulo"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="0dp"
+                    android:text="@string/fecha_del_ejercicio"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -165,13 +178,6 @@
                     android:text="TextView" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
         </TableLayout>
     </ScrollView>
 
