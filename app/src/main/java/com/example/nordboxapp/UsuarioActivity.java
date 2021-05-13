@@ -90,7 +90,7 @@ public class UsuarioActivity extends AppCompatActivity {
 
         etPerfilEmail = findViewById(R.id.etPerfilEmail);
         etPerfilPassword = findViewById(R.id.etPerfilPassword);
-        etPerfilNombre = findViewById(R.id.etPerfilNombre);
+        etPerfilNombre = findViewById(R.id.etEmailCreacionUsu);
         etPerfilPriApellido = findViewById(R.id.etPerfilPriApellido);
         etPerfilSegApellido = findViewById(R.id.etPerfilSegApellido);
         etPerfilTelefono = findViewById(R.id.etPerfilTelefono);

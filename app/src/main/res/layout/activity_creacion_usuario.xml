@@ -33,20 +33,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <EditText
-        android:id="@+id/etEmailCreacionUsu"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inpEmailCreacionUsu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/etPerfilEmail"
-        android:inputType="textEmailAddress"
+        android:textColorHint="@color/md_blue_600"
+        app:boxStrokeColor="@color/md_blue_900"
+        app:hintTextColor="@color/md_blue_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescripcionCreacionUsu"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDescripcionCreacionUsu">
+
+        <EditText
+            android:id="@+id/etEmailCreacionUsu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/etPerfilEmail"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnCreacionUsu"
@@ -58,7 +68,7 @@
         android:text="@string/tvTituloCreacionUsu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmailCreacionUsu" />
+        app:layout_constraintTop_toBottomOf="@+id/inpEmailCreacionUsu" />
 
     <ImageView
         android:id="@+id/imageView"
