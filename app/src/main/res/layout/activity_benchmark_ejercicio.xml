@@ -18,21 +18,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/etEjercicioPeso"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inpEjercicioPeso"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/EjercicioInputPeso"
-        android:inputType="number"
+        android:textColorHint="@color/md_blue_600"
+        app:boxStrokeColor="@color/md_blue_900"
+        app:hintTextColor="@color/md_blue_700"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEjercicioPeso"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEjercicioPeso">
+
+        <EditText
+            android:id="@+id/etEjercicioPeso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/EjercicioInputPeso"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tvEjercicioRonda"
@@ -44,23 +53,32 @@
         android:text="@string/EjercicioRonda"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEjercicioPeso" />
+        app:layout_constraintTop_toBottomOf="@+id/inpEjercicioPeso" />
 
-    <EditText
-        android:id="@+id/etEjercicioRonda"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inpEjercicioRonda"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/EjercicioInputRonda"
-        android:inputType="numberDecimal"
+        android:textColorHint="@color/md_blue_600"
+        app:boxStrokeColor="@color/md_blue_900"
+        app:hintTextColor="@color/md_blue_700"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEjercicioRonda"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEjercicioRonda">
+
+        <EditText
+            android:id="@+id/etEjercicioRonda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/EjercicioInputRonda"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tvEjercicioFecha"
@@ -72,23 +90,32 @@
         android:text="@string/EjercicioFecha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEjercicioRonda" />
+        app:layout_constraintTop_toBottomOf="@+id/inpEjercicioRonda" />
 
-    <EditText
-        android:id="@+id/etEjercicioFecha"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inpEjercicioFecha"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/EjercicioInputFecha"
-        android:inputType="date"
+        android:textColorHint="@color/md_blue_600"
+        app:boxStrokeColor="@color/md_blue_900"
+        app:hintTextColor="@color/md_blue_700"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEjercicioFecha"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEjercicioFecha">
+
+        <EditText
+            android:id="@+id/etEjercicioFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/EjercicioInputFecha"
+            android:inputType="date" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnEjercicioEnviar"
@@ -100,7 +127,7 @@
         android:text="@string/btnGuardarPerfil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEjercicioFecha" />
+        app:layout_constraintTop_toBottomOf="@+id/inpEjercicioFecha" />
 
     <ScrollView
         android:layout_width="match_parent"
