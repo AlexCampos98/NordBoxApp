@@ -84,9 +84,9 @@ public class UsuarioActivity extends AppCompatActivity {
         imageUsuario = findViewById(R.id.imageUsuario);
         request = Volley.newRequestQueue(getApplicationContext());
 
-        if (usuarioStatico.getUsuario().getImg() != null) {
-            cargarImagenWebService();
-        }
+//        if (usuarioStatico.getUsuario().getImg() != null) {
+//            cargarImagenWebService();
+//        }
 
         etPerfilEmail = findViewById(R.id.etPerfilEmail);
         etPerfilPassword = findViewById(R.id.etPerfilPassword);

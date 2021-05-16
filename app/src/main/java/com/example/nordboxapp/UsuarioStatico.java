@@ -13,6 +13,7 @@ class UsuarioStatico {
      * Constructor vacio
      */
     public UsuarioStatico() {
+        System.out.println("nada");
     }
 
     /**

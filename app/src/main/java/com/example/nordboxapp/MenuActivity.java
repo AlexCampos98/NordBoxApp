@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -27,6 +28,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton btnReservar, btnContacto, btnBenchmarks, btnPerfil, btnSalir;
+    TextView tvContacto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,56 +43,19 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         btnReservar.setOnClickListener(this);
         btnContacto = findViewById(R.id.btnContacto);
         btnContacto.setOnClickListener(this);
+        tvContacto = findViewById(R.id.tvContacto);
         btnBenchmarks = findViewById(R.id.btnBenchmarks);
         btnBenchmarks.setOnClickListener(this);
         btnPerfil = findViewById(R.id.btnPerfil);
         btnPerfil.setOnClickListener(this);
         btnSalir = findViewById(R.id.btnSalir);
         btnSalir.setOnClickListener(this);
-    }
 
-    /**
-     * Metodo para mostrar u ocultar el menu
-     * @param menu Clase menu
-     * @return True siempre
-     */
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_overflow, menu);
-        return true;
-    }
-
-    /**
-     * Metodo para asignar las funciones al menu
-     * @param item Clase MenuItem
-     * @return super.onOptionsItemSelected(item)
-     */
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        Intent i = null;
-
-        //TODO, terminar los diferentes intent
-        if (id == R.id.overReservar) {
-            //TODO Añadir intent de cambio a la activity calendario.
-            Toast.makeText(this, getString(R.string.procesoReservar), Toast.LENGTH_LONG).show();
-        } else if (id == R.id.overContacto) {
-            //TODO Añadir intent de cambio a la activity Contacto.
-            Toast.makeText(this, getString(R.string.procesoContacto), Toast.LENGTH_LONG).show();
-        } else if (id == R.id.overBenchmarks) {
-            i = new Intent(this, BenchmarksActivity.class);
-        } else if (id == R.id.overPerfil) {
-            //Añadir intent de cambio a la activity Perfil.
-            i = new Intent(this, UsuarioActivity.class);
-        } else if (id == R.id.overSalir) {
-            //Cerrar la sesion al Salir.
-            logoutPerfilValidado();
-            i = new Intent(this, Login.class);
+        //TODO Si es administrador se cambia a boton de administracion
+        if(true){
+            tvContacto.setText(getString(R.string.tituloAdministracion));
+            btnContacto.setImageResource(R.drawable.ic_add_photo_small);
         }
-
-        if (i != null) {
-            startActivity(i);
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -106,7 +71,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             //TODO Añadir intent de cambio a la activity calendario.
             mensajeEmergente(v, R.string.procesoReservar);
         } else if (id == R.id.btnContacto) {
-            //TODO Añadir intent de cambio a la activity Contacto.
+            //TODO Añadir intent de cambio a la activity Contacto. Si es administrador o no
+            if(true){
+
+            }
             mensajeEmergente(v , R.string.procesoContacto);
         } else if (id == R.id.btnBenchmarks) {
             i = new Intent(this, BenchmarksActivity.class);
