@@ -45,7 +45,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
     Usuario idUsuario = new Usuario();
 
     //Controladores para iniciar intent y esperar a la finalizacion del hilo.
-    boolean iniciarI = false, esperaHilo = false;
+    boolean iniciarI = false, esperaHilo = false, iniciarNuevoUsuario = false;
 
     //Clase para guardar los datos del usuario durante el uso de la aplicacion.
     UsuarioStatico usuarioStatico = new UsuarioStatico();
@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
 
         if(isPerfilValidado())
         {
-            iniciarActividad(true);
+            iniciarActividad(true, false);
         }
 
         //TODO eliminar todo lo que tenga que ver con el mapa.
@@ -129,6 +129,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
                     //Cambio el valor de controlador de inicio de intent
                     if (idUsuario.getId() != null) {
                         iniciarI = true;
+                    } else if(idUsuario.getId() == 0) {
+                        iniciarI = true;
+                        iniciarNuevoUsuario = true;
                     } else {
                         iniciarI = false;
                     }
@@ -153,7 +156,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
 
             //TODO Revisar, aqui puede que casque la aplicacion, debido a que cuando volvemos a esta activity el iniciarI y el idUsuario estan sin valor por defecto.
             esperaHilo = false;
-            iniciarActividad(iniciarI);
+            iniciarActividad(iniciarI, iniciarNuevoUsuario);
             iniciarI = false;
             idUsuario = new Usuario();
         }
@@ -164,8 +167,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener, On
      * un mensaje de error.
      * @param iniciar Booleano con resolucion del login del usuario.
      */
-    public void iniciarActividad(Boolean iniciar) {
-        if (iniciar) {
+    public void iniciarActividad(Boolean iniciar, boolean iniciarNuevoUser) {
+        if(iniciarNuevoUser){
+            Intent i = new Intent(this, UsuarioActivity.class);
+            startActivity(i);
+        } else if (iniciar) {
             Intent i = new Intent(this, MenuActivity.class);
             startActivity(i);
         } else {
