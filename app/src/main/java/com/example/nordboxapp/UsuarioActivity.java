@@ -84,13 +84,13 @@ public class UsuarioActivity extends AppCompatActivity {
         imageUsuario = findViewById(R.id.imageUsuario);
         request = Volley.newRequestQueue(getApplicationContext());
 
-//        if (usuarioStatico.getUsuario().getImg() != null) {
-//            cargarImagenWebService();
-//        }
+        if (usuarioStatico.getUsuario().getImg() != null) {
+            cargarImagenWebService();
+        }
 
         etPerfilEmail = findViewById(R.id.etPerfilEmail);
         etPerfilPassword = findViewById(R.id.etPerfilPassword);
-        etPerfilNombre = findViewById(R.id.etEmailCreacionUsu);
+        etPerfilNombre = findViewById(R.id.etPerfilNombre);
         etPerfilPriApellido = findViewById(R.id.etPerfilPriApellido);
         etPerfilSegApellido = findViewById(R.id.etPerfilSegApellido);
         etPerfilTelefono = findViewById(R.id.etPerfilTelefono);
@@ -276,7 +276,7 @@ public class UsuarioActivity extends AppCompatActivity {
      * Metodo usado para obtener la img del servidor, para el usuario.
      */
     private void cargarImagenWebService() {
-        String url = "http://192.168.1.254/imgPerfil/" + usuarioStatico.getUsuario().getId() + ".jpg";
+        String url = "http://192.168.0.14/imgPerfil/" + usuarioStatico.getUsuario().getId() + ".jpg";
         ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
             @Override
             public void onResponse(Bitmap response) {
