@@ -67,4 +67,16 @@
     <string name="notificacionTitulo">Time to get stronger</string>
     <string name="notificacionCuerpo">It is time to exercise and record the results.</string>
     <string name="perfilExitoGuardado">Has been saved successfully</string>
+    <string name="tvTituloCreacionUsu">Add user</string>
+    <string name="tvDescripcionCreacionUsu">o add a person in the application, enter their email. We will send the user the information necessary to enter the application.</string>
+    <string name="EjercicioPeso">Weight used in Kg</string>
+    <string name="EjercicioRonda">No. of rounds</string>
+    <string name="EjercicioFecha">Date</string>
+    <string name="EjercicioInputPeso">Enter the weight in Kg</string>
+    <string name="EjercicioInputRonda">Enter the number of rounds</string>
+    <string name="EjercicioInputFecha">Enter the date</string>
+    <string name="fecha_del_ejercicio">Exercise date</string>
+    <string name="n_de_rondas">No. of rounds</string>
+    <string name="peso_usado_en_kg">Weight used in Kg</string>
+    <string name="tituloAdministracion">Administration</string>
 </resources>
