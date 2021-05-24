@@ -79,4 +79,13 @@
     <string name="n_de_rondas">No. of rounds</string>
     <string name="peso_usado_en_kg">Weight used in Kg</string>
     <string name="tituloAdministracion">Administration</string>
+    <string name="men_administrador">Administrator menu</string>
+    <string name="tvCrearEvento">Create Event</string>
+    <string name="tv_crear_evento">Create Event</string>
+    <string name="a_adir_usuario">Add User</string>
+    <string name="tvTituloCreacionEvento">Event Creation</string>
+    <string name="n_de_plazas">No. of Places</string>
+    <string name="fecha_del_evento">Event date</string>
+    <string name="hora_del_evento">Event time</string>
+    <string name="nombre_del_evento">Name of the event</string>
 </resources>

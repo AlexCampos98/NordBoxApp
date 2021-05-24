@@ -26,7 +26,11 @@
         android:theme="@style/Theme.NordBoxApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".CreacionEvento"></activity>
+        <activity android:name=".CreacionEvento"
+            android:parentActivityName=".MenuAdministrador">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MenuAdministrador" /></activity>
         <activity
             android:name=".MenuAdministrador"
             android:parentActivityName=".MenuActivity">

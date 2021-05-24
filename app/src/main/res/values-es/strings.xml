@@ -66,4 +66,10 @@
     <string name="tvCrearEvento">Crear Evento</string>
     <string name="tv_crear_evento">Crear Evento</string>
     <string name="a_adir_usuario">Añadir Usuario</string>
+    <string name="n_de_plazas">Nº de Plazas</string>
+    <string name="fecha_del_evento">Fecha del evento</string>
+    <string name="hora_del_evento">Hora del evento</string>
+    <string name="nombre_del_evento">Nombre del evento</string>
+    <string name="crear_evento">Crear Evento</string>
+    <string name="tvTituloCreacionEvento">Creacion de Evento</string>
 </resources>
