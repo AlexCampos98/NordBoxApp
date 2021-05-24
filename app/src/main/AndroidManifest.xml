@@ -11,7 +11,8 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Permisos camara -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -25,6 +26,14 @@
         android:theme="@style/Theme.NordBoxApp"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".CreacionEvento"></activity>
+        <activity
+            android:name=".MenuAdministrador"
+            android:parentActivityName=".MenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MenuActivity" />
+        </activity>
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,19 +56,28 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".UsuarioActivity" android:parentActivityName=".MenuActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MenuActivity"/>
+        <activity
+            android:name=".UsuarioActivity"
+            android:parentActivityName=".MenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MenuActivity" />
         </activity>
         <activity android:name=".BenchmarkEjercicioActivity" />
         <activity android:name=".MenuActivity" />
-        <activity android:name=".BenchmarksActivity" android:parentActivityName=".MenuActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                 android:value=".MenuActivity"/>
+        <activity
+            android:name=".BenchmarksActivity"
+            android:parentActivityName=".MenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MenuActivity" />
         </activity>
-        <activity android:name=".CreacionUsuario" android:parentActivityName=".MenuActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MenuActivity"/>
+        <activity
+            android:name=".CreacionUsuario"
+            android:parentActivityName=".MenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MenuActivity" />
         </activity>
         <activity android:name=".Login">
             <intent-filter>

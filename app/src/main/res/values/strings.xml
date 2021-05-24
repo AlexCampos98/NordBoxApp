@@ -95,4 +95,8 @@
     <string name="n_de_rondas">Nº de rondas</string>
     <string name="peso_usado_en_kg">Peso usado en Kg</string>
     <string name="tituloAdministracion">Administración</string>
+    <string name="men_administrador">Menú Administrador</string>
+    <string name="tvCrearEvento">Crear Evento</string>
+    <string name="tv_crear_evento">Crear Evento</string>
+    <string name="a_adir_usuario">Añadir Usuario</string>
 </resources>
