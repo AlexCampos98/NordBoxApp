@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="tvLogin">Welcome to NordBox, log in to continue.</string>
+    <string name="etEmailLogin">Enter your email</string>
+    <string name="etPasswordLogin">Enter password</string>
     <string name="btnLogin">Log in</string>
     <string name="imgLogin">Official NordBox logo</string>
     <string name="tvLoginError">* Wrong email or password</string>
