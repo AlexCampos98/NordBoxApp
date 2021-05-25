@@ -25,6 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NordBoxApp"
         android:usesCleartextTraffic="true"
+        android:screenOrientation="portrait"
         tools:targetApi="m">
         <activity android:name=".CreacionEvento"
             android:parentActivityName=".MenuAdministrador">
