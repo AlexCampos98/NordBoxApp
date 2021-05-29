@@ -170,31 +170,43 @@ public class UsuarioActivity extends AppCompatActivity {
                 inpPerfilEmail.setErrorEnabled(true);
                 inpPerfilEmail.setError(getString(R.string.errorPerfilEmail));
                 comprobacion = false;
+            } else{
+                inpPerfilEmail.setErrorEnabled(false);
             }
             if (etPerfilPassword.getText().toString().equals("")) {
                 inpPerfilPassword.setErrorEnabled(true);
                 inpPerfilPassword.setError(getString(R.string.errorPerfilPassword));
                 comprobacion = false;
+            } else{
+                inpPerfilPassword.setErrorEnabled(false);
             }
             if (etPerfilNombre.getText().toString().equals("")) {
                 inpPerfilNombre.setErrorEnabled(true);
                 inpPerfilNombre.setError(getString(R.string.errorPerfilNombre));
                 comprobacion = false;
+            } else{
+                inpPerfilNombre.setErrorEnabled(false);
             }
             if (etPerfilPriApellido.getText().toString().equals("")) {
                 inpPerfilPriApellido.setErrorEnabled(true);
                 inpPerfilPriApellido.setError(getString(R.string.errorPerfilPriApellido));
                 comprobacion = false;
+            } else{
+                inpPerfilPriApellido.setErrorEnabled(false);
             }
             if (etPerfilSegApellido.getText().toString().equals("")) {
                 inpPerfilSegApellido.setErrorEnabled(true);
                 inpPerfilSegApellido.setError(getString(R.string.errorPerfilSegApellido));
                 comprobacion = false;
+            } else{
+                inpPerfilSegApellido.setErrorEnabled(false);
             }
             if (etPerfilTelefono.getText().toString().equals("")) {
                 inpPerfilTelefono.setErrorEnabled(true);
                 inpPerfilTelefono.setError(getString(R.string.errorPerfilTelefono));
                 comprobacion = false;
+            } else{
+                inpPerfilTelefono.setErrorEnabled(false);
             }
             if (etPerfilTelefonoEmergencia.getText().toString().equals("")) {
                 inpPerfilTelefonoEmergencia.setErrorEnabled(true);
@@ -204,21 +216,29 @@ public class UsuarioActivity extends AppCompatActivity {
                 inpPerfilTelefonoEmergencia.setErrorEnabled(true);
                 inpPerfilTelefonoEmergencia.setError(getString(R.string.errorPerfilTelefonoEmergenciaMismo));
                 comprobacion = false;
+            } else{
+                inpPerfilTelefonoEmergencia.setErrorEnabled(false);
             }
             if (etPerfilCodPostal.getText().toString().equals("")) {
                 inpPerfilCodPostal.setErrorEnabled(true);
                 inpPerfilCodPostal.setError(getString(R.string.errorPerfilCodPostal));
                 comprobacion = false;
+            } else{
+                inpPerfilCodPostal.setErrorEnabled(false);
             }
             if (etPerfilLocalidad.getText().toString().equals("")) {
                 inpPerfilLocalidad.setErrorEnabled(true);
                 inpPerfilLocalidad.setError(getString(R.string.errorPerfilLocalidad));
                 comprobacion = false;
+            } else{
+                inpPerfilLocalidad.setErrorEnabled(false);
             }
             if (etPerfilProvincia.getText().toString().equals("")) {
                 inpPerfilProvincia.setErrorEnabled(true);
                 inpPerfilProvincia.setError(getString(R.string.errorPerfilProvincia));
                 comprobacion = false;
+            } else{
+                inpPerfilProvincia.setErrorEnabled(false);
             }
 
             //En caso de estar los campos correctos, se modifica el usuario en el servidor.
