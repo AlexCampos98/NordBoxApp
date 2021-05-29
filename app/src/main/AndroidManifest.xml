@@ -79,10 +79,10 @@
         </activity>
         <activity
             android:name=".CreacionUsuario"
-            android:parentActivityName=".MenuActivity">
+            android:parentActivityName=".MenuAdministrador">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MenuActivity" />
+                android:value=".MenuAdministrador" />
         </activity>
         <activity android:name=".Login">
             <intent-filter>

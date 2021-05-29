@@ -6,8 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.content.Intent;
 
-public class MenuAdministrador extends AppCompatActivity {
+public class MenuAdministrador extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton btnCrearEvento, btnCrearUsuario;
 
@@ -21,9 +22,9 @@ public class MenuAdministrador extends AppCompatActivity {
 
     public void initUI() {
         btnCrearEvento = findViewById(R.id.btnCrearEvento);
-        btnCrearEvento.setOnClickListener((View.OnClickListener) this);
+        btnCrearEvento.setOnClickListener(this);
         btnCrearUsuario = findViewById(R.id.btnCrearUsuario);
-        btnCrearUsuario.setOnClickListener((View.OnClickListener) this);
+        btnCrearUsuario.setOnClickListener(this);
     }
 
     public void onClick(View v) {
@@ -31,11 +32,11 @@ public class MenuAdministrador extends AppCompatActivity {
 
         Intent i = null;
 
-        if(id == R.id.btnCrearEvento){
+        if(id == R.id.btnCrearUsuario){
             i = new Intent(this, CreacionUsuario.class);
-        } else if(id == R.id.btnCrearUsuario){
-            //TODO Terminar y poner la activity de creacion de evento.
-            //i = new Intent(this, BenchmarksActivity.class);
+        } else if(id == R.id.btnCrearEvento){
+
+            i = new Intent(this, CreacionEvento.class);
         }
 
         if (i != null) {

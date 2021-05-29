@@ -73,9 +73,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.btnContacto) {
             //TODO Añadir intent de cambio a la activity Contacto. Si es administrador o no
             if(true){
-
+                i = new Intent(this, MenuAdministrador.class);
+            } else {
+                mensajeEmergente(v, R.string.procesoContacto);
             }
-            mensajeEmergente(v , R.string.procesoContacto);
         } else if (id == R.id.btnBenchmarks) {
             i = new Intent(this, BenchmarksActivity.class);
         } else if (id == R.id.btnPerfil) {
