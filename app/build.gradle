@@ -67,4 +67,7 @@ dependencies {
 
     //Forma Circular ImagenView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //ColorPicker
+    implementation 'com.github.QuadFlask:colorpicker:0.0.15'
 }

@@ -17,6 +17,8 @@ allprojects {
         google()
         mavenCentral()
         jcenter()
+        //ColorPicker
+        maven { url "https://jitpack.io" }
     }
 }
 

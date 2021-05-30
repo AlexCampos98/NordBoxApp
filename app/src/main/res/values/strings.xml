@@ -105,4 +105,17 @@
     <string name="hora_del_evento">Hora del evento</string>
     <string name="nombre_del_evento">Nombre del evento</string>
     <string name="crear_evento">Crear Evento</string>
+    <string name="Rojo">Rojo</string>
+    <string name="Azul">Azul</string>
+    <string name="Verde">Verde</string>
+    <string name="Amarillo">Amarillo</string>
+    <string name="errorFechaEvento">Es obligatoria la fecha</string>
+    <string name="errorObligatorio">Obligatorio</string>
+    <string name="bot_n_de_opci_n_calendario">Botón de opción calendario</string>
+    <string name="bot_n_de_selecci_n_de_hora">Botón de selección de hora</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="color">Selecciona el color</string>
+    <string name="bot_n_de_selecci_n_de_color">Botón de selección de color</string>
+    <string name="tituloColorPicker">Selecciona un color</string>
 </resources>

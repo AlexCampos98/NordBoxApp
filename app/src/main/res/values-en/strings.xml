@@ -92,4 +92,17 @@
     <string name="hora_del_evento">Event time</string>
     <string name="nombre_del_evento">Name of the event</string>
     <string name="crear_evento">Create Event</string>
+    <string name="Rojo">Red</string>
+    <string name="Azul">Blue</string>
+    <string name="Verde">Green</string>
+    <string name="Amarillo">Yellow</string>
+    <string name="errorFechaEvento">The date is mandatory</string>
+    <string name="errorObligatorio">Required</string>
+    <string name="bot_n_de_opci_n_calendario">Calendar option button</string>
+    <string name="bot_n_de_selecci_n_de_hora">Time selection button</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="color">Select the color</string>
+    <string name="bot_n_de_selecci_n_de_color">Color selection button</string>
+    <string name="tituloColorPicker">Select the color</string>
 </resources>
