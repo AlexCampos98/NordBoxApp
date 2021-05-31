@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.OnColorSelectedListener;
@@ -26,6 +27,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.time.Instant;
 import java.util.Calendar;
 
+import nordboxcad.*;
+
 public class CreacionEvento extends AppCompatActivity implements View.OnClickListener {
 
     EditText etFechaEvento, etPlazas, etHoraEvento, etNombreEvento;
@@ -34,6 +37,7 @@ public class CreacionEvento extends AppCompatActivity implements View.OnClickLis
     ImageButton btnFechaEvento, btnHoraEvento, btnColor;
     TextView tvColor;
     int colorSeleccionado = -65536;
+    boolean esperaHilo=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +106,35 @@ public class CreacionEvento extends AppCompatActivity implements View.OnClickLis
 
             if(comprobacion){
 
+                //Inicio un hilo para comprobar que el usuario este en la BD.
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Conectamos con el servidor.
+                        NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
+
+                        Evento evento = new Evento(null, etFechaEvento.getText().toString(), etHoraEvento.getText().toString(), etNombreEvento.getText().toString(), Integer.parseInt(etPlazas.getText().toString()), Integer.toString(colorSeleccionado), 3);
+
+                       nordBoxCAD.crearEvento(evento);
+
+                        //Cambio el valor del controlador de espera de hilo.
+                        esperaHilo = true;
+                    }
+                });
+                thread.start();
+
+                //Bucle que espera a que el hilo termine.
+                boolean bucleEspFinHilo = true;
+                while (bucleEspFinHilo) {
+                    if (esperaHilo) {
+                        bucleEspFinHilo = false;
+                    }
+                }
+
+                //TODO poner que se ha creado con exito cuando se cambie.
+                Toast.makeText(this, "Se ha creado con exito", Toast.LENGTH_LONG);
+                Intent i = new Intent(this, MenuAdministrador.class);
+                startActivity(i);
             }
 
         } else if(id == R.id.btnFechaEvento){
