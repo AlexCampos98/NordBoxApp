@@ -132,9 +132,13 @@ public class CreacionEvento extends AppCompatActivity implements View.OnClickLis
                 }
 
                 //TODO poner que se ha creado con exito cuando se cambie.
-                Toast.makeText(this, "Se ha creado con exito", Toast.LENGTH_LONG);
-                Intent i = new Intent(this, MenuAdministrador.class);
-                startActivity(i);
+                Toast.makeText(this, getString(R.string.ExitoCreacionEvento), Toast.LENGTH_LONG).show();
+                colorSeleccionado = -65536;
+                tvColor.setBackgroundColor(colorSeleccionado);
+                etFechaEvento.setText("");
+                etHoraEvento.setText("");
+                etNombreEvento.setText("");
+                etPlazas.setText("");
             }
 
         } else if(id == R.id.btnFechaEvento){
