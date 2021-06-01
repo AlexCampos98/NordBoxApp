@@ -117,6 +117,7 @@ public class BenchmarksActivity extends AppCompatActivity implements View.OnClic
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(listAdapter);
+        recyclerView.setOnClickListener(this);
     }
 
     //TODO Añadir todos los diferentes botones, Los botones se crearan automaticamente, segun los que existan en la BD.

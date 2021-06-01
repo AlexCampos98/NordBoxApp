@@ -3,24 +3,33 @@ package com.example.nordboxapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class BenchmarkEjercicioActivity extends AppCompatActivity {
+public class BenchmarkEjercicioActivity extends AppCompatActivity implements View.OnClickListener{
 
+    Integer idEjercicio;
     TableLayout tablaEjerciciosBench;
+    Button btnEjercicioEnviar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_benchmark_ejercicio);
 
+        idEjercicio = (Integer) getIntent().getExtras().get("id");
+
         InitUI();
     }
 
     private void InitUI() {
         tablaEjerciciosBench = findViewById(R.id.tablaEjerciciosBench);
+        btnEjercicioEnviar = findViewById(R.id.btnEjercicioEnviar);
+        btnEjercicioEnviar.setOnClickListener(this);
     }
 
     //Metodo usado para agregar filas en la tabla
@@ -92,5 +101,12 @@ public class BenchmarkEjercicioActivity extends AppCompatActivity {
         }
 
         */
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        //TODO tengo el id, ahora tengo que sacar los datos de la tabla, si es que hay. Y hacer que pueda agregar datos nuevos.
+        Toast.makeText(this, "Id del ejercicio: "+idEjercicio,Toast.LENGTH_LONG).show();
     }
 }

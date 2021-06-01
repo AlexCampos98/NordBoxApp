@@ -1,6 +1,7 @@
 package com.example.nordboxapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.view.ContextMenu;
@@ -46,10 +47,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     {
         holder.bindData(mData.get(position));
 
+
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, mData.get(position).name, Toast.LENGTH_LONG).show();
+                Intent i = new Intent(context,BenchmarkEjercicioActivity.class);
+                i.putExtra("id", mData.get(position).id);
+                holder.itemView.getContext().startActivity(i);
             }
         });
 
