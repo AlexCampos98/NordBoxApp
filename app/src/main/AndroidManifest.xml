@@ -68,7 +68,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MenuActivity" />
         </activity>
-        <activity android:name=".BenchmarkEjercicioActivity" />
+        <activity
+            android:name=".BenchmarkEjercicioActivity"
+            android:parentActivityName=".MenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MenuActivity" />
+        </activity>
         <activity android:name=".MenuActivity" />
         <activity
             android:name=".BenchmarksActivity"

@@ -114,4 +114,5 @@
     <string name="bot_n_de_selecci_n_de_color">Botón de selección de color</string>
     <string name="tituloColorPicker">Selecciona un color</string>
     <string name="ExitoCreacionEvento">Se ha creado con exito</string>
+    <string name="boton_para_abrir_el_calendario">Boton para abrir el calendario</string>
 </resources>

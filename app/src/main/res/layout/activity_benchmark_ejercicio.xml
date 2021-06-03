@@ -95,15 +95,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inpEjercicioFecha"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:textColorHint="@color/md_blue_600"
         app:boxStrokeColor="@color/md_blue_900"
         app:hintTextColor="@color/md_blue_700"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnEjercicioFecha"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEjercicioFecha">
 
@@ -113,9 +113,21 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:ems="10"
+            android:enabled="false"
             android:hint="@string/EjercicioInputFecha"
             android:inputType="date" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/btnEjercicioFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/boton_para_abrir_el_calendario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/inpEjercicioFecha"
+        app:srcCompat="@android:drawable/ic_menu_month" />
 
     <Button
         android:id="@+id/btnEjercicioEnviar"
