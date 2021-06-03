@@ -2,6 +2,8 @@ package com.example.nordboxapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,11 +12,24 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import nordboxcad.EjercicioBenchUsuario;
+import nordboxcad.EjerciciosBench;
+import nordboxcad.NordBoxCADCliente;
+
 public class BenchmarkEjercicioActivity extends AppCompatActivity implements View.OnClickListener{
+
+    UsuarioStatico usuarioStatico = new UsuarioStatico();
 
     Integer idEjercicio;
     TableLayout tablaEjerciciosBench;
     Button btnEjercicioEnviar;
+    EjercicioBenchUsuario ejerciciosUsuario;
+    ArrayList<EjercicioBenchUsuario> ejercicioBenchUsuarios;
+
+    boolean esperaHilo = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +37,10 @@ public class BenchmarkEjercicioActivity extends AppCompatActivity implements Vie
         setContentView(R.layout.activity_benchmark_ejercicio);
 
         idEjercicio = (Integer) getIntent().getExtras().get("id");
-
+        ejerciciosUsuario = new EjercicioBenchUsuario(0, idEjercicio, usuarioStatico.getUsuario().getId(), null, null, null);
         InitUI();
+
+        agregarFilaTabla();
     }
 
     private void InitUI() {
@@ -34,79 +51,70 @@ public class BenchmarkEjercicioActivity extends AppCompatActivity implements Vie
 
     //Metodo usado para agregar filas en la tabla
     private void agregarFilaTabla(){
-        TableRow fila = new TableRow(this);
 
-        //Defino el layout de la fila
-        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-        fila.setLayoutParams(lp);
 
-        //Estilo al borde
-        fila.setBackgroundResource(R.drawable.borde_tabla);
+        //Recogida de ejercicios desde la BD
 
-        //Agregar columnas a la fila, con contenido en ellas
-        TextView textView = new TextView(this);
-        textView.setText("algo");
-        fila.addView(textView);
+        Thread thread = new Thread(new Runnable() {
 
-        //Agregar fila a la tabla
-        tablaEjerciciosBench.addView(fila);
+            @Override
+            public void run() {
+                //Conectamos con el servidor.
+                NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
 
-        /*
-        //Ejemplo
-        String[] tallas = {"X1", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        String[] colores = {"BLANCO", "VERDE", "PÚRPURA", "AMARILLO", "MARRÓN"};
-
-        // Primero dibujar el encabezado; esto es poner "TALLAS" y a la derecha todas las tallas
-        TableRow fila = new TableRow(getActivity());
-        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-        fila.setLayoutParams(lp);
-        // Borde
-        fila.setBackgroundResource(R.drawable.borde_tabla);
-        //El elemento de la izquierda
-        TextView tv = new TextView(getActivity());
-        tv.setTypeface(null, Typeface.BOLD);
-        tv.setText("TALLAS");
-        fila.addView(tv);
-
-        // Ahora agregar las tallas
-        for (int x = 0; x < tallas.length; x++) {
-            TextView tvTalla = new TextView(getActivity());
-            tvTalla.setText(tallas[x]);
-            fila.addView(tvTalla);
-        }
-        // Finalmente agregar la fila en la primera posición
-        tableLayout.addView(fila, 0);
-
-        // Ahora por cada color hacer casi lo mismo
-        for (int x = 0; x < colores.length; x++) {
-            TableRow filaColor = new TableRow(getActivity());
-            filaColor.setLayoutParams(lp);
-            // Borde
-            filaColor.setBackgroundResource(R.drawable.borde_tabla);
-            // El nombre del color
-            TextView textViewColor = new TextView(getActivity());
-            textViewColor.setText(colores[x]);
-            textViewColor.setTypeface(null, Typeface.BOLD);
-            filaColor.addView(textViewColor);
-            // Y ahora por cada talla, agregar un campo de texto
-            for (int y = 0; y < tallas.length; y++) {
-                EditText editText = new EditText(getActivity());
-                editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-                editText.setWidth(Constantes.ANCHURA_PIXELES_EDITTEXT_TABLA_DINAMICA);
-                filaColor.addView(editText);
-                filaColor.setMinimumWidth(Constantes.ANCHURA_PIXELES_EDITTEXT_TABLA_DINAMICA);
+                //Guardo los diferentes tipos de ejercicios.
+                ejercicioBenchUsuarios = nordBoxCAD.ejeBenchUsuario(ejerciciosUsuario);
+                esperaHilo = false;
             }
-            // Finalmente agregar la fila
-            tableLayout.addView(filaColor);
+        });
+        thread.start();
+
+        //Bucle de espera de hilo.
+        boolean bucleEspFinHilo = true;
+        while (bucleEspFinHilo) {
+            if (!esperaHilo) {
+                bucleEspFinHilo = false;
+                esperaHilo = true;
+            }
         }
 
-        */
+        //Iterador con los datos que se introduciran en la tabla.
+        Iterator<EjercicioBenchUsuario> benchUsuarioIterator = ejercicioBenchUsuarios.iterator();
+        while (benchUsuarioIterator.hasNext()){
+            TableRow fila = new TableRow(this);
+
+            //Defino el layout de la fila
+            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+            fila.setLayoutParams(lp);
+
+            //Estilo al borde
+            fila.setBackgroundResource(R.drawable.borde_tabla);
+
+            EjercicioBenchUsuario ejercicioBenchUsuario = benchUsuarioIterator.next();
+            TextView textViewRondas = new TextView(this);
+            TextView textViewPeso = new TextView(this);
+            TextView textViewFecha = new TextView(this);
+            textViewRondas.setBackgroundResource(R.drawable.borde_tabla);
+            textViewPeso.setBackgroundResource(R.drawable.borde_tabla);
+            textViewFecha.setBackgroundResource(R.drawable.borde_tabla);
+
+            textViewRondas.setText(" " + ejercicioBenchUsuario.getRondas());
+            textViewPeso.setText(" " + ejercicioBenchUsuario.getPeso());
+            textViewFecha.setText(" " +ejercicioBenchUsuario.getFecha().toString());
+
+            fila.addView(textViewRondas);
+            fila.addView(textViewPeso);
+            fila.addView(textViewFecha);
+
+            //Agregar fila a la tabla
+            tablaEjerciciosBench.addView(fila);
+        }
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
         //TODO tengo el id, ahora tengo que sacar los datos de la tabla, si es que hay. Y hacer que pueda agregar datos nuevos.
-        Toast.makeText(this, "Id del ejercicio: "+idEjercicio,Toast.LENGTH_LONG).show();
+
     }
 }
