@@ -10,66 +10,122 @@
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clEvento"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:id="@+id/rlEjercicio"
-            android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivEntrenador"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/entrendor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvEventoNombre"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="6dp"
-            tools:ignore="UselessParent">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/ivEntrenador"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imgEntrenador"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                tools:srcCompat="@tools:sample/avatars" />
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:stretchColumns="*"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivEntrenador"
+            app:layout_constraintTop_toBottomOf="@+id/tvEventoNombre">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="2dp"
-                android:layout_toEndOf="@+id/imgEntrenador"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/nombreEvento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:text="Crossfit"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/ivDeportista1"
                     android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:layout_height="50dp"
+                    android:background="@drawable/borde_tabla_titulo"
+                    android:contentDescription="@string/deportista" />
 
                 <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:id="@+id/ivDeportista2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/borde_tabla_titulo"
+                    android:contentDescription="@string/deportista" />
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Apuntarse" />
+                <ImageView
+                    android:id="@+id/ivDeportista3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/borde_tabla_titulo"
+                    android:contentDescription="@string/deportista" />
 
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/ivDeportista4"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/borde_tabla_titulo"
+                    android:contentDescription="@string/deportista" />
 
-        </RelativeLayout>
-    </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/ivDeportista5"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/borde_tabla_titulo"
+                    android:contentDescription="@string/deportista" />
+
+                <ImageView
+                    android:id="@+id/ivDeportista6"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/borde_tabla_titulo"
+                    android:contentDescription="@string/deportista" />
+
+                <ImageView
+                    android:id="@+id/ivDeportista7"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/borde_tabla_titulo"
+                    android:contentDescription="@string/deportista" />
+
+                <ImageView
+                    android:id="@+id/ivDeportista8"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/borde_tabla_titulo"
+                    android:contentDescription="@string/deportista" />
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/btnEventoApuntarse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

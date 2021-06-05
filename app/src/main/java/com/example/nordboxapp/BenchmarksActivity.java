@@ -34,7 +34,6 @@ public class BenchmarksActivity extends AppCompatActivity implements View.OnClic
     //Para el recycler
     List<ListBench> elements;
     ArrayList<EjerciciosBench> bench;
-    ArrayList<Integer> ids;
 
     //Gif
     LinearLayout layoutAnimado;

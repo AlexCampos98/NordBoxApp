@@ -107,4 +107,11 @@
     <string name="tituloColorPicker">Select the color</string>
     <string name="ExitoCreacionEvento">It has been created successfully</string>
     <string name="boton_para_abrir_el_calendario">Button to open the calendar</string>
+    <string name="dia_anterior">Yesterday</string>
+    <string name="dia_siguiente">Next day</string>
+    <string name="calendario">Calendar</string>
+    <string name="entrendor">Trainer</string>
+    <string name="deportista">Sports player</string>
+    <string name="borrar">Delete</string>
+    <string name="apuntarse">Sign up</string>
 </resources>

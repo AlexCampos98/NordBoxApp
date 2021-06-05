@@ -69,7 +69,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         if (id == R.id.btnReservar) {
             //TODO Añadir intent de cambio a la activity calendario.
-            mensajeEmergente(v, R.string.procesoReservar);
+            i = new Intent(this, EventoActivity.class);
+//            mensajeEmergente(v, R.string.procesoReservar);
         } else if (id == R.id.btnContacto) {
             //TODO Añadir intent de cambio a la activity Contacto. Si es administrador o no
             if(true){
