@@ -207,6 +207,7 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
                     btnEventoApuntarse.setText(R.string.excluido);
                     btnEventoApuntarse.setBackgroundColor(-7761753);
                     btnEventoApuntarse.setContentDescription("3");
+                    btnEventoApuntarse.setEnabled(false);
                 } else {
                     btnEventoApuntarse.setText(R.string.apuntarse);
                     btnEventoApuntarse.setContentDescription("2");
