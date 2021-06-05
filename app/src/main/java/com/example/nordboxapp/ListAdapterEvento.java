@@ -23,6 +23,7 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
     private final LayoutInflater mInflater;
     private final Context context;
     static UsuarioStatico usuarioStatico = new UsuarioStatico();
+    private static boolean excluido;
 //    UsuarioStatico usuarioStatico = new UsuarioStatico();
 
     public ListAdapterEvento(List<Evento> itemList, Context context)
@@ -53,8 +54,10 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
             public void onClick(View v) {
                 if (holder.btnEventoApuntarse.getContentDescription().equals("1")){
                     //TODO desapuntarse
+                    excluido = false;
                 } else {
                     //TODO apuntarse
+                    excluido = true;
                 }
             }
         });
@@ -133,6 +136,7 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
                     btnEventoApuntarse.setBackgroundColor(-65536);
                     btnEventoApuntarse.setContentDescription("1");
                     apuntarse = false;
+                    excluido = true;
                 }
             }
             if(item.getApuntados().getDeportista2() != null){
@@ -141,6 +145,7 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
                     btnEventoApuntarse.setBackgroundColor(-65536);
                     btnEventoApuntarse.setContentDescription("1");
                     apuntarse = false;
+                    excluido = true;
                 }
             }
             if(item.getApuntados().getDeportista3() != null){
@@ -149,6 +154,7 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
                     btnEventoApuntarse.setBackgroundColor(-65536);
                     btnEventoApuntarse.setContentDescription("1");
                     apuntarse = false;
+                    excluido = true;
                 }
             }
             if(item.getApuntados().getDeportista4() != null){
@@ -157,6 +163,7 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
                     btnEventoApuntarse.setBackgroundColor(-65536);
                     btnEventoApuntarse.setContentDescription("1");
                     apuntarse = false;
+                    excluido = true;
                 }
             }
             if(item.getApuntados().getDeportista5() != null){
@@ -165,6 +172,7 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
                     btnEventoApuntarse.setBackgroundColor(-65536);
                     btnEventoApuntarse.setContentDescription("1");
                     apuntarse = false;
+                    excluido = true;
                 }
             }
             if(item.getApuntados().getDeportista6() != null){
@@ -173,6 +181,7 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
                     btnEventoApuntarse.setBackgroundColor(-65536);
                     btnEventoApuntarse.setContentDescription("1");
                     apuntarse = false;
+                    excluido = true;
                 }
             }
             if(item.getApuntados().getDeportista7() != null){
@@ -181,6 +190,7 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
                     btnEventoApuntarse.setBackgroundColor(-65536);
                     btnEventoApuntarse.setContentDescription("1");
                     apuntarse = false;
+                    excluido = true;
                 }
             }
             if(item.getApuntados().getDeportista8() != null){
@@ -189,11 +199,18 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
                     btnEventoApuntarse.setBackgroundColor(-65536);
                     btnEventoApuntarse.setContentDescription("1");
                     apuntarse = false;
+                    excluido = true;
                 }
             }
-            if (apuntarse){
-                btnEventoApuntarse.setText(R.string.apuntarse);
-                btnEventoApuntarse.setContentDescription("2");
+            if (apuntarse) {
+                if (excluido) {
+                    btnEventoApuntarse.setText(R.string.excluido);
+                    btnEventoApuntarse.setBackgroundColor(-7761753);
+                    btnEventoApuntarse.setContentDescription("3");
+                } else {
+                    btnEventoApuntarse.setText(R.string.apuntarse);
+                    btnEventoApuntarse.setContentDescription("2");
+                }
             }
         }
     }
