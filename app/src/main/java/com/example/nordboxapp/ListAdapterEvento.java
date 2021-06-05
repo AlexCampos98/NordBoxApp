@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,7 +47,6 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
     public void onBindViewHolder(final ListAdapterEvento.ViewHolder holder, final int position)
     {
         holder.bindData(mData.get(position));
-
 
         holder.btnEventoApuntarse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,10 +89,14 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
             constraintLayout = itemView.findViewById(R.id.clEvento);
 
             btnEventoApuntarse = itemView.findViewById(R.id.btnEventoApuntarse);
+
+
         }
 
         void bindData(final Evento item)
         {
+            boolean apuntarse = true;
+
             tvEventoNombre.setText(item.getNombre());
             ivEntrenador.setImageResource(R.drawable.nordbox);
 
@@ -123,39 +127,71 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
 
             constraintLayout.setBackgroundColor(Integer.parseInt(item.getColor()));
 
-            if(item.getApuntados().getDeportista1() == usuarioStatico.getUsuario().getId()) {
-                btnEventoApuntarse.setText(R.string.borrar);
-                btnEventoApuntarse.setBackgroundColor(-65536);
-                btnEventoApuntarse.setContentDescription("1");
-            } else if(item.getApuntados().getDeportista2() == usuarioStatico.getUsuario().getId()){
-                btnEventoApuntarse.setText(R.string.borrar);
-                btnEventoApuntarse.setBackgroundColor(-65536);
-                btnEventoApuntarse.setContentDescription("1");
-            } else if(item.getApuntados().getDeportista3() == usuarioStatico.getUsuario().getId()){
-                btnEventoApuntarse.setText(R.string.borrar);
-                btnEventoApuntarse.setBackgroundColor(-65536);
-                btnEventoApuntarse.setContentDescription("1");
-            } else if(item.getApuntados().getDeportista4() == usuarioStatico.getUsuario().getId()){
-                btnEventoApuntarse.setText(R.string.borrar);
-                btnEventoApuntarse.setBackgroundColor(-65536);
-                btnEventoApuntarse.setContentDescription("1");
-            } else if(item.getApuntados().getDeportista5() == usuarioStatico.getUsuario().getId()){
-                btnEventoApuntarse.setText(R.string.borrar);
-                btnEventoApuntarse.setBackgroundColor(-65536);
-                btnEventoApuntarse.setContentDescription("1");
-            } else if(item.getApuntados().getDeportista6() == usuarioStatico.getUsuario().getId()){
-                btnEventoApuntarse.setText(R.string.borrar);
-                btnEventoApuntarse.setContentDescription("1");
-                btnEventoApuntarse.setBackgroundColor(-65536);
-            } else if(item.getApuntados().getDeportista7() == usuarioStatico.getUsuario().getId()){
-                btnEventoApuntarse.setText(R.string.borrar);
-                btnEventoApuntarse.setContentDescription("1");
-                btnEventoApuntarse.setBackgroundColor(-65536);
-            } else if(item.getApuntados().getDeportista8() == usuarioStatico.getUsuario().getId()){
-                btnEventoApuntarse.setText(R.string.borrar);
-                btnEventoApuntarse.setContentDescription("1");
-                btnEventoApuntarse.setBackgroundColor(-65536);
-            } else {
+            if(item.getApuntados().getDeportista1() != null) {
+                if (item.getApuntados().getDeportista1().intValue() == usuarioStatico.getUsuario().getId().intValue()) {
+                    btnEventoApuntarse.setText(R.string.borrar);
+                    btnEventoApuntarse.setBackgroundColor(-65536);
+                    btnEventoApuntarse.setContentDescription("1");
+                    apuntarse = false;
+                }
+            }
+            if(item.getApuntados().getDeportista2() != null){
+                if (item.getApuntados().getDeportista2().intValue() == usuarioStatico.getUsuario().getId().intValue()) {
+                    btnEventoApuntarse.setText(R.string.borrar);
+                    btnEventoApuntarse.setBackgroundColor(-65536);
+                    btnEventoApuntarse.setContentDescription("1");
+                    apuntarse = false;
+                }
+            }
+            if(item.getApuntados().getDeportista3() != null){
+                if (item.getApuntados().getDeportista3().intValue() == usuarioStatico.getUsuario().getId().intValue()) {
+                    btnEventoApuntarse.setText(R.string.borrar);
+                    btnEventoApuntarse.setBackgroundColor(-65536);
+                    btnEventoApuntarse.setContentDescription("1");
+                    apuntarse = false;
+                }
+            }
+            if(item.getApuntados().getDeportista4() != null){
+                if (item.getApuntados().getDeportista4().intValue() == usuarioStatico.getUsuario().getId().intValue()) {
+                    btnEventoApuntarse.setText(R.string.borrar);
+                    btnEventoApuntarse.setBackgroundColor(-65536);
+                    btnEventoApuntarse.setContentDescription("1");
+                    apuntarse = false;
+                }
+            }
+            if(item.getApuntados().getDeportista5() != null){
+                if (item.getApuntados().getDeportista5().intValue() == usuarioStatico.getUsuario().getId().intValue()) {
+                    btnEventoApuntarse.setText(R.string.borrar);
+                    btnEventoApuntarse.setBackgroundColor(-65536);
+                    btnEventoApuntarse.setContentDescription("1");
+                    apuntarse = false;
+                }
+            }
+            if(item.getApuntados().getDeportista6() != null){
+                if (item.getApuntados().getDeportista6().intValue() == usuarioStatico.getUsuario().getId().intValue()) {
+                    btnEventoApuntarse.setText(R.string.borrar);
+                    btnEventoApuntarse.setBackgroundColor(-65536);
+                    btnEventoApuntarse.setContentDescription("1");
+                    apuntarse = false;
+                }
+            }
+            if(item.getApuntados().getDeportista7() != null){
+                if (item.getApuntados().getDeportista7().intValue() == usuarioStatico.getUsuario().getId().intValue()) {
+                    btnEventoApuntarse.setText(R.string.borrar);
+                    btnEventoApuntarse.setBackgroundColor(-65536);
+                    btnEventoApuntarse.setContentDescription("1");
+                    apuntarse = false;
+                }
+            }
+            if(item.getApuntados().getDeportista8() != null){
+                if (item.getApuntados().getDeportista8().intValue() == usuarioStatico.getUsuario().getId().intValue()) {
+                    btnEventoApuntarse.setText(R.string.borrar);
+                    btnEventoApuntarse.setBackgroundColor(-65536);
+                    btnEventoApuntarse.setContentDescription("1");
+                    apuntarse = false;
+                }
+            }
+            if (apuntarse){
                 btnEventoApuntarse.setText(R.string.apuntarse);
                 btnEventoApuntarse.setContentDescription("2");
             }
