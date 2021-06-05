@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 import nordboxcad.Evento;
+import nordboxcad.NordBoxCADCliente;
 
 public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.ViewHolder>{
     public List<Evento> mData;
@@ -24,7 +25,7 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
     private final Context context;
     static UsuarioStatico usuarioStatico = new UsuarioStatico();
     private static boolean excluido;
-//    UsuarioStatico usuarioStatico = new UsuarioStatico();
+    boolean esperaHilo = true;
 
     public ListAdapterEvento(List<Evento> itemList, Context context)
     {
@@ -53,11 +54,49 @@ public class ListAdapterEvento extends RecyclerView.Adapter<ListAdapterEvento.Vi
             @Override
             public void onClick(View v) {
                 if (holder.btnEventoApuntarse.getContentDescription().equals("1")){
-                    //TODO desapuntarse
-                    excluido = false;
+                    Thread thread = new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            //Conectamos con el servidor.
+                            NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
+
+                            //Guardo los diferentes tipos de ejercicios.
+                            nordBoxCAD.desapuntarseEvento(usuarioStatico.getUsuario().getId(),mData.get(position).getIdEvento());
+                            esperaHilo = false;
+                        }
+                    });
+                    thread.start();
+
+                    //Bucle de espera de hilo.
+                    boolean bucleEspFinHilo = true;
+                    while (bucleEspFinHilo) {
+                        if (!esperaHilo) {
+                            bucleEspFinHilo = false;
+                        }
+                    }
                 } else {
-                    //TODO apuntarse
-                    excluido = true;
+                    Thread thread = new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            //Conectamos con el servidor.
+                            NordBoxCADCliente nordBoxCAD = new NordBoxCADCliente("10.0.2.2", 30501);
+
+                            //Guardo los diferentes tipos de ejercicios.
+                            nordBoxCAD.apuntarseEvento(usuarioStatico.getUsuario().getId(),mData.get(position).getIdEvento());
+                            esperaHilo = false;
+                        }
+                    });
+                    thread.start();
+
+                    //Bucle de espera de hilo.
+                    boolean bucleEspFinHilo = true;
+                    while (bucleEspFinHilo) {
+                        if (!esperaHilo) {
+                            bucleEspFinHilo = false;
+                        }
+                    }
                 }
             }
         });
